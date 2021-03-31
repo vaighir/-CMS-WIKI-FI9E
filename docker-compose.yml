@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  tomcat:
+    image: 'bitnami/tomcat'
+    ports:
+      - '8080:8080'
+    volumes:
+      - 'tomcat:/bitnami'
+      - './tomcat_local/conf/tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml'
+      - './tomcat_local/conf/context.xml:/opt/bitnami/tomcat/conf/context.xml'
+      - './website/:/opt/bitnami/tomcat/webapps/ROOT/sites'
+    environment:
+      - TOMCAT_USERNAME=tomcat
+      - TOMCAT_PASSWORD=tomcat
+      - TOMCAT_ALLOW_REMOTE_MANAGEMENT=1
+    container_name: "tomcat"
+
+volumes:
+  tomcat:
+    driver: local
