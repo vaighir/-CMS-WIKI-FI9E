@@ -6,8 +6,6 @@ services:
       - '8080:8080'
     volumes:
       - 'tomcat:/bitnami'
-      - './tomcat_local/conf/tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml'
-      - './tomcat_local/conf/context.xml:/opt/bitnami/tomcat/conf/context.xml'
       - './website/:/opt/bitnami/tomcat/webapps/ROOT/sites'
     environment:
       - TOMCAT_USERNAME=tomcat
@@ -17,4 +15,3 @@ services:
 
 volumes:
   tomcat:
-    driver: local
