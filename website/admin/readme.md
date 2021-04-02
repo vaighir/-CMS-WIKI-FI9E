@@ -1,2 +1,0 @@
-# Angular App - Hello Wolrd
-

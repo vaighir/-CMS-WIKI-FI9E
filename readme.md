@@ -1,6 +1,8 @@
 # CMS Prototype V1
 In this project we like to demonstrate how an Angular + REST-API + Tomcat Server architecture based CMS could look like.
 
+Have a look at: [http://localhost:8080/admin] to get an overwie of all pages the project consists of.
+
 ## Project folders
 
 ### angular
