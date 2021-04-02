@@ -21,6 +21,8 @@ services:
     volumes:
       - 'tomcat:/bitnami'
       - './website/:/opt/bitnami/tomcat/webapps/ROOT/websites'
+      - './website/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
+      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
     environment:
       <<: *tomcat
     container_name: "tomcat"
@@ -35,7 +37,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      # oOn the left side of the semicolon is the directory in which Docker looks for init.sql
+      # on the left side of the semicolon is the directory in which Docker looks for init.sql
       - ./mysql:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
 
