@@ -15,14 +15,18 @@ x-mysql: &mysql
 
 services:
   tomcat:
-    image: 'bitnami/tomcat'
+    build:
+     context: .
+     dockerfile: ./docker/tomcat/Dockerfile
     ports:
       - '8080:8080'
     volumes:
       - 'tomcat:/bitnami'
+      - './webapps:/bitnami/tomcat/data'
       - './website/:/opt/bitnami/tomcat/webapps/ROOT/websites'
       - './website/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
       - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
+      - './tomcat_import:/opt/bitnami/tomcat/webapps_default'
     environment:
       <<: *tomcat
     container_name: "tomcat"
@@ -50,4 +54,5 @@ services:
 
 volumes:
   tomcat:
+    driver: local
   mysql_data:
