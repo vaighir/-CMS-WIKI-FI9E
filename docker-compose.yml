@@ -15,9 +15,7 @@ x-mysql: &mysql
 
 services:
   tomcat:
-    build:
-     context: .
-     dockerfile: ./docker/tomcat/Dockerfile
+    image: bitnami/tomcat:9.0-debian-10
     ports:
       - '8080:8080'
     volumes:
