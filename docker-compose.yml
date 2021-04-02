@@ -20,11 +20,9 @@ services:
       - '8080:8080'
     volumes:
       - 'tomcat:/bitnami'
-      - './webapps:/bitnami/tomcat/data'
-      - './website/:/opt/bitnami/tomcat/webapps/ROOT/websites'
-      - './website/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
+      - './webapps:/opt/bitnami/tomcat/webapps'
       - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
-      - './tomcat_import:/opt/bitnami/tomcat/webapps_default'
+      - './tomcat_import/API.WAR:/opt/bitnami/tomcat/webapps/API.WAR'
     environment:
       <<: *tomcat
     container_name: "tomcat"
