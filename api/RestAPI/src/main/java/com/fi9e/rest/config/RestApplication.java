@@ -2,15 +2,13 @@ package com.fi9e.rest.config;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+/**
+ * Configuration Class  
+ * @author Christopher
+ */
 public class RestApplication extends ResourceConfig {
 	public RestApplication() {
-		initResources();
-	}
-	
-	
-	public void initResources() {
+		//register all resources for this package:
 		packages("com.fi9e.rest.resources");
-		ClassLoader cl = getClass().getClassLoader();
-		cl.getParent();
 	}
 }
