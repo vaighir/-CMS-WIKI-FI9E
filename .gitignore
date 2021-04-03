@@ -1,5 +1,6 @@
 #ignor this
 .recommenders/
+api/Servers/
 
 # Logs
 logs
