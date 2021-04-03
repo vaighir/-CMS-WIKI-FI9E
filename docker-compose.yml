@@ -22,7 +22,7 @@ services:
       - 'tomcat:/bitnami'
       - './webapps:/opt/bitnami/tomcat/webapps'
       - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
-      - './tomcat_import/API.WAR:/opt/bitnami/tomcat/webapps/API.WAR'
+      #- './tomcat_import/API.WAR:/opt/bitnami/tomcat/webapps/API.WAR'
     environment:
       <<: *tomcat
     container_name: "tomcat"
