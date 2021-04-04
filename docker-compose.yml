@@ -17,12 +17,13 @@ services:
   tomcat:
     image: bitnami/tomcat:9.0-debian-10
     ports:
-      - '8080:8080'
+      - '80:8080'
     volumes:
       - 'tomcat:/bitnami'
       - './webapps:/opt/bitnami/tomcat/webapps'
       - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
+      #- './config/tomcat/server.xml:/opt/bitnami/tomcat/conf/server.xml'
     environment:
       <<: *tomcat
     container_name: "tomcat"
