@@ -13,15 +13,11 @@ public class UserComponentHandler {
 	public Response getUserById() {
 		String user = "Peter Knerz";
 		
-		return Response.status(200).entity(user).build();
-	}
-	
-	
-	@DELETE
-	@Path("/{2}")
-	public Response deleteUserById() {
-		String user = "Peter Knerz";
+		//TODO: API doku lesen jersey, wie kann man JSON daten zurückgeben?
+		
+		//TODO: wie kann man java (POJO) als JSON zurückgeben... 
 		
 		return Response.status(200).entity(user).build();
 	}
+	
 }
