@@ -11,5 +11,5 @@ CREATE TABLE user (
     PRIMARY KEY (id)
 );
 
-INSERT INTO user (name) values ("John Smith", "john.smith@mail.com", "passwtr");
-INSERT INTO user (name) values ("Jane Shepard", "jane.shepard@normandy.gov", "pwt");
+INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "passwtr");
+INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "pwt");
