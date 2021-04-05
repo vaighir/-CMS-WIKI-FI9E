@@ -1,4 +1,4 @@
-package com.fi9e.rest.dao;
+package com.fi9e.rest.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
