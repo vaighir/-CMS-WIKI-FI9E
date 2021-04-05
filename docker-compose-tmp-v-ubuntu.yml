@@ -26,6 +26,7 @@ services:
     environment:
       <<: *tomcat
     container_name: "tomcat"
+    command: tail -f /dev//null
 
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
