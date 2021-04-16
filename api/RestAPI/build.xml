@@ -136,7 +136,7 @@
 		<antcall target="build" />
 	</target>
 
-	
+
 	<!-- Custom ANT Tasks -->
 	<target name="Start Tomcat">
 		<exec dir="." executable="cmd">
@@ -151,10 +151,12 @@
 	</target>
 
 	<target name="Build API and Reload">
-		<antcall target="Stop Tomcat"></antcall>
+		<antcall target="Stop Tomcat">
+		</antcall>
 		<exec dir="." executable="cmd">
 			<arg line="/c mvn clean install" />
 		</exec>
-		<antcall target="Start Tomcat"></antcall>
+		<antcall target="Start Tomcat">
+		</antcall>
 	</target>
 </project>

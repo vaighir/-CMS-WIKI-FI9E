@@ -1,7 +1,7 @@
 # CMS Prototype V1
 In this project we like to demonstrate how an Angular + REST-API + Tomcat Server architecture based CMS could look like.
 
-Have a look at: [http://localhost:8080/admin] to get an overwie of all pages the project consists of.
+Have a look at: [http://localhost/admin] to get an overwie of all pages the project consists of.
 
 ## Project folders
 
@@ -40,7 +40,7 @@ All the commands below have to be execute in a terminal (cmd) in the root folder
 1. open command line
 2. Start and build docker imag first time:
 `docker-compose up --build -d`
-3. go to browser address: http://locahost:8080
+3. go to browser address: http://locahost
 4. put your website into the "app/" folder
 5. hit refresh in browser, enjoy :)
 
@@ -49,7 +49,7 @@ When working with Angular and tomcat there are just two things to consider.
 If you develop the Angular app, use the angular provided server. If you like to deploy the Angular app when you are done developiong, build the angular project.
 
 ### Angular Browser Link
-The Angular app is available under: http://localhost:8080/sites/cms/
+The Angular app is available under: http://localhost/websites/cms/
 
 ## Angular app developement:
 When developing the Angular app the dev workflow looks like this:
