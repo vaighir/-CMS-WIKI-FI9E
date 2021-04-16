@@ -30,6 +30,7 @@ public class UserDao {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
+				factory.close();
 			}
 		}
 
