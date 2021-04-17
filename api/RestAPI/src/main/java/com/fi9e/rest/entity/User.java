@@ -27,9 +27,9 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
-	/*@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id", nullable = true)
-	private Role role;*/
+	private Role role;
 
 	// TODO: Add password encryption!
 	@Column(name = "password")
@@ -77,13 +77,13 @@ public class User {
 		this.password = password;
 	}
 
-	/*public Role getRole() {
+	public Role getRole() {
 		return role;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
-	}*/
+	}
 
 	@Override
 	public String toString() {
