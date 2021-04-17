@@ -10,8 +10,7 @@ import com.fi9e.rest.entity.User;
 public class UserDao {
 
 	// create session factory
-	SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-			.buildSessionFactory();
+	SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
 	// create session
 	Session session = factory.getCurrentSession();

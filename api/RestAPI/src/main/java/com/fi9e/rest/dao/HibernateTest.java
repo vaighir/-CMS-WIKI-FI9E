@@ -13,8 +13,7 @@ public class HibernateTest {
 
 		// create session factory
 
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-				.buildSessionFactory();
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
 		// create session
 
