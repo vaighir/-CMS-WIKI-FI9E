@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="real_message")
+@Table(name="article")
 
 public class Article {
 	@Id
@@ -82,5 +82,11 @@ public class Article {
 
 	public void setUpdatedAt(java.util.Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Article {id:" + id + ", slug:" + slug + ", content:" + content + ", createdAt:" + createdAt
+				+ ", updatedAt:" + updatedAt + "}";
 	}
 }
