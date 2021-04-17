@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
 
 public class UserDao {
@@ -39,9 +38,9 @@ public class UserDao {
 
 	// create user
 	public void createUser(String name, String email, String password) {
-		
+
 		User user = new User(name, email, password);
-		
+
 		try {
 			session.beginTransaction();
 			session.save(user);
@@ -59,5 +58,22 @@ public class UserDao {
 	// update user
 
 	// delete user
+	public void deleteUserById(int id) {
+
+		User user = getUserById(id);
+
+		try {
+			session.beginTransaction();
+			session.delete(user);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+				factory.close();
+			}
+		}
+	}
 
 }
