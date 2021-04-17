@@ -1,5 +1,7 @@
 package com.fi9e.rest.entity;
 
+import java.security.SecureRandom;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -70,7 +72,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "User { id: " + id
+                + ", name: "+ name
+                + ", email: " + email + " }";
 	}
 
 }
