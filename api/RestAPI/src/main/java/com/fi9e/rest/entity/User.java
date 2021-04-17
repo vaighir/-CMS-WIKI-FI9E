@@ -1,9 +1,12 @@
 package com.fi9e.rest.entity;
 
-import java.security.SecureRandom;
+import org.mindrot.jbcrypt.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -24,6 +27,10 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", nullable = true)
+	private Role role;
+
 	// TODO: Add password encryption!
 	@Column(name = "password")
 	private String password;
@@ -35,7 +42,7 @@ public class User {
 		super();
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 
 	public int getId() {
@@ -70,11 +77,29 @@ public class User {
 		this.password = password;
 	}
 
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
+	public boolean checkPassword(String plainPassword, String hashedPassword) {
+		boolean result = false;
+		
+		if (BCrypt.checkpw(plainPassword, hashedPassword)) {
+			result = true;
+		}
+		
+		return result;
+	}
+
 	@Override
 	public String toString() {
-		return "User { id: " + id
-                + ", name: "+ name
-                + ", email: " + email + " }";
+		return "User { id: " + id + ","
+						+ "name: " + name + ","
+						+ "email: " + email + "}";
 	}
 
 }

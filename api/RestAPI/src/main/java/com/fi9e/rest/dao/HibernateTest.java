@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
 
 public class HibernateTest {
@@ -12,8 +13,7 @@ public class HibernateTest {
 
 		// create session factory
 
-		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(User.class)
-				.buildSessionFactory();
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
 		// create session
 
