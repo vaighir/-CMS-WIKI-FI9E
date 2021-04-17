@@ -1,6 +1,6 @@
 package com.fi9e.rest.entity;
 
-import java.security.SecureRandom;
+import org.mindrot.jbcrypt.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +42,7 @@ public class User {
 		super();
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 
 	public int getId() {
@@ -83,6 +83,16 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+	
+	public boolean checkPassword(String plainPassword, String hashedPassword) {
+		boolean result = false;
+		
+		if (BCrypt.checkpw(plainPassword, hashedPassword)) {
+			result = true;
+		}
+		
+		return result;
 	}
 
 	@Override
