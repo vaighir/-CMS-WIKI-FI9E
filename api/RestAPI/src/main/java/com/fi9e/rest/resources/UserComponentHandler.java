@@ -24,7 +24,7 @@ public class UserComponentHandler {
 		String jsonString = gson.toJson(user);
 
 		 System.out.println(jsonString);
-		return Response.status(200).entity(jsonString).build();;
+		return Response.status(200).entity(jsonString).build();
 		/*
 		String user = "Peter Knerz";
 		return Response.status(200).entity(user).build();*/
