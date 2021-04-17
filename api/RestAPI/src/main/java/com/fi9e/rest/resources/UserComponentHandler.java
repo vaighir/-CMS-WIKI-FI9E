@@ -23,16 +23,11 @@ public class UserComponentHandler {
 		Gson gson = new Gson();
 		String jsonString = gson.toJson(user);
 
-		System.out.println(jsonString);
-		return Response.status(200).entity(jsonString).build();
-
-	}
-
-	@DELETE
-	@Path("/{2}")
-	public Response deleteUserById() {
+		 System.out.println(jsonString);
+		return Response.status(200).entity(jsonString).build();;
+		/*
 		String user = "Peter Knerz";
-
-		return Response.status(200).entity(user).build();
+		return Response.status(200).entity(user).build();*/
 	}
+
 }
