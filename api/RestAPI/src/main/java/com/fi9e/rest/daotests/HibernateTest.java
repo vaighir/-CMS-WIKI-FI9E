@@ -1,4 +1,4 @@
-package com.fi9e.rest.dao;
+package com.fi9e.rest.daotests;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

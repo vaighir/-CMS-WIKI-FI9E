@@ -1,5 +1,6 @@
-package com.fi9e.rest.dao;
+package com.fi9e.rest.daotests;
 
+import com.fi9e.rest.dao.UserDao;
 import com.fi9e.rest.entity.User;
 
 public class UserDaoTest {

@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="real_message")
+@Table(name="article")
 
 public class Article {
 	@Id
@@ -23,9 +25,11 @@ public class Article {
 	private String content;
 	
 	@Column(name="created_at")
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date createdAt;
 	
 	@Column(name="updated_at")
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date updatedAt;
 	
 	public Article() {
@@ -78,5 +82,11 @@ public class Article {
 
 	public void setUpdatedAt(java.util.Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Article {id:" + id + ", slug:" + slug + ", content:" + content + ", createdAt:" + createdAt
+				+ ", updatedAt:" + updatedAt + "}";
 	}
 }
