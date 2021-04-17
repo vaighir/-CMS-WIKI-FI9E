@@ -3,7 +3,10 @@ package com.fi9e.rest.entity;
 import java.security.SecureRandom;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -23,6 +26,10 @@ public class User {
 
 	@Column(name = "email")
 	private String email;
+
+	/*@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", nullable = true)
+	private Role role;*/
 
 	// TODO: Add password encryption!
 	@Column(name = "password")
@@ -70,11 +77,19 @@ public class User {
 		this.password = password;
 	}
 
+	/*public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}*/
+
 	@Override
 	public String toString() {
-		return "User { id: " + id
-                + ", name: "+ name
-                + ", email: " + email + " }";
+		return "User { id: " + id + ","
+						+ "name: " + name + ","
+						+ "email: " + email + "}";
 	}
 
 }
