@@ -38,5 +38,9 @@
          true
       </property>
       
+      <mapping class = "com.fi9e.rest.entity.User" />
+      <mapping class = "com.fi9e.rest.entity.Role" />
+      <mapping class = "com.fi9e.rest.entity.Article" />
+      
    </session-factory>
 </hibernate-configuration>
