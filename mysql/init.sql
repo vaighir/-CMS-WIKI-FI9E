@@ -34,5 +34,7 @@ INSERT INTO role (name) values ("admin");
 INSERT INTO role (name) values ("creator");
 INSERT INTO role (name) values ("spectator");
 
-INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "passwtr");
-INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "pwt");
+INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6
+");
+INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6
+");
