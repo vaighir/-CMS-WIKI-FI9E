@@ -1,0 +1,82 @@
+package com.fi9e.rest.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="real_message")
+
+public class Article {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="slug")
+	private String slug;
+	
+	@Column(name="content")
+	private String content;
+	
+	@Column(name="created_at")
+	private java.util.Date createdAt;
+	
+	@Column(name="updated_at")
+	private java.util.Date updatedAt;
+	
+	public Article() {
+		
+	}
+
+	public Article(String slug, String content, java.util.Date createdAt, java.util.Date updatedAt) {
+		super();
+		this.slug = slug;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	/* public void setId(int id) {
+		this.id = id;
+	} */
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public java.util.Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(java.util.Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public java.util.Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(java.util.Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+}

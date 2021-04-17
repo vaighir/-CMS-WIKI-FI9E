@@ -1,0 +1,55 @@
+version: "3.9"
+
+x-tomcat: &tomcat
+  TOMCAT_USERNAME: tomcat
+  TOMCAT_PASSWORD: tomcat
+  TOMCAT_ALLOW_REMOTE_MANAGEMENT: "1"
+
+x-mysql: &mysql
+  MYSQL_ROOT_PASSWORD: root
+  MYSQL_PASSWORD: sample_password
+  MYSQL_HOSTNAME: mysql
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: test_db
+  MYSQL_USER: sample_user
+
+services:
+  tomcat:
+    image: bitnami/tomcat:9.0-debian-10
+    ports:
+      - '80:8080'
+    volumes:
+      - 'tomcat:/bitnami'
+      - './webapps:/opt/bitnami/tomcat/webapps'
+      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
+      - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
+    environment:
+      <<: *tomcat
+    container_name: "tomcat"
+    command: tail -f /dev//null
+
+# Accessible outside the docker environment at localhost:3306
+# Within the docker environment the database is accessible at mysql:3306
+  mysql:
+    image: mysql:8.0.23
+    restart: always
+    environment:
+      <<: *mysql
+    ports:
+      - 3306:3306
+    volumes:
+      # on the left side of the semicolon is the directory in which Docker looks for init.sql
+      - ./mysql:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+
+# Adminer visualises the data in the database. It is accessible in the browser at localhost:8888
+  adminer:
+    image: adminer:4.8.0-standalone
+    restart: always
+    ports:
+      - 8888:8080
+
+volumes:
+  tomcat:
+    driver: local
+  mysql_data:
