@@ -24,8 +24,8 @@ public class ArticleDao {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
-				factory.close();
 			}
+			factory.close();
 		}
 
 		return article;
@@ -47,8 +47,8 @@ public class ArticleDao {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
-				factory.close();
 			}
+			factory.close();
 		}
 	}
 
@@ -72,8 +72,8 @@ public class ArticleDao {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
-				factory.close();
 			}
+			factory.close();
 		}
 	}
 
@@ -93,8 +93,8 @@ public class ArticleDao {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
-				factory.close();
 			}
+			factory.close();
 		}
 	}
 }
