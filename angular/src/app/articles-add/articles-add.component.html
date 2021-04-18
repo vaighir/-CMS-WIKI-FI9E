@@ -1,0 +1,17 @@
+
+<app-nav-menu class="col-3 p-0"></app-nav-menu>
+<section class="container">
+  <h2>New Article</h2>
+
+  <form class="form-group">
+    <div class="input-group">
+      <input class="form-controll" [(ngModel)]="article.name" type="text" name="name" value="{{article.name}}" />
+    </div>
+
+    <div class="input-group">
+      <textarea  class="form-controll" name="content" [(ngModel)]="article.content" cols="5" rows="4">{{article.content}}</textarea>
+    </div>
+
+    <div (click)="onSave()" class="btn btn-primary">Save</div>
+  </form>
+</section>

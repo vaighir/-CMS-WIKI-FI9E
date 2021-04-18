@@ -1,0 +1,88 @@
+warning: LF will be replaced by CRLF in webapps/ROOT/websites/cms/3rdpartylicenses.txt.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in webapps/examples/WEB-INF/web.xml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in webapps/host-manager/META-INF/context.xml.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in webapps/manager/META-INF/context.xml.
+The file will have its original line endings in your working directory
+[1mdiff --git a/angular/src/app/app.component.html b/angular/src/app/app.component.html[m
+[1mindex d0bfe4f..286373b 100644[m
+[1m--- a/angular/src/app/app.component.html[m
+[1m+++ b/angular/src/app/app.component.html[m
+[36m@@ -1,2 +1 @@[m
+[31m-<app-nav-menu class="col-3 p-0"></app-nav-menu>[m
+ <app-main class="col-9 p-0"></app-main>[m
+[1mdiff --git a/angular/src/app/app.module.ts b/angular/src/app/app.module.ts[m
+[1mindex 865ce84..99e6e56 100644[m
+[1m--- a/angular/src/app/app.module.ts[m
+[1m+++ b/angular/src/app/app.module.ts[m
+[36m@@ -4,6 +4,12 @@[m [mimport { AppComponent } from './app.component';[m
+ import { NavMenuComponent } from './nav-menu/nav-menu.component';[m
+ import { MainComponent } from './main/main.component';[m
+ import { HeaderComponent } from './main/header/header.component';[m
+[32m+[m[32mimport { MainNavigationComponent } from './main-navigation/main-navigation.component';[m
+[32m+[m[32mimport { ArticlesComponent } from './articles/articles.component';[m
+[32m+[m[32mimport { AppRoutingModule } from './app-routing.module';[m
+[32m+[m[32mimport { ArticlesAddComponent } from './articles-add/articles-add.component';[m
+[32m+[m[32mimport { FormsModule } from '@angular/forms';[m
+[32m+[m[32mimport { HttpClientModule } from '@angular/common/http';[m
+ [m
+ [m
+ @NgModule({[m
+[36m@@ -11,11 +17,16 @@[m [mimport { HeaderComponent } from './main/header/header.component';[m
+     AppComponent,[m
+     NavMenuComponent,[m
+     MainComponent,[m
+[31m-    HeaderComponent[m
+[32m+[m[32m    HeaderComponent,[m
+[32m+[m[32m    MainNavigationComponent,[m
+[32m+[m[32m    ArticlesComponent,[m
+[32m+[m[32m    ArticlesAddComponent[m
+   ],[m
+   imports: [[m
+     BrowserModule,[m
+[31m-    HttpClientModule[m
+[32m+[m[32m    AppRoutingModule,[m
+[32m+[m[32m    FormsModule,[m
+[32m+[m[32m    HttpClientModule,[m
+   ],[m
+   providers: [],[m
+   bootstrap: [AppComponent][m
+[1mdiff --git a/angular/src/app/main/header/header.component.html b/angular/src/app/main/header/header.component.html[m
+[1mindex ba0edfe..40063b7 100644[m
+[1m--- a/angular/src/app/main/header/header.component.html[m
+[1m+++ b/angular/src/app/main/header/header.component.html[m
+[36m@@ -1,4 +1,7 @@[m
+[31m-<div class="d-flex justify-content-end p-4">[m
+[32m+[m[32m<div class="container">[m
+[32m+[m
+[32m+[m[32m  <app-main-navigation></app-main-navigation>[m
+[32m+[m
+   <button class="btn btn-primary mr-3">[m
+     Login[m
+     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-right pr-1" viewBox="0 0 16 16">[m
+[1mdiff --git a/angular/src/app/main/main.component.html b/angular/src/app/main/main.component.html[m
+[1mindex aaea0ad..4f841fc 100644[m
+[1m--- a/angular/src/app/main/main.component.html[m
+[1m+++ b/angular/src/app/main/main.component.html[m
+[36m@@ -1,7 +1,3 @@[m
+ <app-header></app-header>[m
+[31m-<div class="pl-5 pr-5">[m
+[31m-  <h1 class="mb-4">Hallo CMS!</h1>[m
+[31m-  <hr class="mb-4">[m
+[31m-  <p class="col-6 p-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda atque blanditiis cumque dignissimos eveniet fuga fugit inventore laudantium maiores molestiae, molestias, odit omnis perferendis reiciendis sit soluta totam voluptas!</p>[m
+[31m-  <p class="col-6 p-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda atque blanditiis cumque dignissimos eveniet fuga fugit inventore laudantium maiores molestiae, molestias, odit omnis perferendis reiciendis sit soluta totam voluptas!</p>[m
+[31m-</div>[m
+\ No newline at end of file[m
+[32m+[m[32m<!-- here we render components dynamically based on current route -->[m
+[32m+[m[32m<router-outlet></router-outlet>[m
+[1mdiff --git a/angular/src/index.html b/angular/src/index.html[m
+[1mindex 0636331..16a35ac 100644[m
+[1m--- a/angular/src/index.html[m
+[1m+++ b/angular/src/index.html[m
+[36m@@ -3,7 +3,7 @@[m
+ <head>[m
+   <meta charset="utf-8">[m
+   <title>Cms</title>[m
+[31m-  <base href="">[m
