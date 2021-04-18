@@ -31,12 +31,12 @@ public class ArticleDao {
 		return article;
 	}
 
-	public void createArticle(String slug, String content) {
+	public void createArticle(String name, String slug, String content) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		Article article = new Article(slug, content, new java.util.Date(), new java.util.Date());
+		Article article = new Article(name, slug, content, new java.util.Date(), new java.util.Date());
 
 		try {
 			session.beginTransaction();
