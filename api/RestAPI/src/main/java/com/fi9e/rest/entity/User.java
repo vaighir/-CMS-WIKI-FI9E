@@ -31,7 +31,6 @@ public class User {
 	@JoinColumn(name = "role_id", nullable = true)
 	private Role role;
 
-	// TODO: Add password encryption!
 	@Column(name = "password")
 	private String password;
 
@@ -98,8 +97,8 @@ public class User {
 	@Override
 	public String toString() {
 		return "User { id: " + id + ","
-						+ "name: " + name + ","
-						+ "email: " + email + "}";
+					+ "name: " + name + ","
+					+ "email: " + email + "}";
 	}
 
 }

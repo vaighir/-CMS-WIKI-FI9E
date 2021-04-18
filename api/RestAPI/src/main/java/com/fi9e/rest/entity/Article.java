@@ -86,7 +86,10 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article {id:" + id + ", slug:" + slug + ", content:" + content + ", createdAt:" + createdAt
+		return "Article {id:" + id
+				+ ", slug:" + slug
+				+ ", content:"+ content 
+				+ ", createdAt:" + createdAt
 				+ ", updatedAt:" + updatedAt + "}";
 	}
 }
