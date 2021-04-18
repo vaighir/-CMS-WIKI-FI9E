@@ -1,30 +1,30 @@
 # CMS Prototype V1
 In this project we like to demonstrate how an Angular + REST-API + Tomcat Server architecture based CMS could look like.
 
-Have a look at: [http://localhost/admin] to get an overwie of all pages the project consists of.
+Have a look at: [http://localhost/admin](http://localhost/admin) to get an overview of all pages the project consists of.
 
 ## Project folders
 
 ### angular
-The Angular folder contains all angular app files. 
+The Angular folder contains all angular app files.
 
 ### tomcat_local
 The tomcat_local folder contains the source files of an tomcat server for reference purposes. We use some config files from the local tomcat server that get injected into the tomcat docker container to set it up.
 
 ## Docker
-For this prototype we will be using docker-compose in order to define and orchestrate our services we need. 
+For this prototype we will be using docker-compose in order to define and orchestrate our services we need.
 
 ### Docker Services in this project
-1. Tomcat Server: 
+1. Tomcat Server:
 - Used to host Angular webapp
-- Runs our REST-API with which the Angular App comunicates
+- Runs our REST-API with which the Angular App communicates
 
 2. MySQL Database:
 - Simple MySQL Database Service that contains our database tables
-- has startup.sql script that set´s up our database schema
+- has `init.sql` script that set´s up our database schema
 
 ### Docker Compose cheatsheet
-All the commands below have to be execute in a terminal (cmd) in the root folder of the docker-compose.yml file. Otherwise you need to specify on which docker-compose file you like to execute the commands on. 
+All the commands below have to be execute in a terminal (cmd) in the root folder of the docker-compose.yml file. Otherwise you need to specify on which docker-compose file you like to execute the commands on.
 
 - Start docker services (e.g. tomcat):
 `docker-compose up -d`
@@ -32,7 +32,7 @@ All the commands below have to be execute in a terminal (cmd) in the root folder
 - Stop docker serices:
 `docker-compose down`
 
-- Build docker image: (needs to be done once on fresh install)
+- Build docker image:
 `docker-compose build`
 
 
@@ -54,7 +54,7 @@ The Angular app is available under: http://localhost/websites/cms/
 ## Angular app developement:
 When developing the Angular app the dev workflow looks like this:
 
-Start angular watchers and start the dev server for developement: 
+Start angular watchers and start the dev server for developement:
 - cd into "angular" folder in project
 - use command `ng serve --open` to start dev server and auto open the webpage
 
