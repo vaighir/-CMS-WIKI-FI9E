@@ -21,6 +21,9 @@ public class Article {
 	@Column(name="slug")
 	private String slug;
 	
+	@Column(name="name")
+	private String name;
+	
 	@Column(name="content")
 	private String content;
 	
@@ -36,8 +39,9 @@ public class Article {
 		
 	}
 
-	public Article(String slug, String content, java.util.Date createdAt, java.util.Date updatedAt) {
+	public Article(String name, String slug, String content, java.util.Date createdAt, java.util.Date updatedAt) {
 		super();
+		this.name = name; 
 		this.slug = slug;
 		this.content = content;
 		this.createdAt = createdAt;
@@ -86,7 +90,10 @@ public class Article {
 
 	@Override
 	public String toString() {
-		return "Article {id:" + id + ", slug:" + slug + ", content:" + content + ", createdAt:" + createdAt
+		return "Article {id:" + id
+				+ ", slug:" + slug
+				+ ", content:"+ content 
+				+ ", createdAt:" + createdAt
 				+ ", updatedAt:" + updatedAt + "}";
 	}
 }
