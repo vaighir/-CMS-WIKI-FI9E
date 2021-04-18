@@ -23,6 +23,7 @@ CREATE TABLE user (
 
 CREATE TABLE article (
   id INT AUTO_INCREMENT,
+  name VARCHAR(255),
   slug VARCHAR(255),
   content TEXT,
   created_at DATETIME,
