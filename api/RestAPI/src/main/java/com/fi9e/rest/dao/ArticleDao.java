@@ -44,6 +44,7 @@ public class ArticleDao {
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			//@TODO: add throw exception on failure.
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
