@@ -8,7 +8,10 @@ import com.fi9e.rest.entity.User;
 
 public class UserDao {
 
+
+	// get user by id
 	public User getUserById(int id) {
+	
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 	
@@ -30,7 +33,9 @@ public class UserDao {
 		return user;
 	}
 
+	// create user
 	public void createUser(String name, String email, String password) {
+		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
@@ -50,6 +55,7 @@ public class UserDao {
 		}
 	}
 
+	// update user
 	public void updateUser(User user) {
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -76,7 +82,11 @@ public class UserDao {
 		}
 	}
 
+	// delete user
 	public void deleteUserById(int id) {
+		
+		
+
 		User user = getUserById(id);
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
