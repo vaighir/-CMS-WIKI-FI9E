@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MainComponent } from './main/main.component';
-import { HeaderComponent } from './main/header/header.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     NavMenuComponent,
     MainComponent,
-    HeaderComponent,
     MainNavigationComponent,
     ArticlesComponent,
     ArticlesAddComponent
