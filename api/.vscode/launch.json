@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch RestJdbc",
+            "request": "launch",
+            "mainClass": "com.fi9e.rest.dao.RestJdbc",
+            "projectName": "RestAPI"
+        },
+        {
+            "type": "java",
+            "name": "Launch ArticleDaoTest",
+            "request": "launch",
+            "mainClass": "com.fi9e.rest.daotests.ArticleDaoTest",
+            "projectName": "RestAPI"
+        },
+        {
+            "type": "java",
+            "name": "Launch HibernateTest",
+            "request": "launch",
+            "mainClass": "com.fi9e.rest.daotests.HibernateTest",
+            "projectName": "RestAPI"
+        },
+        {
+            "type": "java",
+            "name": "Launch UserDaoTest",
+            "request": "launch",
+            "mainClass": "com.fi9e.rest.daotests.UserDaoTest",
+            "projectName": "RestAPI"
+        }
+    ]
+}

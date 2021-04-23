@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
+import com.fi9e.rest.exceptions.ApiException;
 
 @Path("/article")
 public class ArticlesComponentHandler {
@@ -17,10 +18,10 @@ public class ArticlesComponentHandler {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response sendEmail(ArticleDTO article) {
+	public Response store(ArticleDTO article) throws ApiException {
 		
 		ArticleDao dao = new ArticleDao();
-		dao.createArticle(article.getName(), article.getSlug(), article.getContent());
+		dao.createArticle(article);
 
 		return Response.ok("created article").build();
 	}

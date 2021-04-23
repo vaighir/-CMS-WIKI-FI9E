@@ -2,11 +2,14 @@ package com.fi9e.rest.dto;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @author Christopher
  *
  */
+@XmlRootElement
 public class ArticleDTO  {
 	private int id = 0;
 	private String slug;
@@ -16,8 +19,9 @@ public class ArticleDTO  {
 	private Date updated_at;
 	
 	public ArticleDTO() {
+		// TODO Auto-generated constructor stub
 	}
-
+	
 	public int getId() {
 		return id;
 	}
