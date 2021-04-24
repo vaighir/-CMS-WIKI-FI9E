@@ -13,10 +13,11 @@ export class ArticleServiceService {
   }
 
    addArticle(article: ArticleModelModule) : void  {
-     this.http.post( API_ROUTES.ARTICLE_ADD , article).toPromise().then((response) => {
-       //handle
-     }).catch((error) => {
-       //handle error
+     this.http.post( API_ROUTES.ARTICLE_ADD , article).toPromise().then((res) => {
+       console.log(res);
+       
+     }).catch((err) => {
+       console.error(err);
      });
    }
 }

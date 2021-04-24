@@ -9,7 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ArticlesAddComponent } from './articles-add/articles-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AddHeaderInterceptor } from './http-interceptor/http-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     MainComponent,
     MainNavigationComponent,
     ArticlesComponent,
-    ArticlesAddComponent
+    ArticlesAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AddHeaderInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

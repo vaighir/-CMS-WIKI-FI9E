@@ -9,10 +9,17 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/add', component: ArticlesAddComponent },
 ];
-const host: string = "http://localhost";
-const API_V1: string = "/v1/";
+//http://localhost:8080/RestAPI/v1/article/add
+
+//@TODO:
+//Add headers to every request
+//Content-Type: application/json
+//Accept: application/json
+
+const host: string = "http://localhost:8080";
+const API_V1: string = "/RestAPI/v1/";
 export const API_ROUTES = {
-  ARTICLE_ADD: host+API_V1+ "/article/add"
+  ARTICLE_ADD: host+API_V1+ "article/add"
 }
 
 @NgModule({

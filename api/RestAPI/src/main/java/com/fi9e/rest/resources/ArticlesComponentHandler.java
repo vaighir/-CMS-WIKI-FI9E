@@ -25,5 +25,8 @@ public class ArticlesComponentHandler {
 
 		return Response.ok("created article").build();
 	}
+	
+	
+	//@TODO: add other routes for resource
 
 }
