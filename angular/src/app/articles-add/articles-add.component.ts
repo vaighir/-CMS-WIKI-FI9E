@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleModelModule } from '../article-model/article-model.module';
+import { Component, Injector, OnInit } from '@angular/core';
+import { ArticleModel } from '../article-model/article.model';
 import { ArticleServiceService } from '../article-service.service';
 
 @Component({
@@ -8,15 +8,18 @@ import { ArticleServiceService } from '../article-service.service';
   styleUrls: ['./articles-add.component.scss']
 })
 export class ArticlesAddComponent implements OnInit {
-  article: ArticleModelModule = new ArticleModelModule();
+  article: ArticleModel = new ArticleModel();
+  private articleService = this.injector.get(ArticleServiceService);
 
-  constructor( private articleService: ArticleServiceService) { }
+  constructor(private injector: Injector) {
+    
+  }
 
   ngOnInit(): void {
 
   }
 
   onSave(): void {
-    this.articleService.addArticle(this.article);
+    this.articleService.store(this.article);
   }
 }
