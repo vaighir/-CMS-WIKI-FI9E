@@ -38,7 +38,7 @@ services:
       - 3306:3306
     volumes:
       # on the left side of the semicolon is the directory in which Docker looks for init.sql
-      - ./mysql:/docker-entrypoint-initdb.d
+      - ./docker/mysql:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
 
 # Adminer visualises the data in the database. It is accessible in the browser at localhost:8888
