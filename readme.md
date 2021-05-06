@@ -38,8 +38,8 @@ All the commands below have to be execute in a terminal (cmd) in the root folder
 
 # Tomcat - Quickstart
 1. open command line
-2. Start and build docker imag first time:
-`docker-compose up --build -d`
+2. Start the containers:
+`docker-compose up -d`
 3. go to browser address: http://locahost
 4. put your website into the "app/" folder
 5. hit refresh in browser, enjoy :)

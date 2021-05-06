@@ -20,14 +20,14 @@ services:
       - '80:8080'
     volumes:
       - 'tomcat:/bitnami'
-#      - ./docker/tomcat/config/web.xml:/bitnami/tomcat/data/examples/WEB-INF/web.xml
 #      - './webapps:/opt/bitnami/tomcat/webapps'
-      - './docker/tomcat/readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
+      - './webapps/ROOT/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
+      - './webapps/ROOT/websites:/opt/bitnami/tomcat/webapps/ROOT/websites'
+      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
       <<: *tomcat
     container_name: "tomcat"
-#    command: tail -f /dev//null
 
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
