@@ -15,7 +15,8 @@ x-mysql: &mysql
 
 services:
   tomcat:
-    image: bitnami/tomcat:9.0-debian-10
+    build: ./docker/tomcat/.
+    #image: bitnami/tomcat:9.0-debian-10
     ports:
       - '80:8080'
     volumes:
@@ -28,6 +29,8 @@ services:
     environment:
       <<: *tomcat
     container_name: "tomcat"
+    cap_add: [NET_ADMIN]
+#    command: [" socat TCP-LISTEN:3306,fork TCP:mysql:3306"]
 
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
