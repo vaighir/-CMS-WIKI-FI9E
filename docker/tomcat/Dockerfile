@@ -1,9 +1,11 @@
-FROM tomcat:9.0.45-jdk8-openjdk-slim-buster
+FROM bitnami/tomcat:9.0-debian-10
 
-WORKDIR ${CATALINA_HOME}
+USER root
+RUN apt-get update && apt-get install -y iptables socat
+#    nohup socat TCP-LISTEN:3306,fork TCP:mysql:3306 >> /var/log/socat.log 2>&1 &
 
-RUN mv /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
+EXPOSE 8080 8443
 
-EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+ENTRYPOINT [ "/opt/bitnami/scripts/tomcat/entrypoint.sh" ]
+CMD [ "/opt/bitnami/scripts/tomcat/run.sh" ]
