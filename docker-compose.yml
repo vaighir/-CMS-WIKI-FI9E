@@ -7,11 +7,11 @@ x-tomcat: &tomcat
 
 x-mysql: &mysql
   MYSQL_ROOT_PASSWORD: root
-  MYSQL_PASSWORD: sample_password
+  MYSQL_PASSWORD: password
   MYSQL_HOSTNAME: mysql
   MYSQL_PORT: "3306"
   MYSQL_DATABASE: test_db
-  MYSQL_USER: sample_user
+  MYSQL_USER: user
 
 services:
   tomcat:
@@ -20,12 +20,14 @@ services:
       - '80:8080'
     volumes:
       - 'tomcat:/bitnami'
-      - './webapps:/opt/bitnami/tomcat/webapps'
-      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
+#      - ./docker/tomcat/config/web.xml:/bitnami/tomcat/data/examples/WEB-INF/web.xml
+#      - './webapps:/opt/bitnami/tomcat/webapps'
+      - './docker/tomcat/readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
       <<: *tomcat
     container_name: "tomcat"
+#    command: tail -f /dev//null
 
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
@@ -50,5 +52,4 @@ services:
 
 volumes:
   tomcat:
-    driver: local
   mysql_data:
