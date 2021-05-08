@@ -1,7 +1,6 @@
 package com.fi9e.rest.daotests;
 
 import com.fi9e.rest.dao.ArticleDao;
-import com.fi9e.rest.entity.Article;
 
 public class ArticleDaoTest {
 	public static void main(String[] args) {
