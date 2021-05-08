@@ -25,7 +25,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" target="_blank" href="http://localhost/websites/cms">CMS - Product</a>
+                <a class="nav-item nav-link" target="_blank" href="http://localhost/app">CMS - Product</a>
                 <a class="nav-item nav-link" target="_blank" href="http://localhost/websites/api">API Routes</a>
                 <a class="nav-item nav-link" target="_blank" href="http://localhost:8888/?server=mysql%3A3306&username=sample_user&db=test_db&password=sample_user&database=test_db">Database GUI</a>
                 <a class="nav-item nav-link" target="_blank" href="http://localhost/websites/tomcat">Tomcat GUI</a>
@@ -47,7 +47,7 @@
     $(document).ready(() => {
         let md = window.markdownit();
 
-        fetch('./../../readme.md')
+        fetch('./../readme.md')
             .then(response => response.text())
             .then((text) => {
                 $('#readme').html(md.render(text));

@@ -8,15 +8,18 @@ import { ArticleServiceService } from '../../services/article-service.service';
   styleUrls: ['./articles-add.component.scss']
 })
 export class ArticlesAddComponent implements OnInit {
-  article: ArticleModelModule = new ArticleModelModule();
+  article: ArticleModel = new ArticleModel();
+  private articleService = this.injector.get(ArticleServiceService);
 
-  constructor( private articleService: ArticleServiceService) { }
+  constructor(private injector: Injector) {
+    
+  }
 
   ngOnInit(): void {
 
   }
 
   onSave(): void {
-    this.articleService.addArticle(this.article);
+    this.articleService.store(this.article);
   }
 }

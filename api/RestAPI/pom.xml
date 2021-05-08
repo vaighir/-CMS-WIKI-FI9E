@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.49</version>
+			<version>8.0.23</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -80,6 +80,12 @@
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.opendaylight.controller.thirdparty/org.apache.catalina.filters.CorsFilter -->
+		<dependency>
+			<groupId>org.opendaylight.controller.thirdparty</groupId>
+			<artifactId>org.apache.catalina.filters.CorsFilter</artifactId>
+			<version>7.0.42</version>
 		</dependency>
 	</dependencies>
 	<properties>

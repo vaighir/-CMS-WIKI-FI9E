@@ -55,4 +55,5 @@ services:
 
 volumes:
   tomcat:
+    driver: local
   mysql_data:
