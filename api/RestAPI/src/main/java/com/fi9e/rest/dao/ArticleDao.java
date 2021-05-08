@@ -106,4 +106,6 @@ public class ArticleDao {
 			factory.close();
 		}
 	}
+	
+	//TODO: get all articles with id
 }
