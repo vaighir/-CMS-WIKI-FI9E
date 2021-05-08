@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_ROUTES } from './app-routing.module';
-import { ArticleModelModule } from "./article-model/article-model.module";
+import { API_ROUTES } from '../../../app-routing.module';
+import { ArticleModelModule } from '../article-model/article-model.module';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +20,7 @@ export class ArticleServiceService {
        console.error(err);
      });
    }
+
+   getArticle(article: ArticleModelModule) : void  {
+  }
 }
