@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { ArticlesComponent } from './main/articles/components/articles/articles.component';
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
-import { LoginComponent } from './main/login/login.component';
+import { LoginComponent } from './main/login/components/login.component';
 import { ArticleDetailComponent } from './main/articles/components/article-detail/article-detail.component';
 
 //our routes in our app
