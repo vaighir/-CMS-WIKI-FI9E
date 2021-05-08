@@ -1,6 +1,12 @@
+<<<<<<< HEAD:angular/src/app/articles-add/articles-add.component.ts
 import { Component, Injector, OnInit } from '@angular/core';
 import { ArticleModel } from '../article-model/article.model';
 import { ArticleServiceService } from '../article-service.service';
+=======
+import { Component, OnInit } from '@angular/core';
+import { ArticleModelModule } from '../../article-model/article-model.module';
+import { ArticleServiceService } from '../../services/article-service.service';
+>>>>>>> fe0e4a1eb737b4e6b9a3e81e40343b289955ee3a:angular/src/app/main/articles/components/articles-add/articles-add.component.ts
 
 @Component({
   selector: 'app-articles-add',

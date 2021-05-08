@@ -1,9 +1,11 @@
 * {
   color: rgba(14, 25, 28, 0.82);
 }
-.test {
+.left-nav {
   background-color: rgba(96, 98, 108, 0.03);
   box-shadow: 6px 0 6px -7px #9394a3;
+  min-height: calc(100vh - 4rem);
+  height: 100%;
 }
 
 a:hover {
