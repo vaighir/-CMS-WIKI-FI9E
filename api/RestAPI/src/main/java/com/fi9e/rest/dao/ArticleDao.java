@@ -12,8 +12,8 @@ public class ArticleDao {
 	final String HIBERNATE_CONFIG_PATH = "hibernate.cfg.xml";
 	
 	public Article getArticleById(int id) {
-
-		SessionFactory factory = new Configuration().configure(HIBERNATE_CONFIG_PATH).buildSessionFactory();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article article = null;
@@ -35,8 +35,8 @@ public class ArticleDao {
 	}
 
 	public void createArticle(String name, String slug, String content) {
-
-		SessionFactory factory = new Configuration().configure(HIBERNATE_CONFIG_PATH).buildSessionFactory();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article article = new Article(name, slug, content, new java.util.Date(), new java.util.Date());
@@ -63,7 +63,7 @@ public class ArticleDao {
 
 	public void updateArticle(Article article) {
 
-		SessionFactory factory = new Configuration().configure(HIBERNATE_CONFIG_PATH).buildSessionFactory();
+		SessionFactory factory = new Configuration().configure("wadwdw").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article oldArticle = getArticleById(article.getId());

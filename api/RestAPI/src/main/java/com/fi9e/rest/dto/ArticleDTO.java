@@ -15,6 +15,7 @@ public class ArticleDTO  {
 	private String slug;
 	private String name;
 	private String content;
+	
 	private Date created_at;
 	private Date updated_at;
 	

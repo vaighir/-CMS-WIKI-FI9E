@@ -22,11 +22,46 @@ public class ArticlesComponentHandler {
 		
 		ArticleDao dao = new ArticleDao();
 		dao.createArticle(article);
-
+		
 		return Response.ok("created article").build();
 	}
 	
+	//delete endpoint
+	@POST
+	@Path("/delete")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response delete(ArticleDTO article) throws ApiException {
+		
+		//delete logic here | use dao object for data manipulation
+		
+		return Response.ok("deleted article").build();
+	}
 	
-	//@TODO: add other routes for resource
+	//update
+	@POST
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response update(ArticleDTO article) throws ApiException {
+		
+		//check params, means if we have all data nec. for article createion
+		
+		//updatedArticle here with dao
+
+		return Response.ok("").build();
+	}
+	
+	//show single article
+	@POST
+	@Path("/show/id")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response show(ArticleDTO article) throws ApiException {
+		
+		//just retrieve 
+
+		return Response.ok("").build();
+	}
 
 }

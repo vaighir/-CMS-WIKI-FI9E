@@ -144,9 +144,21 @@
 		</exec>
 	</target>
 
+	<target name="Start all">
+		<exec dir="." executable="cmd">
+			<arg line="/c docker-compose up" />
+		</exec>
+	</target>
+
 	<target name="Stop Tomcat">
 		<exec dir="." executable="cmd">
 			<arg line="/c docker stop tomcat" />
+		</exec>
+	</target>
+
+	<target name="Stop all">
+		<exec dir="." executable="cmd">
+			<arg line="/c docker-compose down" />
 		</exec>
 	</target>
 
@@ -157,6 +169,16 @@
 			<arg line="/c mvn clean install" />
 		</exec>
 		<antcall target="Start Tomcat">
+		</antcall>
+	</target>
+
+	<target name="Build and Reload">
+		<antcall target="Stop all">
+		</antcall>
+		<exec dir="." executable="cmd">
+			<arg line="/c mvn clean install" />
+		</exec>
+		<antcall target="Start all">
 		</antcall>
 	</target>
 </project>
