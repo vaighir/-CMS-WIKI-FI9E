@@ -23,7 +23,6 @@ services:
     volumes:
       - 'tomcat:/bitnami'
       - './docker/tomcat/data:/opt/bitnami/tomcat/webapps'
-      - './webapps/ROOT/websites:/opt/bitnami/tomcat/webapps/ROOT/websites'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
       <<: *general
