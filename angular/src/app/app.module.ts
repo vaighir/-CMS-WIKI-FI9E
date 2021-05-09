@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './nav-menu/components/nav-menu.component';
 import { MainComponent } from './main/main.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { ArticlesComponent } from './main/articles/components/articles/articles.component';
