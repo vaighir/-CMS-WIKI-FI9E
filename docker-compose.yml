@@ -1,5 +1,12 @@
 version: "3.9"
 
+x-general: &general
+  MYSQL_USER: user
+  MYSQL_PASSWORD: password
+  MYSQL_HOSTNAME: mysql
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: test_db
+
 x-tomcat: &tomcat
   TOMCAT_USERNAME: tomcat
   TOMCAT_PASSWORD: tomcat
@@ -7,11 +14,6 @@ x-tomcat: &tomcat
 
 x-mysql: &mysql
   MYSQL_ROOT_PASSWORD: root
-  MYSQL_PASSWORD: password
-  MYSQL_HOSTNAME: mysql
-  MYSQL_PORT: "3306"
-  MYSQL_DATABASE: test_db
-  MYSQL_USER: user
 
 services:
   tomcat:
@@ -24,6 +26,7 @@ services:
       - './webapps/ROOT/websites:/opt/bitnami/tomcat/webapps/ROOT/websites'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
+      <<: *general
       <<: *tomcat
     container_name: "tomcat"
     cap_add: [NET_ADMIN]
@@ -35,6 +38,7 @@ services:
     image: mysql:8.0.23
     restart: always
     environment:
+      <<: *general
       <<: *mysql
     ports:
       - 3306:3306

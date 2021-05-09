@@ -15,15 +15,15 @@
       <!-- Assume test is the database name -->
       
       <property name = "hibernate.connection.url">
-         jdbc:mysql://mysql:3306/test_db
+         jdbc:mysql://${MYSQL_HOSTNAME}:${MYSQL_PORT}/${MYSQL_DATABASE}
       </property>
       
       <property name = "hibernate.connection.username">
-         sample_user
+         ${MYSQL_USER}
       </property>
       
       <property name = "hibernate.connection.password">
-         sample_password
+         ${MYSQL_PASSWORD}
       </property>
       
       <property name="hibernate.connection.pool_size">
