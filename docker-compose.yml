@@ -15,23 +15,19 @@ x-mysql: &mysql
 
 services:
   tomcat:
-    build: ./docker/tomcat/.
-    #image: bitnami/tomcat:9.0-debian-10
+    image: bitnami/tomcat:9.0-debian-10
     ports:
       - '80:8080'
     volumes:
       - 'tomcat:/bitnami'
       - './docker/tomcat/data:/opt/bitnami/tomcat/webapps'
-#      - './webapps:/opt/bitnami/tomcat/webapps'
-#      - './webapps/ROOT/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
       - './webapps/ROOT/websites:/opt/bitnami/tomcat/webapps/ROOT/websites'
-#      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
       <<: *tomcat
     container_name: "tomcat"
     cap_add: [NET_ADMIN]
-#    command: [" socat TCP-LISTEN:3306,fork TCP:mysql:3306"]
+    user: root
 
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
@@ -56,5 +52,4 @@ services:
 
 volumes:
   tomcat:
-#    driver: local
   mysql_data:
