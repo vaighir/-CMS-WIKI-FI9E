@@ -34,16 +34,17 @@ public class ArticleDao {
 		return article;
 	}
 
-	public void createArticle(String name, String slug, String content) {
+	public int createArticle(String name, String slug, String content) {
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article article = new Article(name, slug, content, new java.util.Date(), new java.util.Date());
-
+		
+		int newArticleId = -1;
 		try {
 			session.beginTransaction();
-			session.save(article);
+			newArticleId = (int) session.save(article);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,13 +55,15 @@ public class ArticleDao {
 			}
 			factory.close();
 		}
+		
+		return newArticleId;
 	}
 	
 	
-	public void createArticle(ArticleDTO dto) {
-		createArticle(dto.getName(), dto.getSlug(), dto.getContent());
+	public int createArticle(ArticleDTO dto) {
+		return createArticle(dto.getName(), dto.getSlug(), dto.getContent());
 	}
-
+	
 	public void updateArticle(Article article) {
 
 		SessionFactory factory = new Configuration().configure("wadwdw").buildSessionFactory();
