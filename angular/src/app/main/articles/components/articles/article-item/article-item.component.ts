@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleModelModule } from '../../../article-model/article-model.module';
+import { ArticleModel } from '../../../model/article-model.Model';
 import { ArticleServiceService } from '../../../services/article-service.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ArticleServiceService } from '../../../services/article-service.service
   styleUrls: ['./article-item.component.scss']
 })
 export class ArticleItemComponent implements OnInit {
-  article: ArticleModelModule = new ArticleModelModule();
+  article: ArticleModel = new ArticleModel();
 
   constructor(
     private articleService: ArticleServiceService
