@@ -13,17 +13,20 @@
       </property>
       
       <!-- Assume test is the database name -->
-      
       <property name = "hibernate.connection.url">
-         jdbc:mysql://${MYSQL_HOSTNAME}:${MYSQL_PORT}/${MYSQL_DATABASE}
+         <!-- DATABASE CONNECTION STRING FOR LOCAL DEVELOPEMENT -->
+         <!-- jdbc:mysql://localhost:3306/test_db -->
+         
+         <!-- DATABASE STRING FOR TEST LIVE ENVIRONMENT TOMCAT -->
+        	jdbc:mysql://mysql:3306/test_db
       </property>
       
       <property name = "hibernate.connection.username">
-         ${MYSQL_USER}
+         user
       </property>
       
       <property name = "hibernate.connection.password">
-         ${MYSQL_PASSWORD}
+      	password
       </property>
       
       <property name="hibernate.connection.pool_size">
