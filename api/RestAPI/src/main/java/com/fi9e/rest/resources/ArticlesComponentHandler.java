@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
+import com.fi9e.rest.entity.Article;
 import com.fi9e.rest.exceptions.ApiException;
 
 @Path("/article")
@@ -21,9 +22,21 @@ public class ArticlesComponentHandler {
 	public Response store(ArticleDTO article) throws ApiException {
 		
 		ArticleDao dao = new ArticleDao();
-		dao.createArticle(article);
+		int newArticleId = dao.createArticle(article);
+		ArticleDTO articleDTO = new ArticleDTO();
 		
-		return Response.ok("created article").build();
+		Article newArticle = dao.getArticleById(newArticleId);
+		
+		if(newArticle != null) {
+			//map database Object to DTO (response object)...
+			articleDTO.setContent(newArticle.getContent());
+			articleDTO.setCreated_at(newArticle.getCreatedAt());
+			articleDTO.setId(newArticle.getId());
+			articleDTO.setName(newArticle.getName());
+			articleDTO.setSlug(newArticle.getSlug());
+		}
+		
+		return Response.ok(articleDTO, MediaType.APPLICATION_JSON).build();
 	}
 	
 	//delete endpoint
@@ -63,5 +76,7 @@ public class ArticlesComponentHandler {
 
 		return Response.ok("").build();
 	}
+	
+	
 
 }

@@ -19,7 +19,14 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	<filter>     
+		<filter-name>CorsFilter</filter-name>     
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>     
+		<init-param>       
+			<param-name>cors.allowed.origins</param-name>       
+			<param-value>*</param-value>     
+		</init-param>   
+	</filter>
 	<!-- Map all the URLs to the Jersey ServletContainer -->
 	<servlet-mapping>
 		<servlet-name>CmsAPI</servlet-name>

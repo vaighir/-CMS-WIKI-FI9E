@@ -17,10 +17,10 @@ export class ArticleServiceService implements IApiResource {
     throw new Error('Method not implemented.');
   }
   store(model: any) {
-    this.http.post( ApiRoutes.uri.ARTICLE_ADD, model).toPromise().then((response) => {
-      console.log();
-    }).catch((error) => {
-      //handle error
+    this.http.post( ApiRoutes.uri.ARTICLE_ADD, model).toPromise().then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
     });
   }
   delete() {

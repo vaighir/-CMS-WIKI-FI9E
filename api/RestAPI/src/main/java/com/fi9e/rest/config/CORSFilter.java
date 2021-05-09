@@ -16,7 +16,6 @@ public class CORSFilter implements ContainerResponseFilter {
 	@Override
 	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext)
 			throws IOException {
-
 		requestContext.getHeaders().add("Accept", "application/json");
 		requestContext.getHeaders().add("Content-Type", "application/json");
 		requestContext.getHeaders().add("Access-Control-Allow-Origin", "*");
