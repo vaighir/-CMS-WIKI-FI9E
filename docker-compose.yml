@@ -21,10 +21,11 @@ services:
       - '80:8080'
     volumes:
       - 'tomcat:/bitnami'
+      - './docker/tomcat/data:/opt/bitnami/tomcat/webapps'
 #      - './webapps:/opt/bitnami/tomcat/webapps'
-      - './webapps/ROOT/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
+#      - './webapps/ROOT/admin:/opt/bitnami/tomcat/webapps/ROOT/admin'
       - './webapps/ROOT/websites:/opt/bitnami/tomcat/webapps/ROOT/websites'
-      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
+#      - './readme.md:/opt/bitnami/tomcat/webapps/ROOT/readme.md'
       - './api/RestAPI/target/RestAPI/:/opt/bitnami/tomcat/webapps/RestAPI/'
     environment:
       <<: *tomcat
@@ -55,5 +56,5 @@ services:
 
 volumes:
   tomcat:
-    driver: local
+#    driver: local
   mysql_data:
