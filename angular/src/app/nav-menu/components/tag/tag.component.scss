@@ -1,0 +1,25 @@
+:host {
+    display: contents;
+}
+a {
+    color: rgb(34, 38, 39)!important;
+      text-decoration: none !important;
+  }
+  .nav_active {
+    background-color: rgba(147, 147, 187, 0.1);
+    padding-left: 1rem;
+    // &::after {
+    //   display: inline-flex;
+    //   content: "";
+    //   width: .5rem;
+    //   height: .5rem;
+    //   background-color: rgba(28, 53, 165, 0.72);
+    //   border-radius: 1rem;
+    //   margin-right: .5rem;
+    //   transform: translateY(-1px);   
+    //   margin-left: auto; 
+    // }
+    a {
+      color: rgba(28, 53, 165, 0.72);
+    }
+  }
