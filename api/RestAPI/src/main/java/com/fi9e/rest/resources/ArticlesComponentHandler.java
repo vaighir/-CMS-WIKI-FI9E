@@ -1,5 +1,7 @@
 package com.fi9e.rest.resources;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -74,4 +76,15 @@ public class ArticlesComponentHandler {
 		return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 	}
 
+	
+	@GET
+	@Path("/all")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response all() throws ApiException {
+		
+		List<ArticleDTO> dtoList = this.getManager().getAllArticles();
+
+		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
+	}
 }
