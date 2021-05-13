@@ -15,6 +15,7 @@ import { ArticleItemComponent } from './main/articles/components/articles/articl
 import { ArticleDetailComponent } from './main/articles/components/article-detail/article-detail.component';
 import { TagComponent } from './nav-menu/components/tag/tag.component';
 import { NavMenuComponent } from './nav-menu/components/nav-menu.component';
+import { LoaderComponent } from './main/loader/loader-component/loader-component.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NavMenuComponent } from './nav-menu/components/nav-menu.component';
     ArticleItemComponent,
     ArticleDetailComponent,
     TagComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

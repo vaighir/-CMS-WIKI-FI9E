@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleModel } from '../../../model/article-model.Model';
-import { ArticleServiceService } from '../../../services/article-service.service';
+import { ArticleService } from '../../../services/article-service.service';
 
 @Component({
   selector: 'app-article-item',
@@ -8,10 +8,9 @@ import { ArticleServiceService } from '../../../services/article-service.service
   styleUrls: ['./article-item.component.scss']
 })
 export class ArticleItemComponent implements OnInit {
-  article: ArticleModel = new ArticleModel();
 
   constructor(
-    private articleService: ArticleServiceService
+    private articleService: ArticleService
   ) { }
 
   ngOnInit(): void {
