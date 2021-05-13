@@ -46,11 +46,12 @@ public class Article {
 		
 	}
 
-	public Article(String name, String slug, String content, java.util.Date createdAt, java.util.Date updatedAt) {
+	public Article(String name, String slug, String content, Category category, java.util.Date createdAt, java.util.Date updatedAt) {
 		super();
 		this.name = name; 
 		this.slug = slug;
 		this.content = content;
+		this.category = category;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
