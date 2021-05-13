@@ -1,5 +1,8 @@
 package com.fi9e.rest.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -108,5 +111,29 @@ public class ArticleDao {
 			}
 			factory.close();
 		}
+	}
+	
+	
+	public List<?> getAllArticles() {
+		List<?> articlesRaw = new ArrayList<>();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			//articleList = session.createQuery("from article", Article.class).list();
+			articlesRaw = session.createSQLQuery("SELECT * FROM article").addEntity(Article.class).list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if ( session.isOpen()) {
+				session.close();
+			}
+			factory.close();
+		}
+		
+		return articlesRaw;
 	}
 }
