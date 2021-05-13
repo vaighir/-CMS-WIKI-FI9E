@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-05-13T18:11:28.142Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="tatahVjzLgrgRzN6sQBj" version="14.6.11" type="gitlab">
+<mxfile host="app.diagrams.net" modified="2021-05-13T18:17:22.169Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36" etag="sqf2Xknc9JvwDGX5KFfJ" version="14.6.11" type="gitlab">
   <diagram id="ibqzhA6L9kskQ1l03frG" name="Page-1">
     <mxGraphModel dx="3197" dy="2556" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -41,7 +41,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-24" value="&amp;lt;&amp;lt;Class&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;ArticleManager&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-310" y="140" width="260" height="223" as="geometry" />
+          <mxGeometry x="-290" y="-308" width="260" height="223" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-25" value="attributes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="XtypLJYDKR2utJp8JwFj-24">
           <mxGeometry y="55" width="260" height="20" as="geometry" />
@@ -73,11 +73,8 @@
         <mxCell id="XtypLJYDKR2utJp8JwFj-35" value="&lt;h1&gt;Endpoint&lt;/h1&gt;&lt;div&gt;were defined by Handler classes, which provide URIs to change persitent data (Resources).&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="90" y="20" width="250" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="XtypLJYDKR2utJp8JwFj-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=0;" edge="1" parent="1" source="XtypLJYDKR2utJp8JwFj-37" target="XtypLJYDKR2utJp8JwFj-17">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-37" value="&amp;lt;&amp;lt;Class&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;ArticleDAO&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-          <mxGeometry x="470" y="130" width="260" height="203" as="geometry" />
+          <mxGeometry x="-650" y="12" width="260" height="203" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-38" value="attributes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="XtypLJYDKR2utJp8JwFj-37">
           <mxGeometry y="55" width="260" height="20" as="geometry" />
@@ -107,7 +104,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-48" value="&amp;lt;&amp;lt;Entity Class&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Article&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-          <mxGeometry x="470" y="480" width="260" height="223" as="geometry" />
+          <mxGeometry x="-650" y="362" width="260" height="223" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-58" value="attributes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="XtypLJYDKR2utJp8JwFj-48">
           <mxGeometry y="55" width="260" height="20" as="geometry" />
@@ -173,7 +170,7 @@
           <mxGeometry y="223" width="260" height="20" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-79" value="&lt;h1&gt;DAO&lt;/h1&gt;&lt;div&gt;-Data Access Object: Used to get acces to database&lt;/div&gt;&lt;div&gt;-retrieving and manipulating data in DB (Hibernate)&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="470" y="10" width="250" height="120" as="geometry" />
+          <mxGeometry x="-650" y="-108" width="250" height="120" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-80" value="&lt;h1&gt;DTO&lt;/h1&gt;&lt;div&gt;Data Transfer Object: Is used to mask data traffic between client and server&lt;/div&gt;&lt;div&gt;- is acting as data structure that can be safely sent to client and also safely received by the server&lt;/div&gt;&lt;div&gt;- DTO represents an ENTITY class but can have extra fields&lt;/div&gt;&lt;div&gt;-should only contain getters/setters&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="210" y="-450" width="250" height="203" as="geometry" />
@@ -182,7 +179,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-81" value="&amp;lt;&amp;lt;Class&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;ArticleMapper&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-660" y="140" width="260" height="123" as="geometry" />
+          <mxGeometry x="-640" y="-308" width="260" height="123" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-82" value="attributes" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="XtypLJYDKR2utJp8JwFj-81">
           <mxGeometry y="55" width="260" height="20" as="geometry" />
@@ -197,13 +194,16 @@
           <mxGeometry y="103" width="260" height="20" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-94" value="&lt;h1&gt;Manager&lt;/h1&gt;&lt;div&gt;Layer that sits in between DAO class and Resource&lt;/div&gt;&lt;div&gt;- Retrieves DB data and structures it.&lt;/div&gt;&lt;div&gt;- should only compose data before return to Resource&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-310" y="10" width="250" height="120" as="geometry" />
+          <mxGeometry x="-290" y="-438" width="250" height="120" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-95" value="&lt;h1&gt;Mapper&lt;/h1&gt;&lt;div&gt;Maps Data from&amp;nbsp; a Type&amp;nbsp;&lt;/div&gt;&lt;div&gt;to a Type&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="-660" y="20" width="200" height="120" as="geometry" />
+          <mxGeometry x="-640" y="-428" width="200" height="120" as="geometry" />
         </mxCell>
         <mxCell id="XtypLJYDKR2utJp8JwFj-96" value="&lt;h1&gt;Entity&lt;/h1&gt;&lt;div&gt;Hibernate Entity, which reflects a real Database Table and its columns&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="470" y="360" width="136" height="120" as="geometry" />
+          <mxGeometry x="-650" y="242" width="136" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="XtypLJYDKR2utJp8JwFj-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=0;" edge="1" parent="1" source="XtypLJYDKR2utJp8JwFj-41" target="XtypLJYDKR2utJp8JwFj-30">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
