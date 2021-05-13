@@ -1,5 +1,8 @@
 package com.fi9e.rest.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.entity.Article;
@@ -53,7 +56,7 @@ public class ArticleManager {
 
 		return dto;
 	}
-	
+
 	/**
 	 * Get specific article by id
 	 * 
@@ -63,7 +66,7 @@ public class ArticleManager {
 	public ArticleDTO getArticleById(final String id) {
 		return this.getArticleById(Integer.parseInt(id));
 	}
-	
+
 	/**
 	 * Update Single Article
 	 * 
@@ -71,12 +74,25 @@ public class ArticleManager {
 	 * @return
 	 */
 	public ArticleDTO updateArticle(final ArticleDTO articleDTO) {
-		
-		Article article = this.getDao().getArticleById( articleDTO.getId() );
-		
+
+		Article article = this.getDao().getArticleById(articleDTO.getId());
+
 		this.getDao().updateArticle(article);
+
+		return ArticleMapper.mapArticleToArticleDTO(this.getDao().getArticleById(articleDTO.getId()));
+	}
+
+	public List<ArticleDTO> getAllArticles() {
 		
-		return ArticleMapper.mapArticleToArticleDTO( this.getDao().getArticleById( articleDTO.getId() ) );
+		List<?> articles = getDao().getAllArticles();
+
+		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
+
+		for (Object article : articles) {
+			dtoList.add(ArticleMapper.mapArticleToArticleDTO((Article) article));
+		}
+
+		return dtoList;
 	}
 
 }
