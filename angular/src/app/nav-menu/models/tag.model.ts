@@ -13,5 +13,5 @@ export class Tag {
        
         return tag;
 
-      }
+    }
 }

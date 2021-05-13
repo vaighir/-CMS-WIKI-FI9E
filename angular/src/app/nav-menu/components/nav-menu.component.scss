@@ -8,15 +8,15 @@
   height: 100%;
 }
 
-a:hover {
-  color: rgb(34, 38, 39)!important;
-    text-decoration: none !important;
-}
 
 .border-bottom {
   border-color: rgba(167, 166, 177, 0.57) !important;
 }
 
+a:hover {
+  color: rgb(34, 38, 39)!important;
+    text-decoration: none !important;
+}
 .nav_active {
   background-color: rgba(147, 147, 187, 0.1);
   padding-left: 1rem;
