@@ -20,10 +20,11 @@ const routes: Routes = [
 //Content-Type: application/json
 //Accept: application/json
 
-const host: string = "http://localhost:8080";
+const host: string = "http://localhost";
 const API_V1: string = "/RestAPI/v1/";
 export const API_ROUTES = {
-  ARTICLE_ADD: host+API_V1+ "article/add"
+  ARTICLE_ADD: host+API_V1+ "article/add",
+  TAGLIST_SHOW: host+API_V1
 }
 
 @NgModule({

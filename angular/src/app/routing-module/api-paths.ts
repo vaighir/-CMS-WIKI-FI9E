@@ -5,7 +5,7 @@ export abstract class ApiRoutes {
   private static api_path: string = "/RestAPI/v1/";
   
   public static uri = {
-    ARTICLE_ADD: ApiRoutes.path() + "article/add"
+    ARTICLE_ADD: ApiRoutes.path() + "article/add",
   }
 
   private static path() {
