@@ -1,11 +1,13 @@
 
 //defines all API paths we need in app
 export abstract class ApiRoutes {
-  private static host: string = "http://localhost";
+  //change this to localhost, for prod!
+  private static host: string = "http://localhost:4200";
   private static api_path: string = "/RestAPI/v1/";
   
   public static uri = {
-    ARTICLE_ADD: ApiRoutes.path() + "article/add"
+    ARTICLE_ADD: ApiRoutes.path() + "article/add",
+    ARTICLE_SHOW: ApiRoutes.path() + "article/", //+id
   }
 
   private static path() {
