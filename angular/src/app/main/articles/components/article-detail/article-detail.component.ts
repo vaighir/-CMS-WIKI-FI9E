@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from './../../services/article-service.service'
 
@@ -14,7 +14,9 @@ export class ArticleDetailComponent implements OnInit {
   article: any = {};
   createAtDate: string = "";
 
-  constructor(private injector: Injector, private route: ActivatedRoute) {
+  constructor(  private injector: Injector, 
+                private route: ActivatedRoute,
+                private router: Router) {
     route.params.subscribe((params) => {
       this.id = params.id;
     });
@@ -29,4 +31,7 @@ export class ArticleDetailComponent implements OnInit {
     //show data in component
   }
 
+  onEdit() {
+    this.router.navigate(['/article/edit/' + this.id]);
+  }
 }
