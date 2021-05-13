@@ -17,9 +17,7 @@ export class ArticleService implements IApiResource {
     return this.http.get( ApiRoutes.uri.ARTICLE_SHOW + id );
   }
    store(model: any) {
-    this.http.post( ApiRoutes.uri.ARTICLE_ADD, model).toPromise().then((res) => {
-      return res;
-    });
+    return this.http.post( ApiRoutes.uri.ARTICLE_ADD, model);
   }
   delete() {
     throw new Error('Method not implemented.');

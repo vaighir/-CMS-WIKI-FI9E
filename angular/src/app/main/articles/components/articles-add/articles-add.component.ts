@@ -10,9 +10,10 @@ import { ArticleService } from '../../services/article-service.service';
 export class ArticlesAddComponent implements OnInit {
   article: ArticleModel = new ArticleModel();
   private articleService = this.injector.get(ArticleService);
+  isLoading: boolean = false;
 
   constructor(private injector: Injector) {
-    
+    //
   }
 
   ngOnInit(): void {
@@ -20,6 +21,14 @@ export class ArticlesAddComponent implements OnInit {
   }
 
   onSave(): void {
-    this.articleService.store(this.article);
+    this.isLoading = true;
+    console.log(this.isLoading);
+    setTimeout(() => {
+      this.isLoading = false;
+      console.log(this.isLoading);
+    }, 200);
+    this.articleService.store(this.article).toPromise().finally(() => {
+      console.log("laoded...");
+    });
   }
 }

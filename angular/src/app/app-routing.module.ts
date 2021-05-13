@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'article/add', component: ArticlesAddComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'login', component: LoginComponent },
-  
 ];
 
 
