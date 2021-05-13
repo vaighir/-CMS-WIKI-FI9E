@@ -22,8 +22,8 @@ export class ArticleService implements IApiResource {
   delete() {
     throw new Error('Method not implemented.');
   }
-  update() {
-    throw new Error('Method not implemented.');
+  update(model: any) {
+    return this.http.put( ApiRoutes.uri.ARTICLE_UPDATE + model.id, model );
   }
 
 }
