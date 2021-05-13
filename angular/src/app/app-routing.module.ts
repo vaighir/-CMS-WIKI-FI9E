@@ -1,3 +1,4 @@
+import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, Router, RouterModule } from '@angular/router';
@@ -10,21 +11,10 @@ import { ArticleDetailComponent } from './main/articles/components/article-detai
 const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/add', component: ArticlesAddComponent },
-  { path: 'article/datail', component: ArticleDetailComponent },
+  { path: 'article/:id', component: ArticleDetailComponent },
+  { path: 'article/edit/:id', component: ArticleEditComponent },
   { path: 'login', component: LoginComponent },
 ];
-//http://localhost:8080/RestAPI/v1/article/add
-
-//@TODO:
-//Add headers to every request
-//Content-Type: application/json
-//Accept: application/json
-
-const host: string = "http://localhost:8080";
-const API_V1: string = "/RestAPI/v1/";
-export const API_ROUTES = {
-  ARTICLE_ADD: host+API_V1+ "article/add"
-}
 
 @NgModule({
   declarations: [],

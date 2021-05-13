@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+@Table(name = "category")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,10 @@ public class Category {
 	public Category() {
 	}
 
-
+	public Category(String name) {
+		super();
+		this.name = name; 
+	}
 	public int getId() {
 		return id;
 	}

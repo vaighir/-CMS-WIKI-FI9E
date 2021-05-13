@@ -1,5 +1,8 @@
 package com.fi9e.rest.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -67,7 +70,7 @@ public class ArticleDao {
 	
 	public void updateArticle(Article article) {
 
-		SessionFactory factory = new Configuration().configure("wadwdw").buildSessionFactory();
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article oldArticle = getArticleById(article.getId());
@@ -94,7 +97,7 @@ public class ArticleDao {
 
 		Article article = getArticleById(id);
 
-		SessionFactory factory = new Configuration().configure(HIBERNATE_CONFIG_PATH).buildSessionFactory();
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		try {
@@ -111,5 +114,27 @@ public class ArticleDao {
 		}
 	}
 	
-	//TODO: get all articles with id
+	
+	public List<?> getAllArticles() {
+		List<?> articlesRaw = new ArrayList<>();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			//articleList = session.createQuery("from article", Article.class).list();
+			articlesRaw = session.createSQLQuery("SELECT * FROM article").addEntity(Article.class).list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if ( session.isOpen()) {
+				session.close();
+			}
+			factory.close();
+		}
+		
+		return articlesRaw;
+	}
 }
