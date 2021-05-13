@@ -66,7 +66,7 @@ public class ArticleDao {
 	
 	public void updateArticle(Article article) {
 
-		SessionFactory factory = new Configuration().configure("wadwdw").buildSessionFactory();
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		Article oldArticle = getArticleById(article.getId());
@@ -93,7 +93,7 @@ public class ArticleDao {
 
 		Article article = getArticleById(id);
 
-		SessionFactory factory = new Configuration().configure(HIBERNATE_CONFIG_PATH).buildSessionFactory();
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		try {
@@ -109,6 +109,4 @@ public class ArticleDao {
 			factory.close();
 		}
 	}
-	
-	//TODO: get all articles with id
 }
