@@ -137,4 +137,27 @@ public class ArticleDao {
 		
 		return articlesRaw;
 	}
+	
+	public List<?> getAllArticlesByCategoryId(Category category) {
+		List<?> articlesRaw = new ArrayList<>();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			//articleList = session.createQuery("from article", Article.class).list();
+			articlesRaw = session.createSQLQuery("SELECT * FROM article WHERE category_id = " + category.getId()).addEntity(Article.class).list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if ( session.isOpen()) {
+				session.close();
+			}
+			factory.close();
+		}
+		
+		return articlesRaw;
+	}
 }

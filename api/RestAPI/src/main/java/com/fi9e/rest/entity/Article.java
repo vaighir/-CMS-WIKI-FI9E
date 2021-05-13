@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="article")
 
@@ -21,7 +23,9 @@ public class Article {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="slug")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@Column(name="slug", columnDefinition = "CHAR(32)")
 	private String slug;
 	
 	@Column(name="name")

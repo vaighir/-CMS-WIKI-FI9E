@@ -81,6 +81,13 @@ public class ArticleManager {
 
 		return ArticleMapper.mapArticleToArticleDTO(this.getDao().getArticleById(articleDTO.getId()));
 	}
+	
+	public ArticleDTO deleteArticleById(final String id) {
+
+		this.getDao().deleteArticleById(Integer.parseInt(id));
+		
+		return this.deleteArticleById(id);
+	}
 
 	public List<ArticleDTO> getAllArticles() {
 		

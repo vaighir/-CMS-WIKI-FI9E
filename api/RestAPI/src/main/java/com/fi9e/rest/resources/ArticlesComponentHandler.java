@@ -48,7 +48,7 @@ public class ArticlesComponentHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response show(@PathParam("id") String id) throws ApiException {
 		
-		ArticleDTO dto = this.getManager().getArticleById(id);
+		ArticleDTO articleDTO = this.getManager().getArticleById(id);
 		
 		return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 	}
@@ -61,6 +61,7 @@ public class ArticlesComponentHandler {
 	public Response delete(ArticleDTO article) throws ApiException {
 
 		// delete logic here | use dao object for data manipulation
+		ArticleDTO articleDTO = this.getManager().deleteArticleById(id);
 
 		return Response.ok("deleted article").build();
 	}
@@ -71,7 +72,7 @@ public class ArticlesComponentHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(ArticleDTO articleDTO) throws ApiException {
 
-		ArticleDTO dto = this.getManager().updateArticle(articleDTO);
+		ArticleDTO articleDTO = this.getManager().updateArticle(articleDTO);
 
 		return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 	}
@@ -84,6 +85,17 @@ public class ArticlesComponentHandler {
 	public Response all() throws ApiException {
 		
 		List<ArticleDTO> dtoList = this.getManager().getAllArticles();
+
+		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
+	}
+
+	@GET
+	@Path("/allcategory")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response all() throws ApiException {
+		
+		List<ArticleDTO> dtoList = this.getManager().getAllArticlesByCategoryId(category);
 
 		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
 	}
