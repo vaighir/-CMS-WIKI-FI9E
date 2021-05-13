@@ -88,6 +88,12 @@
 <async-supported>true</async-supported>
 <async-supported>true</async-supported>
 <async-supported>true</async-supported>
+<async-supported>true</async-supported>
+<async-supported>true</async-supported>
+<async-supported>true</async-supported>
+<async-supported>true</async-supported>
+<async-supported>true</async-supported>
+<async-supported>true</async-supported>
         <init-param>
             <param-name>hstsEnabled</param-name>
             <param-value>false</param-value>

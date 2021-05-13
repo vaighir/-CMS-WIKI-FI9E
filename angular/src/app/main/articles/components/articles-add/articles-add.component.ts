@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { ArticleModel } from '../../model/article-model.Model';
-import { ArticleServiceService } from '../../services/article-service.service';
+import { ArticleService } from '../../services/article-service.service';
 
 @Component({
   selector: 'app-articles-add',
@@ -9,7 +9,7 @@ import { ArticleServiceService } from '../../services/article-service.service';
 })
 export class ArticlesAddComponent implements OnInit {
   article: ArticleModel = new ArticleModel();
-  private articleService = this.injector.get(ArticleServiceService);
+  private articleService = this.injector.get(ArticleService);
 
   constructor(private injector: Injector) {
     

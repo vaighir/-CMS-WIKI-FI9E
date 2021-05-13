@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ArticleModel } from '../../model/article-model.Model';
+import { ArticleService } from './../../services/article-service.service'
 
 @Component({
   selector: 'app-article-detail',
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
+  id: number = 0;
+  private articleService = this.injector.get(ArticleService);
+  article: any = {};
+  createAtDate: string = "";
 
-  constructor() { }
+  constructor(private injector: Injector, private route: ActivatedRoute) {
+    route.params.subscribe((params) => {
+      this.id = params.id;
+    });
+  }
 
   ngOnInit(): void {
+    this.article = this.articleService.show(this.id).subscribe((res) => {
+      this.article = new ArticleModel().deserialize(res);
+      this.createAtDate = new Date(this.article.created_at).toLocaleDateString('de-DE'); 
+      console.log(this.article);
+    });
+    //show data in component
   }
 
 }
