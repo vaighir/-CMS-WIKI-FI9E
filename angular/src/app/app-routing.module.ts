@@ -1,3 +1,4 @@
+import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, Router, RouterModule } from '@angular/router';
@@ -11,9 +12,9 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
   { path: 'article/add', component: ArticlesAddComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
+  { path: 'article/edit/:id', component: ArticleEditComponent },
   { path: 'login', component: LoginComponent },
 ];
-
 
 @NgModule({
   declarations: [],

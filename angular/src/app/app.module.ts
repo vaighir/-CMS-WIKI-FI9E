@@ -15,6 +15,7 @@ import { LoginComponent } from './main/login/components/login.component';
 import { ArticleItemComponent } from './main/articles/components/articles/article-item/article-item.component';
 import { ArticleDetailComponent } from './main/articles/components/article-detail/article-detail.component';
 import { LoaderComponent } from './main/loader/loader-component/loader-component.component';
+import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LoaderComponent } from './main/loader/loader-component/loader-component
     ArticleItemComponent,
     ArticleDetailComponent,
     LoaderComponent,
+    ArticleEditComponent,
   ],
   imports: [
     BrowserModule,
