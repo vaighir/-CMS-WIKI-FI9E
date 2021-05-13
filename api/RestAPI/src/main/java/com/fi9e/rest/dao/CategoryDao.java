@@ -3,21 +3,20 @@ package com.fi9e.rest.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import com.fi9e.rest.entity.Article;
+import com.fi9e.rest.entity.Category;
 
 public class CategoryDao {
 	
-	public Article getCategoryById(int id) {
+	public Category getCategoryById(int id) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		Article article = null;
+		Category category = null;
 
 		try {
 			session.beginTransaction();
-			article = session.get(Article.class, id);
+			category = session.get(Category.class, id);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,8 +27,9 @@ public class CategoryDao {
 			factory.close();
 		}
 
-		return article;
+		return category;
 	}
+
 
 	//TODO get all categories
 }
