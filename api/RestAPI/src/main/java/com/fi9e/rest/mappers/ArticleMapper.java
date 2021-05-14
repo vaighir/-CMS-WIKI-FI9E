@@ -1,6 +1,7 @@
 package com.fi9e.rest.mappers;
 
 import com.fi9e.rest.dto.ArticleDTO;
+import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Article;
 
 /**
@@ -23,6 +24,12 @@ public class ArticleMapper {
 			dto.setId(article.getId());
 			dto.setName(article.getName());
 			dto.setSlug(article.getSlug());
+			
+			CategoryDTO catDTO = new CategoryDTO();
+			catDTO.setId( article.getCategory() );
+			//catDTO.setName(""); @TODO: put category name here...
+			
+			dto.setCategory( catDTO );
 		}
 		
 		return dto;

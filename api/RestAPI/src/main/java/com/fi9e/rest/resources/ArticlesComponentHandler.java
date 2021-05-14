@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dto.ArticleDTO;
+import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.managers.ArticleManager;
@@ -92,12 +93,12 @@ public class ArticlesComponentHandler {
 	}
 
 	@GET
-	@Path("/allcategory")
+	@Path("/category/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response allCategory(Category category) throws ApiException {
+	public Response allCategory(@PathParam("id") int id) throws ApiException {
 		
-		List<ArticleDTO> dtoList = this.getManager().getAllArticlesByCategoryId(category);
+		List<ArticleDTO> dtoList = this.getManager().getAllArticlesByCategoryId( id );
 
 		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
 	}

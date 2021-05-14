@@ -38,12 +38,12 @@ public class ArticleDao {
 		return article;
 	}
 
-	public int createArticle(String name, String slug, String content, Category category) {
+	public int createArticle(String name, String slug, String content, int categoryId) {
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		Article article = new Article(name, slug, content, category, new java.util.Date(), new java.util.Date());
+		Article article = new Article(name, slug, content, categoryId, new java.util.Date(), new java.util.Date());
 		
 		int newArticleId = -1;
 		try {
@@ -65,7 +65,7 @@ public class ArticleDao {
 	
 	
 	public int createArticle(ArticleDTO dto) {
-		return createArticle(dto.getName(), dto.getSlug(), dto.getContent(), dto.getCategory());
+		return createArticle(dto.getName(), dto.getSlug(), dto.getContent(), dto.getCategory().getId());
 	}
 	
 	public void updateArticle(Article article) {
@@ -123,7 +123,6 @@ public class ArticleDao {
 
 		try {
 			session.beginTransaction();
-			//articleList = session.createQuery("from article", Article.class).list();
 			articlesRaw = session.createSQLQuery("SELECT * FROM article").addEntity(Article.class).list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -138,7 +137,7 @@ public class ArticleDao {
 		return articlesRaw;
 	}
 	
-	public List<?> getAllArticlesByCategoryId(Category category) {
+	public List<?> getAllArticlesByCategoryId(final int categoryId) {
 		List<?> articlesRaw = new ArrayList<>();
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -146,8 +145,7 @@ public class ArticleDao {
 
 		try {
 			session.beginTransaction();
-			//articleList = session.createQuery("from article", Article.class).list();
-			articlesRaw = session.createSQLQuery("SELECT * FROM article WHERE category_id = " + category.getId()).addEntity(Article.class).list();
+			articlesRaw = session.createSQLQuery("SELECT * FROM article WHERE category_id = " + categoryId).addEntity(Article.class).list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

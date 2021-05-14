@@ -34,8 +34,10 @@ public class Article {
 	@Column(name="content")
 	private String content;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id", nullable = true)
+	
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "category_id", nullable = true)
+	@Column(name="category_id")
 	private int categoryId;
 	
 	@Column(name="created_at")

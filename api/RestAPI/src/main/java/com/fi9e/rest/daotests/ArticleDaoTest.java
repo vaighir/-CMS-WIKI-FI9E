@@ -7,9 +7,9 @@ public class ArticleDaoTest {
 	public static void main(String[] args) {
 		ArticleDao ad = new ArticleDao();
 
-		Category testCategory = new Category();
+		//Category testCategory = new Category();
 		
-		ad.createArticle("titleż", "sluggyö", "this is a very nice and interesting article on another important subject. Probably has a lot of maths in it", testCategory);
+		ad.createArticle("titleż", "sluggyö", "this is a very nice and interesting article on another important subject. Probably has a lot of maths in it", 2);
 
 //		Article a1 = ad.getArticleById(2);
 

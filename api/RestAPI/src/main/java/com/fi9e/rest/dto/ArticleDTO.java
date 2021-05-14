@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fi9e.rest.entity.Category;
-
 /**
  * 
  * @author Christopher
@@ -17,7 +15,7 @@ public class ArticleDTO  {
 	private String slug;
 	private String name;
 	private String content;
-	private Category category;
+	private CategoryDTO category;
 	
 	private Date created_at;
 	private Date updated_at;
@@ -54,8 +52,12 @@ public class ArticleDTO  {
 		return content;
 	}
 	
-	public Category getCategory() {
+	public CategoryDTO getCategory() {
 		return category;
+	}
+	
+	public void setCategory(CategoryDTO category) {
+		this.category = category;
 	}
 
 	public void setContent(String content) {

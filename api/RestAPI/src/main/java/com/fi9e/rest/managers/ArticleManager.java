@@ -103,20 +103,21 @@ public class ArticleManager {
 		return dtoList;
 	}
 	
-	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
+	public List<ArticleDTO> getAllArticlesByCategoryId(final int categoryId) {
 		
-		List<?> articles = getDao().getAllArticles();
+		List<?> articles = getDao().getAllArticlesByCategoryId(categoryId);
 
 		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
 		
-		//Integer.parseInt(categoryId)
-
 		for (Object article : articles) {
-			if (categoryId == article.getCategory())
-			dtoList.add(ArticleMapper.mapArticleToArticleDTO((Article) article));
+			dtoList.add(ArticleMapper.mapArticleToArticleDTO( (Article) article ));
 		}
 
 		return dtoList;
+	}
+	
+	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
+		return this.getAllArticlesByCategoryId( Integer.parseInt(categoryId) );
 	}
 
 }
