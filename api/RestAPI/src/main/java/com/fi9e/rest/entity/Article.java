@@ -36,7 +36,7 @@ public class Article {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id", nullable = true)
-	private Category category;
+	private int categoryId;
 	
 	@Column(name="created_at")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -50,12 +50,12 @@ public class Article {
 		
 	}
 
-	public Article(String name, String slug, String content, Category category, java.util.Date createdAt, java.util.Date updatedAt) {
+	public Article(String name, String slug, String content, int categoryId, java.util.Date createdAt, java.util.Date updatedAt) {
 		super();
 		this.name = name; 
 		this.slug = slug;
 		this.content = content;
-		this.category = category;
+		this.categoryId = categoryId;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -76,12 +76,12 @@ public class Article {
 		this.name = name;
 	}
 
-	public Category getCategory() {
-		return category;
+	public int getCategory() {
+		return this.categoryId;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	public String getSlug() {

@@ -103,14 +103,16 @@ public class ArticleManager {
 		return dtoList;
 	}
 	
-	public List<ArticleDTO> getAllArticlesByCategoryId(Category category) {
+	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
 		
 		List<?> articles = getDao().getAllArticles();
 
 		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
+		
+		//Integer.parseInt(categoryId)
 
 		for (Object article : articles) {
-			//if (category = article.getCategory())
+			if (categoryId == article.getCategory())
 			dtoList.add(ArticleMapper.mapArticleToArticleDTO((Article) article));
 		}
 
