@@ -6,6 +6,7 @@ import java.util.List;
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.entity.Article;
+import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.mappers.ArticleMapper;
 
 /**
@@ -96,6 +97,20 @@ public class ArticleManager {
 		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
 
 		for (Object article : articles) {
+			dtoList.add(ArticleMapper.mapArticleToArticleDTO((Article) article));
+		}
+
+		return dtoList;
+	}
+	
+	public List<ArticleDTO> getAllArticlesByCategoryId(Category category) {
+		
+		List<?> articles = getDao().getAllArticles();
+
+		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
+
+		for (Object article : articles) {
+			//if (category = article.getCategory())
 			dtoList.add(ArticleMapper.mapArticleToArticleDTO((Article) article));
 		}
 
