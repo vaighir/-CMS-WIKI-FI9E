@@ -17,6 +17,7 @@ import { NavMenuComponent } from './nav-menu/components/nav-menu.component';
 import { LoaderComponent } from './main/loader/loader-component/loader-component.component';
 import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { CategoryComponent } from './nav-menu/components/category/category.component';
+import { NavMenuService } from './nav-menu/services/nav-menu.service';
 
 @NgModule({
   declarations: [
@@ -39,10 +40,12 @@ import { CategoryComponent } from './nav-menu/components/category/category.compo
     FormsModule,
     HttpClientModule,
   ],
-  providers: [{
+  providers: [
+    NavMenuService,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AddHeaderInterceptor,
-    multi: true
+    multi: true,
   }],
   bootstrap: [AppComponent]
 })

@@ -64,5 +64,9 @@ INSERT INTO article (name, category_id) values ("testarticle", 1);
 INSERT INTO article (name, category_id) values ("testarticle2", 2);
 INSERT INTO article (name, category_id) values ("testarticle3", 2);
 
+INSERT INTO article (name, category_id) values ("testarticle", 1);
+INSERT INTO article (name, category_id) values ("testarticle2", 2);
+INSERT INTO article (name, category_id) values ("testarticle3", 2);
+
 INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");
 INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");

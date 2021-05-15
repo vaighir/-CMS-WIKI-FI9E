@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
 
 public class UserDao {
@@ -34,12 +35,12 @@ public class UserDao {
 	}
 
 	// create user
-	public void createUser(String name, String email, String password) {
+	public void createUser(String name, String email, String password, Role role) {
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		User user = new User(name, email, password);
+		User user = new User(name, email, password, role);
 
 		try {
 			session.beginTransaction();

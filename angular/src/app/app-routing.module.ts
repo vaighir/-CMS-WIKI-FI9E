@@ -10,6 +10,7 @@ import { ArticleDetailComponent } from './main/articles/components/article-detai
 //our routes in our app
 const routes: Routes = [
   { path: 'articles', component: ArticlesComponent },
+  { path: 'article/category/:id', component: ArticlesComponent },
   { path: 'article/add', component: ArticlesAddComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'article/edit/:id', component: ArticleEditComponent },

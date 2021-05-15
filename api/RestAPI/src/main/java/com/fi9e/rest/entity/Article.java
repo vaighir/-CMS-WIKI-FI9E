@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="article")
 
@@ -21,7 +23,9 @@ public class Article {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="slug")
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@Column(name="slug", columnDefinition = "CHAR(32)")
 	private String slug;
 	
 	@Column(name="name")
@@ -30,9 +34,11 @@ public class Article {
 	@Column(name="content")
 	private String content;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category_id", nullable = true)
-	private Category category;
+	
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name = "category_id", nullable = true)
+	@Column(name="category_id")
+	private int categoryId;
 	
 	@Column(name="created_at")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,11 +52,12 @@ public class Article {
 		
 	}
 
-	public Article(String name, String slug, String content, java.util.Date createdAt, java.util.Date updatedAt) {
+	public Article(String name, String slug, String content, int categoryId, java.util.Date createdAt, java.util.Date updatedAt) {
 		super();
 		this.name = name; 
 		this.slug = slug;
 		this.content = content;
+		this.categoryId = categoryId;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -71,12 +78,12 @@ public class Article {
 		this.name = name;
 	}
 
-	public Category getCategory() {
-		return category;
+	public int getCategory() {
+		return this.categoryId;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	public String getSlug() {
