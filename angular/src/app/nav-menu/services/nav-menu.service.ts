@@ -1,25 +1,33 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { Tag } from '../models/tag.model';
 import { map } from 'rxjs/operators';
 import { ApiRoutes } from 'src/app/routing-module/api-paths';
+import { Category } from '../models/category.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class NavMenuService {
+  // categoryIdUpdated = new EventEmitter<number>();
+  private CategoryIdSource = new BehaviorSubject(-1);
+  currentCategoryId = this.CategoryIdSource.asObservable();
 
   constructor(
     private http: HttpClient
   ) { }
 
-  tagList(): Observable<Tag[]> {
-    return this.http.get<any[]>( ApiRoutes.uri.TAGLIST_SHOW + 'category/all' )
+  updateCategoryId(id: number) {
+    this.CategoryIdSource.next(id)
+  }
+
+  categoryList(): Observable<Category[]> {
+    return this.http.get<any[]>( ApiRoutes.uri.CATEGORYLIST_SHOW + 'category/all' )
     .pipe(
       map((itmes) => itmes.map(
-        (item) => Tag.createFromObj(item) 
+        (item) => Category.createFromObj(item) 
       ))
     )
   }

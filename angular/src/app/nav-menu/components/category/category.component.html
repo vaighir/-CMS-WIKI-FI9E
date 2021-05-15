@@ -1,0 +1,9 @@
+<li routerLinkActive="nav_active"  class="pt-3 pb-3 border-bottom">
+    <a [routerLink]="['/article/category/', category.id]"> 
+        {{ category.name }}
+        {{ category.id }}
+        <span>
+            {{ category.description }}
+        </span> 
+    </a>
+</li>

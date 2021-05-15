@@ -12,6 +12,7 @@ CREATE TABLE role (
 CREATE TABLE category (
     id INT AUTO_INCREMENT,
     name VARCHAR(255),
+    description VARCHAR(255),
     PRIMARY KEY (id)
 );
 
@@ -45,19 +46,23 @@ INSERT INTO role (name) values ("admin");
 INSERT INTO role (name) values ("creator");
 INSERT INTO role (name) values ("spectator");
 
-INSERT INTO category (name) values ("LF1");
-INSERT INTO category (name) values ("LF2");
-INSERT INTO category (name) values ("LF3");
-INSERT INTO category (name) values ("LF4");
-INSERT INTO category (name) values ("LF5");
-INSERT INTO category (name) values ("LF6");
-INSERT INTO category (name) values ("LF7");
-INSERT INTO category (name) values ("LF8");
-INSERT INTO category (name) values ("LF9");
-INSERT INTO category (name) values ("LF10");
-INSERT INTO category (name) values ("LF11");
-INSERT INTO category (name) values ("PoWi");
-INSERT INTO category (name) values ("Deutsch");
+INSERT INTO category (name, description) values ("LF1", "Der Betrieb und sein Umfeld");
+INSERT INTO category (name, description) values ("LF2", "Geschäftsprozesse und betriebliche Organisation");
+INSERT INTO category (name, description) values ("LF3", "Informationsquellen und Arbeitsmethoden");
+INSERT INTO category (name, description) values ("LF4", "Einfache IT-Systeme");
+INSERT INTO category (name, description) values ("LF5", "Fachliches Englisch");
+INSERT INTO category (name, description) values ("LF6", "Entwickeln und Bereitstellen von Anwendungssystemen");
+INSERT INTO category (name, description) values ("LF7", "Vernetzte IT-Systeme");
+INSERT INTO category (name, description) values ("LF8", "Markt und Kundenbeziehungen");
+INSERT INTO category (name, description) values ("LF9", "Öffentliche Netze, Dienste");
+INSERT INTO category (name, description) values ("LF10", "Betreuung von IT-Systemen");
+INSERT INTO category (name, description) values ("LF11", "Rechnungswesen und Controlling");
+INSERT INTO category (name, description) values ("PoWi", "Politik und Wirtschaft");
+INSERT INTO category (name, description) values ("DE", "Deutsch");
+
+INSERT INTO article (name, category_id) values ("testarticle", 1);
+INSERT INTO article (name, category_id) values ("testarticle2", 2);
+INSERT INTO article (name, category_id) values ("testarticle3", 2);
 
 INSERT INTO article (name, category_id) values ("testarticle", 1);
 INSERT INTO article (name, category_id) values ("testarticle2", 2);
