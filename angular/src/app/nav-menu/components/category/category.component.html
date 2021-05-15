@@ -1,7 +1,10 @@
-<li routerLinkActive="nav_active"  class="pt-3 pb-3 border-bottom">
-    <a [routerLink]="['/article/category/', category.id]"> 
+<li 
+routerLinkActive="nav_active"  
+[routerLink]="['/article/category/', category.id]"
+class="pt-3 pb-3 border-bottom pointer" 
+(click)="updateCategory(category.id)">
+    <a> 
         {{ category.name }}
-        {{ category.id }}
         <span>
             {{ category.description }}
         </span> 

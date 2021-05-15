@@ -13,32 +13,35 @@ export class ArticlesComponent implements OnInit {
   ArticleListByCategory?: any;
   articleList?: ArticleModel[];
   categoryId?: any;
+  allArticles: boolean;
 
   constructor(
     private articleService: ArticleService,
     private navMenuService: NavMenuService
-  ) { 
+  ) {
     this.allArticleList = null;
+    this.allArticles = true;
   }
 
-  ngOnInit(): void {  
-      this.navMenuService.currentCategoryId.subscribe(
-      id => this.categoryId = id
+  ngOnInit(): void {
+
+    this.navMenuService.currentCategoryId.subscribe(
+      id => this.getArticlesByCategoryId(id)
     )
+  }
 
-    console.log('id category: ',this.categoryId);
+  getArticlesByCategoryId(id: number): void {
+    if (id !== -1 && id !== undefined) {
+      this.articleService.articleListByCategory(id)
+        .subscribe(items => this.articleList = items);
+      this.allArticles = false;
+      this.categoryId = id;
 
-    if(this.categoryId !== -1 && this.categoryId !== undefined) {
-      this.articleService.articleListByCategory(this.categoryId)
-      .subscribe(items => this.articleList = items);
     } else {
       this.articleService.articleList()
-      .subscribe(items => this.articleList = items);
+        .subscribe(items => this.articleList = items);
     }
-      
-   
-
-    console.log('articles by category: ',this.articleList);
   }
+
 
 }
