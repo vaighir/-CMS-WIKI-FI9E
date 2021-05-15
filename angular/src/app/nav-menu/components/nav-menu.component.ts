@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tag } from '../models/tag.model';
+import { Category } from '../models/category.model';
 import { NavMenuService } from '../services/nav-menu.service';
 
 @Component({
@@ -9,17 +9,17 @@ import { NavMenuService } from '../services/nav-menu.service';
 })
 export class NavMenuComponent implements OnInit {
 
-  tagList?: Tag[];
+  categoryList?: Category[];
 
   constructor(
     private navMenuService: NavMenuService 
   ) { }
 
   ngOnInit(): void {
-    this.navMenuService.tagList()
-    .subscribe(items => this.tagList = items);
+    this.navMenuService.categoryList()
+    .subscribe(items => this.categoryList = items);
 
-    console.log(this.tagList);
+    console.log('list: ', this.categoryList);
     
   }
 
