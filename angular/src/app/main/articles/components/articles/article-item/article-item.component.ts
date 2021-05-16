@@ -9,12 +9,14 @@ import { ArticleService } from '../../../services/article-service.service';
 })
 export class ArticleItemComponent implements OnInit {
   @Input() article?: ArticleModel;
+  articleContent?: string;
   constructor(
     private articleService: ArticleService
   ) { 
-
+    this.articleContent = '';
   }
 
   ngOnInit(): void {
+    this.articleContent = this.article?.content.toString();
   }
 }
