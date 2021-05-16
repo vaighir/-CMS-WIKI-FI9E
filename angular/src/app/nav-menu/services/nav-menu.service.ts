@@ -20,7 +20,7 @@ export class NavMenuService {
   ) { }
 
   updateCategoryId(id: number) {
-    this.CategoryIdSource.next(id)
+    this.CategoryIdSource.next(id);
   }
 
   categoryList(): Observable<Category[]> {

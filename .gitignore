@@ -135,3 +135,4 @@ Thumbs.db
 
 website/cms/*
 hibernate-tutorial/bin/*
+docker/tomcat/data/examples/WEB-INF/web.xml

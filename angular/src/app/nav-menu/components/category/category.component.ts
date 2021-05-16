@@ -15,13 +15,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //@TODO: category ids are undefined
-    this.category.id = 2;
-
-    console.log('category: ', this.category);
-
-    this.navMenuService.updateCategoryId(this.category.id);
-
   }
 
+  updateCategory(id: number) {
+    this.navMenuService.updateCategoryId(id);
+  }
 }
