@@ -71,6 +71,7 @@
     <filter>
         <filter-name>HTTP header security filter</filter-name>
         <filter-class>org.apache.catalina.filters.HttpHeaderSecurityFilter</filter-class>
+<async-supported>true</async-supported>
 
 >>>>>>> 884610c85d347962dcc863ab90b2cbf11f57ef0f
         <init-param>
