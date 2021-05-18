@@ -34,7 +34,9 @@ export class ArticlesComponent implements OnInit {
         .subscribe(items => this.articleList = items);
     }
     this.navMenuService.currentCategoryId.subscribe(
-      id => this.getArticlesByCategoryId(id)
+      id => {
+        this.getArticlesByCategoryId(id);
+      }
     )
 
   }
@@ -42,10 +44,15 @@ export class ArticlesComponent implements OnInit {
   getArticlesByCategoryId(id: number): void {
     if (id !== -1 && id !== undefined) {
       this.articleService.articleListByCategory(id)
-        .subscribe(items => this.articleList = items);
-      this.allArticles = false;
-      this.categoryId = id;
-
+        .subscribe(items => {
+          this.articleList = items;
+          this.allArticles = false;
+          this.categoryId = id;
+        });
+  
+    } else {
+      this.articleService.articleList()
+      .subscribe(items => this.articleList = items);
     }
   }
 
