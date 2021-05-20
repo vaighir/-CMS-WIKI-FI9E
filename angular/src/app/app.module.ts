@@ -18,6 +18,7 @@ import { LoaderComponent } from './main/loader/loader-component/loader-component
 import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { CategoryComponent } from './nav-menu/components/category/category.component';
 import { NavMenuService } from './nav-menu/services/nav-menu.service';
+import { ArticleAllComponent } from './main/articles/components/articles/article-all/article-all.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NavMenuService } from './nav-menu/services/nav-menu.service';
     LoaderComponent,
     ArticleEditComponent,
     CategoryComponent,
+    ArticleAllComponent,
   ],
   imports: [
     BrowserModule,

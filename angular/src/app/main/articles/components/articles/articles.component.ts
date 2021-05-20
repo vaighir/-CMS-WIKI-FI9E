@@ -13,8 +13,9 @@ export class ArticlesComponent implements OnInit {
   ArticleListByCategory?: any;
   articleList?: ArticleModel[];
   categoryId?: any;
-  allArticles: boolean;
-  checkIfAllArticles: string[];
+  allArticles: boolean;  
+
+  // checkIfAllArticles: string[];
 
   constructor(
     private articleService: ArticleService,
@@ -23,20 +24,12 @@ export class ArticlesComponent implements OnInit {
 
   ) {
     this.allArticles = true;
-    this.checkIfAllArticles = this.router.routerState.snapshot.url.split('/');
-
   }
 
   ngOnInit(): void {
 
-    if(this.checkIfAllArticles[1] === 'articles'){
-      this.articleService.articleList()
-        .subscribe(items => this.articleList = items);
-    }
     this.navMenuService.currentCategoryId.subscribe(
-      id => {
-        this.getArticlesByCategoryId(id);
-      }
+      id => this.getArticlesByCategoryId(id)
     )
 
   }

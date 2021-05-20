@@ -23,4 +23,8 @@ export class NavMenuComponent implements OnInit {
     
   }
 
+  resetCategoryId(): void {
+    this.navMenuService.updateCategoryId(-1);
+  }
+
 }

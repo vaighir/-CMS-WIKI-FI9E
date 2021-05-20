@@ -1,6 +1,15 @@
 <div class="w-100 left-nav p-4">
   <div class="cms-nav">
       <ul class="list-unstyled">
+        <li
+        routerLinkActive="nav_active"  
+        routerLink="/article/all"
+        class="pt-3 pb-3 border-bottom pointer" 
+        (click)="resetCategoryId()">
+            <a> 
+               Alle Artikel
+            </a>
+        </li>
       <app-category 
       *ngFor = "let categoryEl of categoryList"
       [category] = categoryEl  
