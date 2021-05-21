@@ -5,4 +5,6 @@
 .article-card-container {
     display: flex;
     flex-wrap: wrap;
+    max-width: 1030px;
+    margin: 0 auto;
 }
