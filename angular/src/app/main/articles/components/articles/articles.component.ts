@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavMenuService } from 'src/app/nav-menu/services/nav-menu.service';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from '../../services/article-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-articles',
@@ -9,17 +10,19 @@ import { ArticleService } from '../../services/article-service.service';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  allArticleList: any;
   ArticleListByCategory?: any;
   articleList?: ArticleModel[];
   categoryId?: any;
-  allArticles: boolean;
+  allArticles: boolean;  
+
+  // checkIfAllArticles: string[];
 
   constructor(
     private articleService: ArticleService,
-    private navMenuService: NavMenuService
+    private navMenuService: NavMenuService,
+    private router: Router
+
   ) {
-    this.allArticleList = null;
     this.allArticles = true;
   }
 
@@ -28,18 +31,21 @@ export class ArticlesComponent implements OnInit {
     this.navMenuService.currentCategoryId.subscribe(
       id => this.getArticlesByCategoryId(id)
     )
+
   }
 
   getArticlesByCategoryId(id: number): void {
     if (id !== -1 && id !== undefined) {
       this.articleService.articleListByCategory(id)
-        .subscribe(items => this.articleList = items);
-      this.allArticles = false;
-      this.categoryId = id;
-
+        .subscribe(items => {
+          this.articleList = items;
+          this.allArticles = false;
+          this.categoryId = id;
+        });
+  
     } else {
       this.articleService.articleList()
-        .subscribe(items => this.articleList = items);
+      .subscribe(items => this.articleList = items);
     }
   }
 

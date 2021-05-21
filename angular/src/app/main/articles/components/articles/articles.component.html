@@ -1,19 +1,23 @@
 
   <div class="pl-5 pr-5 pt-5 w-100">
    
-      <div class="d-flex align-items-center justify-content-between mb-3">    
-        <h1 class="mr-4" *ngIf="allArticles">All Articles </h1>
+      <div class="d-flex align-items-center justify-content-between mb-4">    
+        <h1 class="pr-4" *ngIf="allArticles">All Articles </h1>
         <div *ngIf="!allArticles"></div>
         <div class="btn btn-primary" routerLink="/article/add">Add Articles</div>
+
       </div>
     <div>
+      <h2 *ngIf="!articleList || articleList?.length === 0">Es gibt keine Artikeln</h2>
+
         <!-- Show Articles: display articles -->
-        <div class="d-flex article-card-container">
+        <div class="d-flex article-card-container justify-content-between">
           <app-article-item 
             *ngFor="let articleEl of articleList"
-            [article] = articleEl          
+            [article] = articleEl
           >
           </app-article-item>
+
        </div>
     </div>
 </div>

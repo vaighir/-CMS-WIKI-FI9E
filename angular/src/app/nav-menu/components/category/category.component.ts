@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Category } from '../../models/category.model';
 import { NavMenuService } from '../../services/nav-menu.service';
 
 @Component({
@@ -15,6 +14,7 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.category.id);
   }
 
   updateCategory(id: number) {

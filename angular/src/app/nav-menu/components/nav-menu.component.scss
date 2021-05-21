@@ -9,10 +9,6 @@
 }
 
 
-.border-bottom {
-  border-color: rgba(167, 166, 177, 0.57) !important;
-}
-
 a:hover {
   color: rgb(34, 38, 39)!important;
     text-decoration: none !important;
@@ -34,4 +30,8 @@ a:hover {
   a {
     color: rgba(28, 53, 165, 0.72);
   }
+}
+
+.pointer {
+  cursor: pointer !important;
 }
