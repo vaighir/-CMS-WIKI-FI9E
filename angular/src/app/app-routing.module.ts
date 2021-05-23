@@ -22,15 +22,10 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    [RouterModule.forRoot(routes)]
+    [RouterModule.forRoot(routes, {useHash: true})]
   ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-    constructor(private router: Router) {
-
-      //@TODO: dont route always to articles, only if history empty (no pages visited yet)
-      this.router.navigate(['/article/all']);
-    }
 
  }

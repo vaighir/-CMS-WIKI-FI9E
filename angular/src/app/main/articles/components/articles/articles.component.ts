@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavMenuService } from 'src/app/nav-menu/services/nav-menu.service';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from '../../services/article-service.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-articles',
@@ -20,8 +20,7 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private navMenuService: NavMenuService,
-    private router: Router
-
+    private activatedRoute: ActivatedRoute
   ) {
     this.allArticles = true;
   }
