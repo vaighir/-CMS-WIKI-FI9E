@@ -9,15 +9,9 @@ import { NavMenuService } from '../../services/nav-menu.service';
 export class CategoryComponent implements OnInit {
   @Input() category?: any;
   constructor(
-    private navMenuService: NavMenuService
   ) { 
   }
 
   ngOnInit(): void {
-    console.log(this.category.id);
-  }
-
-  updateCategory(id: number) {
-    this.navMenuService.updateCategoryId(id);
   }
 }

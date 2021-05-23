@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ArticlesComponent implements OnInit {
   ArticleListByCategory?: any;
   articleList?: ArticleModel[];
-  categoryId?: any;
+  categoryId?: number;
   allArticles: boolean;  
 
   // checkIfAllArticles: string[];
@@ -20,16 +20,23 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private navMenuService: NavMenuService,
-    private activatedRoute: ActivatedRoute
-  ) {
+    private route: ActivatedRoute
+    ) {
     this.allArticles = true;
   }
 
   ngOnInit(): void {
-
+   
     this.navMenuService.currentCategoryId.subscribe(
-      id => this.getArticlesByCategoryId(id)
-    )
+      id => {
+        this.getArticlesByCategoryId(id)
+      })
+      this.route.params.subscribe((params) => {
+        if(params.id) {
+          this.categoryId = +params['id'];
+          this.navMenuService.updateCategoryId(this.categoryId);
+        }
+      });
 
   }
 
@@ -39,13 +46,13 @@ export class ArticlesComponent implements OnInit {
         .subscribe(items => {
           this.articleList = items;
           this.allArticles = false;
-          this.categoryId = id;
         });
   
     } else {
       this.articleService.articleList()
       .subscribe(items => this.articleList = items);
-    }
+    } 
+
   }
 
 
