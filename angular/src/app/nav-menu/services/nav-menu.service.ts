@@ -21,7 +21,7 @@ export class NavMenuService {
 
 
 
-public updateCategoryId(id: number) {
+  updateCategoryId(id: number) {
     this.CategoryIdSource.next(id);
   }
 

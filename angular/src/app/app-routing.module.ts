@@ -6,6 +6,7 @@ import { ArticlesComponent } from './main/articles/components/articles/articles.
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
 import { LoginComponent } from './main/login/components/login.component';
 import { ArticleDetailComponent } from './main/articles/components/article-detail/article-detail.component';
+import { NoPageComponent } from './main/no-page/no-page.component';
 
 //our routes in our app
 const routes: Routes = [
@@ -16,21 +17,18 @@ const routes: Routes = [
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'article/edit/:id', component: ArticleEditComponent },
   { path: 'login', component: LoginComponent },
+  {path:'**', component: NoPageComponent }
+
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    [RouterModule.forRoot(routes)]
+    [RouterModule.forRoot(routes, {useHash: true})]
   ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-    constructor(private router: Router) {
-
-      //@TODO: dont route always to articles, only if history empty (no pages visited yet)
-      this.router.navigate(['/article/all']);
-    }
 
  }
