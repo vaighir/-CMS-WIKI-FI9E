@@ -18,6 +18,9 @@ import { LoaderComponent } from './main/loader/loader-component/loader-component
 import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { CategoryComponent } from './nav-menu/components/category/category.component';
 import { NavMenuService } from './nav-menu/services/nav-menu.service';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { NavMenuService } from './nav-menu/services/nav-menu.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     NavMenuService,

@@ -1,7 +1,8 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
+import { ToastrService } from 'ngx-toastr';
+import { Injectable } from '@angular/core';
 
 export class AddHeaderInterceptor implements HttpInterceptor {
 
@@ -23,7 +24,12 @@ export class AddHeaderInterceptor implements HttpInterceptor {
   }
 }
 
+@Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
+  constructor(private toastr: ToastrService) {
+    //
+  }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
       .pipe(
@@ -36,11 +42,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           else {
             console.error('this is server side error');
             errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
-            
           }
-          console.log(errorMsg);
-
-          //toastr.info('Are you the 6 fingered man?');
+          
+          this.toastr.error(errorMsg);
           return throwError(errorMsg);
         })
       )
