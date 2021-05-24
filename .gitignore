@@ -1,6 +1,7 @@
 #ignor this
 .recommenders/
 api/Servers/
+docker/tomcat/data/ROOT/*
 
 # Logs
 logs

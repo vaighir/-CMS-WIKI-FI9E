@@ -67,6 +67,30 @@
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "*",
+                  "input": "./../webapps/ROOT/",
+                  "output": "."
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./../webapps/ROOT/admin",
+                  "output": "./admin/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./../webapps/ROOT/websites",
+                  "output": "./websites/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./../webapps/ROOT/WEB-INF",
+                  "output": "./WEB-INF/"
+                }
               ]
             }
           }
