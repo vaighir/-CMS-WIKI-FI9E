@@ -37,11 +37,12 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String email, String password) {
+	public User(String name, String email, String password, Role role) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+		this.role = role;
 	}
 
 	public int getId() {

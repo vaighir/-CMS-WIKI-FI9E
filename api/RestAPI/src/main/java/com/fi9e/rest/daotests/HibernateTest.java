@@ -21,10 +21,12 @@ public class HibernateTest {
 
 		try {
 			// use the session object to save Java object
+			
+			Role tempRole = new Role();
 
 			// create a real message object
 			System.out.println("Creating a new RealMessage object");
-			User tempUser = new User("Jake Fiddle", "jake.fiddle@test.com", "oawrewrod");
+			User tempUser = new User("Jake Fiddle", "jake.fiddle@test.com", "oawrewrod", tempRole);
 
 			// start a transaction
 			session.beginTransaction();

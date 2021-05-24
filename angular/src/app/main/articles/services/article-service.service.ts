@@ -13,6 +13,14 @@ export class ArticleService implements IApiResource {
   constructor(private http: HttpClient) {
 
   }
+  articleList(): Observable<any> {
+    return this.http.get( ApiRoutes.uri.ARTICLELIST_SHOW );
+  }
+
+  articleListByCategory(id: number): Observable<any> {
+    return this.http.get( ApiRoutes.uri.ARTICLELISTBYCATEGORY_SHOW + id);
+  }
+
   show(id: number) : Observable<any> {
     return this.http.get( ApiRoutes.uri.ARTICLE_SHOW + id );
   }

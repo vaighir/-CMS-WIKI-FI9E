@@ -6,8 +6,11 @@ export abstract class ApiRoutes {
   private static api_path: string = "/RestAPI/v1/";
   
   public static uri = {
+    CATEGORYLIST_SHOW: ApiRoutes.path(),
     ARTICLE_ADD: ApiRoutes.path() + "article/add",//Method: POST
     ARTICLE_SHOW: ApiRoutes.path() + "article/", //+id | Method: GET
+    ARTICLELIST_SHOW: ApiRoutes.path() + "article/all", // | Method: GET
+    ARTICLELISTBYCATEGORY_SHOW: ApiRoutes.path() + "article/category/", // +categoryId| Method: GET
     ARTICLE_UPDATE: ApiRoutes.path() + "article/", //+id | Method: PUT
     ARTICLE_DELETE: ApiRoutes.path() + "article/", //+id | Method: DELETE
   }

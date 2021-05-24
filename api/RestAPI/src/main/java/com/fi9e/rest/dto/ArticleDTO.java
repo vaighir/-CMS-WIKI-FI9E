@@ -15,6 +15,7 @@ public class ArticleDTO  {
 	private String slug;
 	private String name;
 	private String content;
+	private CategoryDTO category;
 	
 	private Date created_at;
 	private Date updated_at;
@@ -49,6 +50,14 @@ public class ArticleDTO  {
 
 	public String getContent() {
 		return content;
+	}
+	
+	public CategoryDTO getCategory() {
+		return category;
+	}
+	
+	public void setCategory(CategoryDTO category) {
+		this.category = category;
 	}
 
 	public void setContent(String content) {

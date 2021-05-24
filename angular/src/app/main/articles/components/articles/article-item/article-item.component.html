@@ -1,15 +1,16 @@
-<div class="card p-3 article-card pointer-cursor">
+<div class="card p-3 article-card pointer-cursor" *ngIf="article">
   <div class="d-flex justify-content-between">
-    <h2>Title</h2>
+    <h2>{{ article.name }}</h2>
   </div>
   <hr>
-  <p class="text-right h6">Sukyeong Hong | 08.05.2021</p>
+  <p class="text-right h6">Author | {{ article.created_at }}</p>
   <div class="p-3">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, fugiat possimus ea ex molestias nisi, quia officiis debitis impedit numquam, autem a minus dolorem quae ab natus mollitia repudiandae deleniti.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, fugiat possimus ea ex molestias nisi, quia officiis debitis impedit numquam, autem a minus dolorem quae ab natus mollitia repudiandae deleniti.</p>
+    <p>
+      {{ (articleContent | slice:0:400) + '...' }}
+    </p>
   </div>
   <div class="text-right">  
-    <button class="btn btn-light" routerLink="/article/2">Read more</button>
+    <button class="btn btn-light" [routerLink]="['/article', article.id]">Read more</button>
   </div>
-
 </div>
+

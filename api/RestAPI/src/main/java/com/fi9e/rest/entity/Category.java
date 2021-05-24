@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "role")
+@Table(name = "category")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +17,17 @@ public class Category {
 
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "description")
+	private String description;
 
 	public Category() {
 	}
 
-
+	public Category(String name) {
+		super();
+		this.name = name; 
+	}
 	public int getId() {
 		return id;
 	}
@@ -38,10 +44,17 @@ public class Category {
 		this.name = name;
 	}
 
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@Override
 	public String toString() {
-		return "Role { id: " + id
-                + ", name: "+ name + " }";
+		return "Category{ id: " + id
+                + ", name: "+ name
+                + ", description: "+ description + " }";
 	}
 }

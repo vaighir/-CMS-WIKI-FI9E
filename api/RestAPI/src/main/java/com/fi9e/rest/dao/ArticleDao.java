@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.entity.Article;
+import com.fi9e.rest.entity.Category;
 
 public class ArticleDao {
 
@@ -37,12 +38,12 @@ public class ArticleDao {
 		return article;
 	}
 
-	public int createArticle(String name, String slug, String content) {
+	public int createArticle(String name, String slug, String content, int categoryId) {
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		Article article = new Article(name, slug, content, new java.util.Date(), new java.util.Date());
+		Article article = new Article(name, slug, content, categoryId, new java.util.Date(), new java.util.Date());
 		
 		int newArticleId = -1;
 		try {
@@ -64,7 +65,7 @@ public class ArticleDao {
 	
 	
 	public int createArticle(ArticleDTO dto) {
-		return createArticle(dto.getName(), dto.getSlug(), dto.getContent());
+		return createArticle(dto.getName(), dto.getSlug(), dto.getContent(), dto.getCategory().getId());
 	}
 	
 	public void updateArticle(Article article) {
@@ -122,8 +123,29 @@ public class ArticleDao {
 
 		try {
 			session.beginTransaction();
-			//articleList = session.createQuery("from article", Article.class).list();
 			articlesRaw = session.createSQLQuery("SELECT * FROM article").addEntity(Article.class).list();
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if ( session.isOpen()) {
+				session.close();
+			}
+			factory.close();
+		}
+		
+		return articlesRaw;
+	}
+	
+	public List<?> getAllArticlesByCategoryId(final int categoryId) {
+		List<?> articlesRaw = new ArrayList<>();
+		
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.getCurrentSession();
+
+		try {
+			session.beginTransaction();
+			articlesRaw = session.createSQLQuery("SELECT * FROM article WHERE category_id = " + categoryId).addEntity(Article.class).list();
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

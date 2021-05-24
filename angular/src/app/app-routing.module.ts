@@ -9,7 +9,9 @@ import { ArticleDetailComponent } from './main/articles/components/article-detai
 
 //our routes in our app
 const routes: Routes = [
-  { path: 'articles', component: ArticlesComponent },
+  { path: '', redirectTo: 'article/all', pathMatch: 'full' },
+  { path: 'article/all', component: ArticlesComponent },
+  { path: 'article/category/:id', component: ArticlesComponent },
   { path: 'article/add', component: ArticlesAddComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'article/edit/:id', component: ArticleEditComponent },
@@ -28,7 +30,7 @@ export class AppRoutingModule {
     constructor(private router: Router) {
 
       //@TODO: dont route always to articles, only if history empty (no pages visited yet)
-      this.router.navigate(['/articles']);
+      this.router.navigate(['/article/all']);
     }
 
  }
