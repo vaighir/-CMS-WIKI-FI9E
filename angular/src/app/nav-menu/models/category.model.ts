@@ -1,7 +1,7 @@
 export class Category {
-    public readonly id?: number;
-    public name: String;
-    public description: String;
+    public id?: number = 0;
+    public name: String = "";
+    public description: String = "";
 
     constructor(id?: number){
         this.id = id;
