@@ -19,8 +19,6 @@ export class NavMenuService {
     private http: HttpClient
   ) { }
 
-
-
   updateCategoryId(id: number) {
     this.CategoryIdSource.next(id);
   }
