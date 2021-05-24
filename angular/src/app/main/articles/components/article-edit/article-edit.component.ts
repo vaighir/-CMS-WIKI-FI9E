@@ -55,7 +55,9 @@ export class ArticleEditComponent implements OnInit {
     this.articleService.update(this.article).toPromise().then((res) => {
       this.article = new ArticleModel().deserialize(res);
       this.selectedCategory = this.article.category?.id ? this.article.category.id : 0;
+      
       this.toastr.success("Article saved.");
+      this.router.navigate(['/article/' + this.article.id]);
     })
       .finally(() => this.isLoading = false);
   }
