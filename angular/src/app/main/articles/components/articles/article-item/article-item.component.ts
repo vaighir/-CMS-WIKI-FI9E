@@ -17,6 +17,7 @@ export class ArticleItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.articleContent = this.article?.content.toString();
+    let content = this.article?.content ? this.article.content.toString() : "...";
+    this.articleContent = content;
   }
 }
