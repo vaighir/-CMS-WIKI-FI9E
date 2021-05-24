@@ -11,8 +11,9 @@
         <option *ngFor = "let category of categoryList" value="{{category.id}}">{{category.name}}</option>
       </select>
     </div>
+
     <div class="input-group mb-3">
-      <label>Betreff</label>
+      <label>Subject</label>
       <input class="form-controll input w-100 pt-2 pb-2 pl-3 pr-3" placeholder="Betreff" [(ngModel)]="article.name" type="text" name="name" value="{{article.name}}" />
     </div>
 

@@ -13,6 +13,7 @@ export class ArticleModel implements Deserializable {
 
     deserialize(input: any) : ArticleModel {
         Object.assign(this, input);
+        
         return this;
     }
 

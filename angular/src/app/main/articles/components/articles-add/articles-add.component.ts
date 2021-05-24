@@ -22,15 +22,10 @@ export class ArticlesAddComponent implements OnInit {
   constructor(  private injector: Injector, 
                 private router: Router, 
                 private route: ActivatedRoute,
-                private toastr: ToastrService) {
-      //
-  }
+                private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.categoryService.categoryList()
-    .subscribe(items => this.categoryList = items);
-
-    
+    this.categoryService.categoryList().subscribe(items => this.categoryList = items);
   }
 
   onSave(): void {
