@@ -6,14 +6,18 @@ use test_db;
 CREATE TABLE role (
     id INT AUTO_INCREMENT,
     name VARCHAR(255),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    created_at DATETIME NOT NULL DEFAULT NOW(),
+    updated_at DATETIME NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE category (
     id INT AUTO_INCREMENT,
     name VARCHAR(255),
     description VARCHAR(255),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    created_at DATETIME NOT NULL DEFAULT NOW(),
+    updated_at DATETIME NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user (
@@ -25,7 +29,9 @@ CREATE TABLE user (
     PRIMARY KEY (id),
     FOREIGN KEY (role_id)
       REFERENCES role(id)
-      ON DELETE CASCADE
+      ON DELETE CASCADE,
+    created_at DATETIME NOT NULL DEFAULT NOW(),
+    updated_at DATETIME NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE article (
@@ -34,8 +40,8 @@ CREATE TABLE article (
   name VARCHAR(255),
   slug VARCHAR(255),
   content TEXT,
-  created_at DATETIME,
-  updated_at DATETIME,
+  created_at DATETIME NOT NULL DEFAULT NOW(),
+  updated_at DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (category_id)
     REFERENCES category(id)
@@ -60,13 +66,13 @@ INSERT INTO category (name, description) values ("LF11", "Rechnungswesen und Con
 INSERT INTO category (name, description) values ("PoWi", "Politik und Wirtschaft");
 INSERT INTO category (name, description) values ("DE", "Deutsch");
 
-INSERT INTO article (name, category_id) values ("testarticle", 1);
-INSERT INTO article (name, category_id) values ("testarticle2", 2);
-INSERT INTO article (name, category_id) values ("testarticle3", 2);
+INSERT INTO article (name, category_id, content) values ("testarticle", 1, "Test 1, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
+INSERT INTO article (name, category_id, content) values ("testarticle2", 2, "Test 2, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
+INSERT INTO article (name, category_id, content) values ("testarticle3", 2, "Test 3, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
 
-INSERT INTO article (name, category_id) values ("testarticle", 1);
-INSERT INTO article (name, category_id) values ("testarticle2", 2);
-INSERT INTO article (name, category_id) values ("testarticle3", 2);
+INSERT INTO article (name, category_id, content) values ("testarticle", 1, "Test 4, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
+INSERT INTO article (name, category_id, content) values ("testarticle2", 2, "Test 5, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
+INSERT INTO article (name, category_id, content) values ("testarticle3", 2, "Test 6, Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. Lorem ipsum dolorem bli bla blubb. ");
 
 INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");
 INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");

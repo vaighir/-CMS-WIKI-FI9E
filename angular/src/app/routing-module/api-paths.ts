@@ -1,9 +1,9 @@
+import { environment } from "src/environments/environment";
 
 //defines all API paths we need in app
 export abstract class ApiRoutes {
   //change this to localhost, for prod!
-  // private static host: string = "http://localhost:4200";
-  private static host: string = "http://localhost";
+  private static host: string = environment.host;
   private static api_path: string = "/RestAPI/v1/";
   
   public static uri = {

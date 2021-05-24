@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AddHeaderInterceptor } from './http-interceptor/http-interceptor';
+import { AddHeaderInterceptor, HttpErrorInterceptor } from './http-interceptor/http-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './main/login/components/login.component';
 import { ArticleItemComponent } from './main/articles/components/articles/article-item/article-item.component';
@@ -18,6 +18,8 @@ import { LoaderComponent } from './main/loader/loader-component/loader-component
 import { ArticleEditComponent } from './main/articles/components/article-edit/article-edit.component';
 import { CategoryComponent } from './nav-menu/components/category/category.component';
 import { NavMenuService } from './nav-menu/services/nav-menu.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoPageComponent } from './main/no-page/no-page.component';
 
 @NgModule({
@@ -41,14 +43,22 @@ import { NoPageComponent } from './main/no-page/no-page.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     NavMenuService,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AddHeaderInterceptor,
-    multi: true,
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
