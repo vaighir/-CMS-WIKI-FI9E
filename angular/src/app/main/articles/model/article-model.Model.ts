@@ -13,4 +13,8 @@ export class ArticleModel implements Deserializable {
         Object.assign(this, input);
         return this;
     }
+
+    static getCreatedAt(dateString: string) : String {
+        return new Date(dateString).toLocaleDateString('de-DE');
+    }
 }

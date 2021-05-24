@@ -26,9 +26,7 @@ export class ArticleDetailComponent implements OnInit {
     this.article = this.articleService.show(this.id).subscribe((res) => {
       this.article = new ArticleModel().deserialize(res);
       this.createAtDate = new Date(this.article.created_at).toLocaleDateString('de-DE'); 
-      console.log(this.article);
     });
-    //show data in component
   }
 
   onEdit() {
