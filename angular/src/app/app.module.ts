@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AddHeaderInterceptor } from './http-interceptor/http-interceptor';
+import { AddHeaderInterceptor, HttpErrorInterceptor } from './http-interceptor/http-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './main/login/components/login.component';
 import { ArticleItemComponent } from './main/articles/components/articles/article-item/article-item.component';
@@ -43,10 +43,16 @@ import { NavMenuService } from './nav-menu/services/nav-menu.service';
   providers: [
     NavMenuService,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AddHeaderInterceptor,
-    multi: true,
-  }],
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
