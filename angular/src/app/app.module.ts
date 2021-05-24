@@ -19,8 +19,8 @@ import { ArticleEditComponent } from './main/articles/components/article-edit/ar
 import { CategoryComponent } from './nav-menu/components/category/category.component';
 import { NavMenuService } from './nav-menu/services/nav-menu.service';
 import { ToastrModule } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoPageComponent } from './main/no-page/no-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoaderComponent,
     ArticleEditComponent,
     CategoryComponent,
+    NoPageComponent,
   ],
   imports: [
     BrowserModule,

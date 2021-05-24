@@ -1,8 +1,7 @@
-<li *ngIf="category.id" 
+<li *ngIf="category" 
 routerLinkActive="nav_active"  
-[routerLink]="['/article/category/', category.id]"
-class="pt-3 pb-3 border-bottom pointer" 
-(click)="updateCategory(category.id)">
+[routerLink]="['/article/category/', category?.id || ''] " 
+class="pt-3 pb-3 border-bottom pointer">
     <a> 
         {{ category.name }}
         <span>
