@@ -74,10 +74,12 @@ public class ArticleDao {
 		Session session = factory.getCurrentSession();
 
 		Article oldArticle = getArticleById(article.getId());
-
+		
+		oldArticle.setName(article.getName());
 		oldArticle.setContent(article.getContent());
 		oldArticle.setSlug(article.getSlug());
 		oldArticle.setUpdatedAt(new java.util.Date());
+		oldArticle.setCategoryId(article.getCategory());
 
 		try {
 			session.beginTransaction();

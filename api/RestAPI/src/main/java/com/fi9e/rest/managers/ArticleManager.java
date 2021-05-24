@@ -77,6 +77,12 @@ public class ArticleManager {
 	public ArticleDTO updateArticle(final ArticleDTO articleDTO) {
 
 		Article article = this.getDao().getArticleById(articleDTO.getId());
+		
+		//update existing article with new data
+		article.setName(articleDTO.getName());
+		article.setContent(articleDTO.getContent());
+		article.setSlug(articleDTO.getSlug());
+		article.setCategoryId(articleDTO.getCategory().getId());
 
 		this.getDao().updateArticle(article);
 

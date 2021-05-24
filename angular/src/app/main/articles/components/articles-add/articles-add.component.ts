@@ -33,4 +33,8 @@ export class ArticlesAddComponent implements OnInit {
       this.router.navigate(['/article/edit/' + this.article.id]);
     });
   }
+
+  onBack() {
+    this.router.navigate([".."]);
+  }
 }
