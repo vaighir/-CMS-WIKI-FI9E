@@ -34,4 +34,8 @@ export class ArticleDetailComponent implements OnInit {
   onEdit() {
     this.router.navigate(['/article/edit/' + this.id]);
   }
+
+  onBack() {
+    this.router.navigate([".."]);
+  }
 }
