@@ -17,6 +17,16 @@ html, body{
     box-shadow: 5px 5px 10px 0 rgb(51 128 171 / 25%), -5px -5px 5px 0 rgb(255 255 255 / 30%);
   }
 
+  .btn-warning {
+    color: rgba(14, 25, 28, 0.82) !important;
+  
+    background-color: rgba(255, 201, 130, 0.616) !important;
+    border: none;
+  
+    background: linear-gradient(-45deg, rgba(253, 216, 113, 0.685), rgba(255, 255, 255, 0.603));
+    box-shadow: 5px 5px 10px 0 rgb(51 128 171 / 25%), -5px -5px 5px 0 rgb(255 255 255 / 30%);
+  }
+
   .btn-second {
     color: rgb(250, 254, 255, .82) !important;
     background-color: rgba(130, 125, 153, 0.774) !important;

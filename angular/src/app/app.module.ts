@@ -6,7 +6,7 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
 import { ArticlesComponent } from './main/articles/components/articles/articles.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddHeaderInterceptor, HttpErrorInterceptor } from './http-interceptor/http-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,6 +21,7 @@ import { NavMenuService } from './nav-menu/services/nav-menu.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoPageComponent } from './main/no-page/no-page.component';
+import { RegisterComponent } from './main/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,13 @@ import { NoPageComponent } from './main/no-page/no-page.component';
     ArticleEditComponent,
     CategoryComponent,
     NoPageComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added

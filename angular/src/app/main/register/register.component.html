@@ -1,0 +1,69 @@
+<!-- https://morioh.com/p/d34b29a3033d -->
+
+<div class="d-flex align-items-center w-100 vh-100">
+    <div class="col-md-6 offset-md-3 col-xl-5 col-lg-6 m-lg-auto">
+        <div class="card card-outline-secondary">
+            <div class="card-header">
+                <h3 class="mb-0">Registrieren</h3>
+            </div>
+            <div class="card-body">
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+
+                    <div class="form-group">
+                        <label for="firstname">Vorname</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname" formControlName="firstname">
+                        <span *ngIf="firstname?.touched && firstname?.invalid">
+                            <small *ngIf="firstname?.errors?.required" class="text-danger">Vorname ist erforderlich<br></small>
+                            <small *ngIf="firstname?.errors?.pattern" class="text-danger">Ungültiger Vorname<br></small>
+                            <small *ngIf="firstname?.errors?.minlength" class="text-danger">Der Vorname muss mindestens zwei Zeichen enthalten</small>
+                        </span>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="lastname">Nachname</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname" formControlName="lastname">
+                        <span *ngIf="lastname?.touched && lastname?.invalid">
+                            <small *ngIf="lastname?.errors?.required" class="text-danger">Nachname ist erforderlich<br></small>
+                            <small *ngIf="lastname?.errors?.pattern" class="text-danger">Ungültiger Nachname<br></small>
+                            <small *ngIf="lastname?.errors?.minlength" class="text-danger">Der Nachname muss mindestens zwei Zeichen enthalten</small>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Benutzername / E-Mail</label>
+                        <input type="email" class="form-control" id="InputEmail" formControlName="email">
+                        <span *ngIf="email?.touched && email?.invalid">
+                            <small *ngIf="email?.errors?.required" class="text-danger">E-Mail ist erforderlich                               <br></small>
+                            <small *ngIf="email?.errors?.email" class="text-danger">Ungültige E-Mail<br></small>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort</label>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+                        <span *ngIf="password?.touched && password?.invalid">
+                            <small *ngIf="password?.errors?.required" class="text-danger">Passwort ist erforderlich<br></small>
+                            <small *ngIf="password?.errors?.minlength" class="text-danger">Passwort muss mindestens 6 Zeichen enthalten
+                            </small>
+                        </span>
+                    </div>
+            
+
+                    <div class="form-group">
+                        <label for="repassword">Passwort nochmal</label>
+                        <input type="password" class="form-control" id="repassword" formControlName="repassword">
+                        <span *ngIf="repassword?.touched && repassword?.invalid">
+                            <small *ngIf="repassword?.errors?.required" class="text-danger">Wiederholen Sie das Passwort<br></small>
+                        </span>
+                        <span *ngIf="repassword?.valid && repassword?.value != password?.value" class="text-danger">
+                            <small>Die eingegebenen Passwörter stimmen nicht überein
+                            </small>   
+                        </span>
+                    </div>
+                    <button 
+                    [disabled]="registerForm.invalid || repassword?.value != password?.value"
+                    type="submit" class="btn btn-light float-right">Absenden</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

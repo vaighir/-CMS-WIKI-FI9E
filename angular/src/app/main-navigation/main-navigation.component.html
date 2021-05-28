@@ -1,22 +1,38 @@
 <div class="navbar navbar-light col-12 w-100">
-  <ul class="navbar-nav d-flex flex-row">
-    <li class="nav-item active">
-      <a routerLink="/article/all" routerLinkActive="active" class="nav-link pr-2">Articles</a>
-    </li>
+  <!-- <ul class="navbar-nav d-flex flex-row"> -->
     <!-- <li class="nav-item active">
       <a class="nav-link pr-2" href="#">Image</a>
     </li>
     <li class="nav-item active">
       <a class="nav-link pr-2" href="#">User</a>
     </li> -->
-  </ul>
+  <!-- </ul> -->
+  <div class="ml-auto">
+    <button class="btn btn-light mr-3" routerLink="/register">
+      Registrieren
+    </button>
+    <button class="btn btn-primary mr-3" routerLink="/login">
+      Login
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-right pr-1" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+      </svg>
+    </button>
+    <div class="d-flex flex-row align-items-center">
+      <div class="d-flex flex-column mr-2">
+        <b>Admin</b>
+        <span>Sukyeong Hong</span>
+      </div>
+      <button class="btn btn-warning mr-3" routerLink="/article/all">
+        Logout
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z"/>
+          <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+        </svg>
+      </button>
+    </div>
 
-<!-- 
-  <button class="btn btn-primary mr-3" routerLink="/login">
-    Login
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-in-right pr-1" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-      <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-    </svg>
-  </button> -->
+
+
+  </div>
 </div>
