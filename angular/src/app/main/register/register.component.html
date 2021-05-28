@@ -7,34 +7,61 @@
                 <h3 class="mb-0">Registrieren</h3>
             </div>
             <div class="card-body">
-                <form class="form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
 
                     <div class="form-group">
-                        <label for="name">Vorname</label>
-                        <input type="text" class="form-control" name="name" ngModel required>
+                        <label for="firstname">Vorname</label>
+                        <input type="text" name="firstname" class="form-control" id="firstname" formControlName="firstname">
+                        <span *ngIf="firstname?.touched && firstname?.invalid">
+                            <small *ngIf="firstname?.errors?.required" class="text-danger">Vorname ist erforderlich<br></small>
+                            <small *ngIf="firstname?.errors?.pattern" class="text-danger">Ungültiger Vorname<br></small>
+                            <small *ngIf="firstname?.errors?.minlength" class="text-danger">Der Vorname muss mindestens zwei Zeichen enthalten</small>
+                        </span>
+                    </div>
+                    
+                    
+                    <div class="form-group">
+                        <label for="lastname">Nachname</label>
+                        <input type="text" name="lastname" class="form-control" id="lastname" formControlName="lastname">
+                        <span *ngIf="lastname?.touched && lastname?.invalid">
+                            <small *ngIf="lastname?.errors?.required" class="text-danger">Nachname ist erforderlich<br></small>
+                            <small *ngIf="lastname?.errors?.pattern" class="text-danger">Ungültiger Nachname<br></small>
+                            <small *ngIf="lastname?.errors?.minlength" class="text-danger">Der Nachname muss mindestens zwei Zeichen enthalten</small>
+                        </span>
                     </div>
                     <div class="form-group">
-                        <label for="familyname">Nachname</label>
-                        <input type="input" class="form-control" name="familyname" ngModel required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Benutzername / E-Mail</label>
-                        <input type="email" class="form-control" name="email" ngModel required>
-                        <div class="invalid-feedback">Please enter your email</div>
+                        <label for="InputEmail">Benutzername / E-Mail</label>
+                        <input type="email" class="form-control" id="InputEmail" formControlName="email">
+                        <span *ngIf="email?.touched && email?.invalid">
+                            <small *ngIf="email?.errors?.required" class="text-danger">E-Mail ist erforderlich                               <br></small>
+                            <small *ngIf="email?.errors?.email" class="text-danger">Ungültige E-Mail<br></small>
+                        </span>
                     </div>
                     <div class="form-group">
                         <label for="password">Passwort</label>
-                        <input type="password" name="password" class="form-control" ngModel required>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+                        <span *ngIf="password?.touched && password?.invalid">
+                            <small *ngIf="password?.errors?.required" class="text-danger">Passwort ist erforderlich<br></small>
+                            <small *ngIf="password?.errors?.minlength" class="text-danger">Passwort muss mindestens 6 Zeichen enthalten
+                            </small>
+                        </span>
                     </div>
-                    <div *ngIf="registerForm.name" class="alert alert-danger">
-                    nohey
-                    </div>
+            
 
                     <div class="form-group">
-                        <label for="password">Passwort nochmal</label>
-                        <input type="password" name="confirmPassword" class="form-control" ngModel required>
+                        <label for="repassword">Passwort nochmal</label>
+                        <input type="password" class="form-control" id="repassword" formControlName="repassword">
+                        <span *ngIf="repassword?.touched && repassword?.invalid">
+                            <small *ngIf="repassword?.errors?.required" class="text-danger">Wiederholen Sie das Passwort<br></small>
+                        </span>
+                        <span *ngIf="repassword?.valid && repassword?.value != password?.value" class="text-danger">
+                            <small>Die eingegebenen Passwörter stimmen nicht überein
+                            </small>   
+                        </span>
                     </div>
-                    <button  type="submit" class="btn btn-light float-right">Absenden</button>
+                    <button 
+                    [disabled]="registerForm.invalid || repassword?.value != password?.value"
+                    type="submit" class="btn btn-light float-right">Absenden</button>
                 </form>
             </div>
         </div>

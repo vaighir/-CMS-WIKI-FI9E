@@ -6,7 +6,7 @@ import { MainNavigationComponent } from './main-navigation/main-navigation.compo
 import { ArticlesComponent } from './main/articles/components/articles/articles.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ArticlesAddComponent } from './main/articles/components/articles-add/articles-add.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddHeaderInterceptor, HttpErrorInterceptor } from './http-interceptor/http-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -44,6 +44,7 @@ import { RegisterComponent } from './main/register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
