@@ -40,14 +40,21 @@ public class ArticleDao {
 
 	public int createArticle(String name, String slug, String content, int categoryId) {
 		
+		System.out.println("starting createArticle");
+		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
+		
+		System.out.println("startingSession");
 
 		Article article = new Article(name, slug, content, categoryId, new java.util.Date(), new java.util.Date());
 		
 		int newArticleId = -1;
 		try {
 			session.beginTransaction();
+			
+			System.out.println("began transaction");
+			
 			newArticleId = (int) session.save(article);
 			session.getTransaction().commit();
 		} catch (Exception e) {

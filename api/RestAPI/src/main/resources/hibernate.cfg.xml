@@ -9,16 +9,17 @@
       </property>
       
       <property name = "hibernate.connection.driver_class">
-         com.mysql.cj.jdbc.Driver
+         <!-- com.mysql.jdbc.Driver -->
+		 com.mysql.cj.jdbc.Driver
       </property>
       
       <!-- Assume test is the database name -->
       <property name = "hibernate.connection.url">
          <!-- DATABASE CONNECTION STRING FOR LOCAL DEVELOPEMENT -->
-        <!--  jdbc:mysql://localhost:3306/test_db -->
+         jdbc:mysql://localhost:3306/test_db 
          
          <!-- DATABASE STRING FOR TEST LIVE ENVIRONMENT TOMCAT -->
-      jdbc:mysql://mysql:3306/test_db
+      	 <!--  jdbc:mysql://mysql:3306/test_db -->
       </property>
       
       <property name = "hibernate.connection.username">
