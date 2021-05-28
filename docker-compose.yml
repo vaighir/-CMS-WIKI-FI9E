@@ -14,6 +14,9 @@ x-tomcat: &tomcat
 
 x-mysql: &mysql
   MYSQL_ROOT_PASSWORD: root
+  LANG: en_US.UTF-8
+  LANGUAGE: en_US:en
+  LC_ALL: en_US.UTF-8
 
 services:
   tomcat:
@@ -34,7 +37,8 @@ services:
 # Accessible outside the docker environment at localhost:3306
 # Within the docker environment the database is accessible at mysql:3306
   mysql:
-    image: mysql:8.0.23
+    #image: mysql:8.0.23
+    build: ./docker/mysql/.
     restart: always
     environment:
       <<: *general
@@ -43,7 +47,7 @@ services:
       - 3306:3306
     volumes:
       # on the left side of the semicolon is the directory in which Docker looks for init.sql
-      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - ./docker/mysql_data:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
 
 # Adminer visualises the data in the database. It is accessible in the browser at localhost:8888
