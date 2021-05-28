@@ -21,6 +21,7 @@ import { NavMenuService } from './nav-menu/services/nav-menu.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoPageComponent } from './main/no-page/no-page.component';
+import { RegisterComponent } from './main/register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { NoPageComponent } from './main/no-page/no-page.component';
     ArticleEditComponent,
     CategoryComponent,
     NoPageComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
