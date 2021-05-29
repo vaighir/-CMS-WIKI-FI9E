@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   username: string = "Mark";
+
+  //use API-paths.ts | Host (static) here instead
   host: string = "http://localhost/RestAPI/v1";
   route: string = "/hi/";
 

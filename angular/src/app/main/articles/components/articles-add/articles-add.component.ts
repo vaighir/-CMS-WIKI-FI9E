@@ -32,6 +32,12 @@ export class ArticlesAddComponent implements OnInit {
     this.isLoading = true;
     this.article.category.id = this.selectedCategory;
 
+    if(this.article.category.id <= 0) {
+      this.toastr.info("Please select category");
+      this.isLoading = false;
+      return;
+    }
+
     this.articleService.store(this.article).toPromise().then((res) => {
       this.article = new ArticleModel().deserialize(res);
 

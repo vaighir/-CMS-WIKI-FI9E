@@ -11,7 +11,6 @@ import { Category } from '../models/category.model';
   providedIn: 'root'
 })
 export class NavMenuService {
-  // categoryIdUpdated = new EventEmitter<number>();
   private CategoryIdSource = new BehaviorSubject(-1);
   currentCategoryId = this.CategoryIdSource.asObservable();
 
