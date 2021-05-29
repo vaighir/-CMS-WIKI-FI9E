@@ -66,3 +66,12 @@ html, body{
   column-gap : 50px;
   column-rule : 1px dotted gray;
 }
+
+.modal {
+  display: flex !important;
+  align-items: center;
+}
+
+.modal-content {
+  min-width: 500px;
+}
