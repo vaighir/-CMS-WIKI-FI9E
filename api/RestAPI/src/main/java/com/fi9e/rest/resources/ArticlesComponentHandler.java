@@ -64,9 +64,9 @@ public class ArticlesComponentHandler {
 	//public Response delete(ArticleDTO article) throws ApiException {
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
-		articleDTO = this.getManager().deleteArticleById(id);
+		this.getManager().deleteArticleById(id);
 
-		return Response.ok("deleted article").build();
+		return Response.ok().build();
 	}
 
 	@PUT
