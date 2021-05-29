@@ -18,9 +18,6 @@ export class NavMenuComponent implements OnInit {
   ngOnInit(): void {
     this.navMenuService.categoryList()
     .subscribe(items => this.categoryList = items);
-
-    console.log('list: ', this.categoryList);
-    
   }
 
   resetCategoryId(): void {

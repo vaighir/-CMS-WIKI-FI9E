@@ -2,16 +2,16 @@
     <div class="col-md-6 offset-md-3 col-xl-5 col-lg-6 m-lg-auto">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0">Anmelden</h3>
+                <h3 class="mb-0">Sign In</h3>
             </div>
             <div class="card-body">
                 <form class="form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
                     <div class="form-group">
-                        <label for="email">Benutzername</label>
+                        <label for="email">Username</label>
                         <input type="email" class="form-control" name="email" id="email" ngModel required>
                     </div>
                     <div class="form-group mt-2">
-                        <label for="password">Passwort</label>
+                        <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" ngModel required>
                     </div>
                     <button type="submit" class="btn btn-light float-right" id="btnLogin">Anmelden</button>
