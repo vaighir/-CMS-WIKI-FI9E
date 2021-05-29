@@ -8,7 +8,9 @@
 
       </div>
     <div>
-      <h2 *ngIf="!articleList || articleList?.length === 0">Es gibt keine Artikeln</h2>
+      <div *ngIf="!articleList || articleList?.length === 0" class="alert alert-info">
+        No articles found for this category
+      </div>
 
         <!-- Show Articles: display articles -->
         <div class="d-flex article-card-container justify-content-between">
