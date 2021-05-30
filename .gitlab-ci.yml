@@ -1,0 +1,22 @@
+# add building angular package
+# add building war file
+# add building docker images
+
+stages:
+  - staging
+  - production
+
+staging:
+  type: deploy
+  stage: staging
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
+  when: manual
+
+production:
+  type: deploy
+  stage: production
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY
+#  only:
+#    - master
