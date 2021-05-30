@@ -13,7 +13,7 @@ stages:
 build-frontend:
   stage: build
   script:
-  - echo: "building angular app"
+  - echo "building angular app"
 
 staging:
   type: deploy
