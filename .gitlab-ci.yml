@@ -1,10 +1,19 @@
+image: docker
+services:
+  - docker:dind
 # add building angular package
 # add building war file
 # add building docker images
 
 stages:
+  - build
   - staging
   - production
+
+build-frontend:
+  stage: build
+  script:
+  - echo: "building angular app"
 
 staging:
   type: deploy
