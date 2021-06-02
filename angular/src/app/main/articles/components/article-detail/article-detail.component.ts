@@ -51,9 +51,10 @@ export class ArticleDetailComponent implements OnInit {
 
     dialogModal.then((decision) => {
       if((decision) === true) {
-        this.articleService.delete(this.id);
-        this.router.navigate([".."]);
-        this.toastr.success('Der Artikel - ' + this.id + ' wurde erfolgreich gelöscht');
+        this.articleService.delete(this.id).toPromise().then((res) => {
+          this.router.navigate([".."]);
+          this.toastr.success('Der Artikel - ' + this.id + ' wurde erfolgreich gelöscht');
+        });
       }
     })
     

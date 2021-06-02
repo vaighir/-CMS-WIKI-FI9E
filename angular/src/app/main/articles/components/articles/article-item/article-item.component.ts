@@ -22,7 +22,6 @@ export class ArticleItemComponent implements OnInit {
     if(this.article) {
       this.articleContent = this.article?.content ? this.article.content.toString() : "";
       this.createAtDate = "";//ArticleModel.getCreatedAt(this.article.created_at.toString());
-      console.log(this.article?.created_at);
     }
   }
 }

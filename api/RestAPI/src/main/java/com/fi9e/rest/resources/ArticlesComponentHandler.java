@@ -61,7 +61,6 @@ public class ArticlesComponentHandler {
 		
 		articleDTO = this.getManager().createArticle(article);
 		
-		//refactor this
 		return Response.ok(articleDTO, MediaType.APPLICATION_JSON).build();
 	}
 
@@ -78,15 +77,16 @@ public class ArticlesComponentHandler {
 	}
 
 	@DELETE
-	@Path("/delete/{id}")
+	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	//public Response delete(ArticleDTO article) throws ApiException {
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
-		articleDTO = this.getManager().deleteArticleById(id);
-
-		return Response.ok("deleted article").build();
+		if(this.getManager().deleteArticleById(id)) {
+			return this.api.success(null, "Article removed");
+		} else {
+			return this.api.error(null, "Can not remove article");
+		}
 	}
 
 	@PUT

@@ -4,6 +4,10 @@ import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 
+
+/**
+ * Good source for other interceptor fun: https://indepth.dev/posts/1051/top-10-ways-to-use-interceptors-in-angular
+ */
 export class AddHeaderInterceptor implements HttpInterceptor {
 
   constructor() { }
