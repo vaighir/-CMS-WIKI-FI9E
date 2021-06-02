@@ -59,6 +59,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           return throwError(errorMsg);
         })
       )
+
+      //TODO: add success response interface
   }
   
 }
