@@ -34,6 +34,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          
+          if(error.status == 422) {
+            console.log("custom error thrown ", error);
+
+            return throwError(error.message);
+          }
+          
           let errorMsg = '';
           if (error.error instanceof ErrorEvent) {
             console.error('this is client side error');

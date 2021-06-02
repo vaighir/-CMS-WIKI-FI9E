@@ -5,6 +5,7 @@ import { ArticleService } from '../../services/article-service.service';
 import { Category } from 'src/app/nav-menu/models/category.model';
 import { NavMenuService } from 'src/app/nav-menu/services/nav-menu.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-articles-add',
@@ -18,12 +19,15 @@ export class ArticlesAddComponent implements OnInit {
   isLoading: boolean = false;
   categoryList: Array<Category> = new Array();
   selectedCategory: number = 0;
+  formControls: Object = new Object();
 
   constructor(  private injector: Injector, 
                 private router: Router, 
                 private route: ActivatedRoute,
-                private toastr: ToastrService) {}
-
+                private toastr: ToastrService,
+                ) {
+                }
+  
   ngOnInit(): void {
     this.categoryService.categoryList().subscribe(items => this.categoryList = items);
   }
@@ -32,19 +36,31 @@ export class ArticlesAddComponent implements OnInit {
     this.isLoading = true;
     this.article.category.id = this.selectedCategory;
 
-    if(this.article.category.id <= 0) {
+     if(this.article.category.id <= 0) {
       this.toastr.info("Please select category");
-      this.isLoading = false;
+       this.isLoading = false;
       return;
     }
+
+    // if(this.article.name.length <= 0) {
+    //   this.toastr.info("Subject required");
+    //   this.isLoading = false;
+    //   return;
+    // }
+
+    // if(this.article.content.length <= 0) {
+    //   this.toastr.info("Content required");
+    //   this.isLoading = false;
+    //   return;
+    // }
 
     this.articleService.store(this.article).toPromise().then((res) => {
       this.article = new ArticleModel().deserialize(res);
 
       this.toastr.success("Article created");
+      this.router.navigate(['/article/edit/' + this.article.id]);
     }).finally(() => {
       this.isLoading = false;
-      this.router.navigate(['/article/edit/' + this.article.id]);
     });
   }
 

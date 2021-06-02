@@ -14,12 +14,18 @@
 
     <div class="input-group mb-3">
       <label>Subject</label>
-      <input class="form-controll input w-100 pt-2 pb-2 pl-3 pr-3" placeholder="Betreff" [(ngModel)]="article.name" type="text" name="name" value="{{article.name}}" required/>
+      <input class="form-controll input w-100 pt-2 pb-2 pl-3 pr-3" placeholder="Betreff" [(ngModel)]="article.name" [ngModelOptions]="{standalone: true}" type="text" name="name" value="{{article.name}}" required/>
+      <span *ngIf="article.name.length <= 0">
+          <small class="text-danger">Subject is required<br></small>
+      </span>
     </div>
 
     <div class="input-group ">
       <label>Content</label>
       <textarea required class="form-controll w-100 pt-2 pb-2 pr-3 pl-3" name="content" rows="20vh" [(ngModel)]="article.content">{{article.content}}</textarea>
+      <span *ngIf="article.content.length <= 0">
+        <small class="text-danger">Content is required<br></small>
+    </span>
     </div>
 
     <div class="btn btn-light mt-3 pt-2 pb-2 pl-4 pr-4 mr-3" (click)="onBack()">Cancel</div>
