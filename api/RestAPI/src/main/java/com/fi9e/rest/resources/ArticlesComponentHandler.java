@@ -17,12 +17,19 @@ import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.exceptions.ApiException;
+import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.managers.ArticleManager;
+
 
 @Path("/article")
 public class ArticlesComponentHandler {
 	private ArticleManager mngr;
+	private ApiResponse api;
 	
+	
+	public ArticlesComponentHandler() {
+		this.getApiResponse();
+	}
 	
 	ArticleManager getManager() {
 		if(this.mngr == null) {
@@ -32,6 +39,14 @@ public class ArticlesComponentHandler {
 		return mngr;
 	}
 	
+	ApiResponse getApiResponse() {
+		if(this.api == null) {
+			this.api = new ApiResponse();
+		}
+		
+		return this.api;
+	}
+	
 	ArticleDTO articleDTO;
 	
 	@POST
@@ -39,6 +54,10 @@ public class ArticlesComponentHandler {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response store(ArticleDTO article) throws ApiException {
+		
+		if(article.getName().isEmpty()) {
+			this.api.error(article, "Subject required");
+		}
 		
 		articleDTO = this.getManager().createArticle(article);
 		
@@ -58,15 +77,16 @@ public class ArticlesComponentHandler {
 	}
 
 	@DELETE
-	@Path("/delete/{id}")
+	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	//public Response delete(ArticleDTO article) throws ApiException {
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
-		articleDTO = this.getManager().deleteArticleById(id);
-
-		return Response.ok("deleted article").build();
+		if(this.getManager().deleteArticleById(id)) {
+			return this.api.success(null, "Article removed");
+		} else {
+			return this.api.error(null, "Can not remove article");
+		}
 	}
 
 	@PUT

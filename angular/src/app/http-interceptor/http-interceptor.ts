@@ -4,6 +4,10 @@ import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 
+
+/**
+ * Good source for other interceptor fun: https://indepth.dev/posts/1051/top-10-ways-to-use-interceptors-in-angular
+ */
 export class AddHeaderInterceptor implements HttpInterceptor {
 
   constructor() { }
@@ -34,6 +38,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
+          
+          if(error.status == 422) {
+            console.log("custom error thrown ", error);
+
+            return throwError(error.message);
+          }
+          
           let errorMsg = '';
           if (error.error instanceof ErrorEvent) {
             console.error('this is client side error');
@@ -48,6 +59,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           return throwError(errorMsg);
         })
       )
+
+      //TODO: add success response interface
   }
   
 }

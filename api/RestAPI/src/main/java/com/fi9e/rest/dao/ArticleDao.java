@@ -102,10 +102,14 @@ public class ArticleDao {
 		}
 	}
 
-	public void deleteArticleById(int id) {
+	public Boolean deleteArticleById(int id) {
 
 		Article article = getArticleById(id);
-
+		
+		if(article == null) {
+			return false;
+		}
+		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
@@ -113,8 +117,11 @@ public class ArticleDao {
 			session.beginTransaction();
 			session.delete(article);
 			session.getTransaction().commit();
+			
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return true;
 		} finally {
 			if ( session.isOpen()) {
 				session.close();

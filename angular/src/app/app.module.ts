@@ -22,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoPageComponent } from './main/no-page/no-page.component';
 import { RegisterComponent } from './main/register/register.component';
+import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RegisterComponent } from './main/register/register.component';
     CategoryComponent,
     NoPageComponent,
     RegisterComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
