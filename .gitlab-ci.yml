@@ -13,7 +13,7 @@ stages:
 build-mysql:
   stage: build
   script:
-  - docker build -f docker/mysql/Dockerfile --iidfile imageid.txt -t registry.heroku.com/cms-lf6-fi9e/mysql .
+  - docker build -f deployment/mysql/Dockerfile --iidfile imageid.txt -t registry.heroku.com/cms-lf6-fi9e/mysql .
   - docker login -u _ -p $HEROKU_API_KEY registry.heroku.com
   - docker push registry.heroku.com/cms-lf6-fi9e/mysql
   - apk add --no-cache curl
