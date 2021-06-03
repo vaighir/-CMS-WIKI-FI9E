@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.entity.Article;
-import com.fi9e.rest.entity.Category;
 
 /**
  * 

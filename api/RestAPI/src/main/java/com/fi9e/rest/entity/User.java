@@ -2,11 +2,17 @@ package com.fi9e.rest.entity;
 
 import org.mindrot.jbcrypt.*;
 
+import com.fi9e.domains.Authority;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import java.util.HashMap;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -95,6 +101,12 @@ public class User {
 		return this.email;
 	}
 	
+	//TODO: change this to roles
+	public Set<Authority> getAuthorities () {
+		return null;
+	}
+	
+	//REFACTOR put in validator, not entity bc of SOC 
 	public boolean checkPassword(String plainPassword, String hashedPassword) {
 		boolean result = false;
 		

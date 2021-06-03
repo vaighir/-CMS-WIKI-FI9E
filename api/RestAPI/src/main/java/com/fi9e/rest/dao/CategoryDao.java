@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.fi9e.rest.dto.CategoryDTO;
-import com.fi9e.rest.entity.Article;
 import com.fi9e.rest.entity.Category;
 
 /**

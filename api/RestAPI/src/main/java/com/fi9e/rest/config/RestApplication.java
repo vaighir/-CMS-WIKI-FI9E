@@ -3,6 +3,9 @@ package com.fi9e.rest.config;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import com.fi9e.rest.exceptions.ApiExceptionHandler;
+import com.fi9e.rest.resources.AuthenticationHandler;
+
 /**
  * Main configuration class for Jersey Application
  * 
@@ -21,7 +24,10 @@ public class RestApplication extends ResourceConfig {
 		//register all resources from this package
 		packages("com.fi9e.rest.resources");
 		
-		//TODO: Add jwt request filters:
+		//register auth filter for jwt based login
+		//register(AuthenticationFilter.class);
 		
+		//register custom exception mapper
+		//register(ApiExceptionHandler.class);
 	}
 }

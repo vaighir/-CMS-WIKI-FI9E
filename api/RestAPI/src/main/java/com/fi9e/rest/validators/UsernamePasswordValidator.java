@@ -1,6 +1,8 @@
 package com.fi9e.rest.validators;
 
 
+import javax.enterprise.context.ApplicationScoped;
+
 import com.fi9e.rest.entity.User;
 
 /**
@@ -12,7 +14,7 @@ import com.fi9e.rest.entity.User;
  * @author Christopher
  */
 
-//@ApplicationScoped
+@ApplicationScoped
 public class UsernamePasswordValidator {
 
 	public User validateCredentials(String email, String password) {
