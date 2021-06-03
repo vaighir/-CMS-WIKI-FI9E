@@ -8,6 +8,7 @@ import javax.ws.rs.container.ContainerResponseFilter;
 
 /**
  * Adds CORS settings and JSON headers to every request
+ * 
  * @author Christopher
  *
  */
