@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import com.fi9e.models.AuthenticationTokenDetails;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 

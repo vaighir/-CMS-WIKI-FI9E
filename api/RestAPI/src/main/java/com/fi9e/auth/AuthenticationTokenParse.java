@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.validation.constraints.NotNull;
 
 import com.fi9e.domains.Authority;
-import com.fi9e.models.AuthenticationTokenDetails;
 import com.fi9e.rest.exceptions.ApiException;
 
 import io.jsonwebtoken.Claims;

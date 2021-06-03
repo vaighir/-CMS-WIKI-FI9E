@@ -1,4 +1,5 @@
 package com.fi9e.auth;
+
 import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -6,10 +7,13 @@ import java.util.Set;
 
 import com.fi9e.domains.Authority;
 
+
 /**
  * Model that holds details about an authentication token.
  *
- * @author cassiomolin
+ *	ALSO HEAVILY INSPIRE BY cassiomoling: https://github.com/cassiomolin/jersey-jwt/
+ *
+ * @author christopher
  */
 public final class AuthenticationTokenDetails {
 

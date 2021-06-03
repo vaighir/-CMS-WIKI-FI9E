@@ -11,11 +11,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+import com.fi9e.auth.AuthenticationToken;
+import com.fi9e.auth.AuthenticationTokenDetails;
 import com.fi9e.auth.AuthenticationTokenService;
 import com.fi9e.auth.TokenBasedSecurityContext;
-import com.fi9e.models.AuthenticationToken;
-import com.fi9e.models.AuthenticationTokenDetails;
-import com.fi9e.models.UserCredentials;
+import com.fi9e.auth.UserCredentials;
 import com.fi9e.rest.entity.User;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.validators.UsernamePasswordValidator;

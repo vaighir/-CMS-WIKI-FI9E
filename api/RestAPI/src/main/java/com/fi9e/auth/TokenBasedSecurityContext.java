@@ -2,7 +2,6 @@ package com.fi9e.auth;
 import javax.ws.rs.core.SecurityContext;
 
 import com.fi9e.domains.Authority;
-import com.fi9e.models.AuthenticationTokenDetails;
 
 import java.security.Principal;
 

@@ -1,4 +1,4 @@
-package com.fi9e.models;
+package com.fi9e.auth;
 
 /**
  * Auth Token Model

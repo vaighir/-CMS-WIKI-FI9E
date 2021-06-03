@@ -7,7 +7,6 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 import com.fi9e.domains.Authority;
-import com.fi9e.models.AuthenticationTokenDetails;
 import com.fi9e.rest.exceptions.ApiException;
 
 /**
