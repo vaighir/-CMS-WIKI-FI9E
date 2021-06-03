@@ -91,6 +91,10 @@ public class User {
 		this.role = role;
 	}
 	
+	public String getUsername() {
+		return this.email;
+	}
+	
 	public boolean checkPassword(String plainPassword, String hashedPassword) {
 		boolean result = false;
 		
