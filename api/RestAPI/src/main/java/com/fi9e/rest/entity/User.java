@@ -15,6 +15,11 @@ import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "user")
+/**
+ * 
+ * @author 
+ *
+ */
 public class User {
 
 	@Id

@@ -18,6 +18,12 @@ import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.managers.CategoryManager;
 
 @Path("/category")
+/**
+ * Endpoints for Categories
+ * 
+ * @author 
+ *
+ */
 public class CategoryComponentHandler {
 	private CategoryManager mngr;
 	

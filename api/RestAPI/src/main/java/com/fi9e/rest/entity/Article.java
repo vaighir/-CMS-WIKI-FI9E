@@ -17,6 +17,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name="article")
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

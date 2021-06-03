@@ -7,6 +7,11 @@ import org.hibernate.cfg.Configuration;
 import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
 
+/**
+ * 
+ * @author Christopher
+ *
+ */
 public class HibernateTest {
 
 	public static void main(String[] args) {

@@ -3,6 +3,13 @@ package com.fi9e.rest.helper;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+/**
+ * API Response "interface" that provides us a consistent way of
+ * responding to our clients.
+ * 
+ * @author Christopher
+ *
+ */
 public class ApiResponse {
 	static final int HTTP_ERROR = 422;
 	
@@ -11,6 +18,8 @@ public class ApiResponse {
 	}
 	
 	/**
+	 * Send Success Messages 
+	 * 
 	 * @param obj | data to send
 	 * @param messages | messages for user
 	 * @return 
@@ -20,6 +29,7 @@ public class ApiResponse {
 	}
 	
 	/**
+	 * Send Error Messages
 	 * 
 	 * @param obj | data to send
 	 * @param messages | messages for user
@@ -29,7 +39,13 @@ public class ApiResponse {
 		return Response.status(HTTP_ERROR).entity( this.makeResponse(obj, messages)).build();
 	}
 	
-	
+	/**
+	 * Base Response
+	 * 
+	 * @param obj
+	 * @param messages
+	 * @return
+	 */
 	private ApiResponseObject makeResponse(Object obj, String... messages) {
 		ApiResponseObject response = new ApiResponseObject();
 		response.data = obj;

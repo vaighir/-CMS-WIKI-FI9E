@@ -2,6 +2,11 @@ package com.fi9e.rest.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * 
+ * @author 
+ *
+ */
 @XmlRootElement
 public class CategoryDTO  {
 	private int id = 0;

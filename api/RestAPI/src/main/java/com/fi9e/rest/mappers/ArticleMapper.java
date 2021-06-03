@@ -5,6 +5,10 @@ import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Article;
 
 /**
+ * Mapper class, used to map between datatypes
+ * 
+ * Note: this can be refactored into an Mapper Interface, when using Jackson Mapper.
+ * 
  * @author Christopher
  */
 public class ArticleMapper {

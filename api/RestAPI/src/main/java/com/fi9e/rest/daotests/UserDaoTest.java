@@ -4,6 +4,11 @@ import com.fi9e.rest.dao.UserDao;
 import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class UserDaoTest {
 	public static void main(String[] args) {
 		UserDao ud = new UserDao();

@@ -1,8 +1,13 @@
-package com.fi9e.rest.dao;
+package com.fi9e.rest.daotests;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class RestJdbc {
 
 	public static void main(String[] args) {

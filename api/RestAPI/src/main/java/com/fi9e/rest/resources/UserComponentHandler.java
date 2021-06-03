@@ -1,17 +1,21 @@
 package com.fi9e.rest.resources;
 
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import com.fi9e.rest.dao.UserDao;
+import com.fi9e.rest.entity.User;
 import com.google.gson.Gson;
 
-import com.fi9e.rest.entity.User;
-import com.fi9e.rest.dao.UserDao;
-
 @Path("/user")
+/**
+ * User Endpoints
+ * 
+ * @author Christopher, Su?
+ *
+ */
 public class UserComponentHandler {
 	UserDao userDao = new UserDao();
 

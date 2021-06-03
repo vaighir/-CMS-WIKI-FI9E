@@ -4,7 +4,7 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 /**
- * Configuration Class  
+ * Main configuration class for Jersey Application 
  * @author Christopher
  */
 public class RestApplication extends ResourceConfig {

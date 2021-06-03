@@ -3,6 +3,11 @@ package com.fi9e.rest.mappers;
 import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class CategoryMapper {
 	
 	/**

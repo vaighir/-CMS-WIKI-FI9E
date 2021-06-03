@@ -10,7 +10,11 @@ import org.hibernate.cfg.Configuration;
 import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.entity.Article;
 import com.fi9e.rest.entity.Category;
-
+/**
+ * 
+ * @author Wiktor
+ *
+ */
 public class ArticleDao {
 
 	final String HIBERNATE_CONFIG_PATH = "hibernate.cfg.xml";

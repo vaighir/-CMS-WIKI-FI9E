@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import com.fi9e.rest.dao.ArticleDao;
 
+/**
+ * 
+ * @author 
+ *
+ */
 class ArticleDaoTestJUnit {
 
 		@Test

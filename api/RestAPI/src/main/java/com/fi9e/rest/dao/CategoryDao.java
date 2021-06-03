@@ -11,7 +11,11 @@ import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Article;
 import com.fi9e.rest.entity.Category;
 
-
+/**
+ * 
+ * @author Wiktor
+ *
+ */
 public class CategoryDao {
 	
 	public int createCategory(String name, String slug, String content) {

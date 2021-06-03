@@ -22,6 +22,13 @@ import com.fi9e.rest.managers.ArticleManager;
 
 
 @Path("/article")
+/**
+ * API Resource class:
+ *  
+ *  This declares all endpoints for articles that we need
+ * 
+ * @author Christopher
+ */
 public class ArticlesComponentHandler {
 	private ArticleManager mngr;
 	private ApiResponse api;

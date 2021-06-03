@@ -8,6 +8,12 @@ import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.mappers.CategoryMapper;
 
+/**
+ * Manager class: used as negotiator between Data Access layers and API
+ * 
+ * @author 
+ *
+ */
 public class CategoryManager {
 
 	private CategoryDao dao;
