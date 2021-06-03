@@ -23,6 +23,7 @@ CREATE TABLE category (
 CREATE TABLE user (
     id INT AUTO_INCREMENT,
     role_id INT,
+    active INT (1),
     name VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
