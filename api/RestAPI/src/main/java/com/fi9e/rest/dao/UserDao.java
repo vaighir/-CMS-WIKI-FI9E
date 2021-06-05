@@ -4,13 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.fi9e.rest.entity.Role;
+import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
 
 public class UserDao {
 
 
-	// get user by id
 	public User getUserById(int id) {
 	
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -34,17 +33,19 @@ public class UserDao {
 		return user;
 	}
 
-	// create user
-	public void createUser(String name, String email, String password, Role role) {
+	public int createUser(String name, String email, String password, int roleId) {
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		User user = new User(name, email, password, role);
+		User user = new User(name, email, password, roleId);
 
+		int newUserId = -1;
 		try {
 			session.beginTransaction();
 			session.save(user);
+			
+			newUserId = (int) session.save(user);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,9 +55,10 @@ public class UserDao {
 				factory.close();
 			}
 		}
+		
+		return newUserId;
 	}
 
-	// update user
 	public void updateUser(User user) {
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -67,7 +69,7 @@ public class UserDao {
 		oldUser.setEmail(user.getEmail());
 		oldUser.setName(user.getName());
 		oldUser.setPassword(user.getPassword());
-		oldUser.setRole(user.getRole());
+		oldUser.setRoleId(user.getRoleId());
 
 		try {
 			session.beginTransaction();
@@ -83,7 +85,6 @@ public class UserDao {
 		}
 	}
 
-	// delete user
 	public void deleteUserById(int id) {
 		
 		
@@ -105,6 +106,10 @@ public class UserDao {
 				factory.close();
 			}
 		}
+	}
+	
+	public int createUser(UserDTO dto) {
+		return createUser(dto.getName(), dto.getEmail(), dto.getPassword(), dto.getRole().getId());
 	}
 
 }
