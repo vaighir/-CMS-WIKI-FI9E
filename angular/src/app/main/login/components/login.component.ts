@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,20 +9,25 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  loginForm: FormGroup;
   constructor(
-    private router: Router
-  ) { }
-
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    let loginControls = {
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    }
+    this.loginForm = this.fb.group(loginControls);
+    
+   }
+   get email() { return this.loginForm.get('email') }
+   get password() { return this.loginForm.get('password') }
   ngOnInit(): void {
   }
 
-  onSubmit(loginForm: NgForm) {
-    if(loginForm.valid) {
-      console.log(loginForm.value);
-      this.router.navigate(['article/all']);
-    } else {
-      alert("Bitte, füllen Sie alle Felder richtig aus");
-    }
-
+  login(loginForm: NgForm) {
+// TODO: test user login
+console.log(loginForm);
   }
 }
