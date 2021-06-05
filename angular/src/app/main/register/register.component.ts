@@ -58,14 +58,20 @@ export class RegisterComponent implements OnInit {
 
   register(user: User) {
 
-    console.log(user);
+    if(this.password?.value === this.confirmPassword?.value){
+    user = new User;
+    user.email = this.email?.value;
+    user.password = this.password?.value;
+
+    user.name = this.firstname?.value + ' ' + this.lastname?.value;
+    console.log('test: ', user);
+
     this.userService.add(user).toPromise().then((res) => {
       this.router.navigate(['article/all']);
-      this.toastr.success('Hallo, ' + user.firstname + '! Sie wurden erfolgreich registriert')
+      this.toastr.success('Hallo, ' + user.name + '! Sie wurden erfolgreich registriert')
     }).catch(() => {
       this.toastr.error('Die Registrierung wurde nicht erfolgreich abgeschlossen!')
     })
-
-    
+  }   
   }
 }
