@@ -2,24 +2,24 @@
     <div class="col-md-6 offset-md-3 col-xl-5 col-lg-6 m-lg-auto">
         <div class="card card-outline-secondary">
             <div class="card-header">
-                <h3 class="mb-0">Sign Up</h3>
+                <h3 class="mb-0">Registrieren</h3>
             </div>
             <div class="card-body">
-                <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+                <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
 
                     <div class="form-group">
-                        <label for="firstname">First name</label>
+                        <label for="firstname">Vorname</label>
                         <input type="text" name="firstname" class="form-control" id="firstname" formControlName="firstname">
                         <span *ngIf="firstname?.touched && firstname?.invalid">
-                            <small *ngIf="firstname?.errors?.required" class="text-danger">First name is required<br></small>
-                            <small *ngIf="firstname?.errors?.pattern" class="text-danger">Invalid First name<br></small>
-                            <small *ngIf="firstname?.errors?.minlength" class="text-danger">First name must contain at least two characters</small>
+                            <small *ngIf="firstname?.errors?.required" class="text-danger">Vorname ist erforderlich<br></small>
+                            <small *ngIf="firstname?.errors?.pattern" class="text-danger">Ungültiger Vorname<br></small>
+                            <small *ngIf="firstname?.errors?.minlength" class="text-danger">Der Vorname muss mindestens zwei Zeichen enthalten</small>
                         </span>
                     </div>
                     
                     
                     <div class="form-group">
-                        <label for="lastname">Surname</label>
+                        <label for="lastname">Nachname</label>
                         <input type="text" name="lastname" class="form-control" id="lastname" formControlName="lastname">
                         <span *ngIf="lastname?.touched && lastname?.invalid">
                             <small *ngIf="lastname?.errors?.required" class="text-danger">Surname is required<br></small>
@@ -31,12 +31,12 @@
                         <label for="InputEmail">Username / Email</label>
                         <input type="email" class="form-control" id="InputEmail" formControlName="email">
                         <span *ngIf="email?.touched && email?.invalid">
-                            <small *ngIf="email?.errors?.required" class="text-danger">Email is required<br></small>
-                            <small *ngIf="email?.errors?.email" class="text-danger">Invalid Email<br></small>
+                            <small *ngIf="email?.errors?.required" class="text-danger">E-Mail ist erforderlich<br></small>
+                            <small *ngIf="email?.errors?.email" class="text-danger">Ungültige E-Mail<br></small>
                         </span>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">Passwort</label>
                         <input type="password" class="form-control" id="password" formControlName="password">
                         <span *ngIf="password?.touched && password?.invalid">
                             <small *ngIf="password?.errors?.required" class="text-danger">Password is required<br></small>
@@ -46,18 +46,18 @@
             
 
                     <div class="form-group">
-                        <label for="repassword">Password Confirmation</label>
-                        <input type="password" class="form-control" id="repassword" formControlName="repassword">
-                        <span *ngIf="repassword?.touched && repassword?.invalid">
-                            <small *ngIf="repassword?.errors?.required" class="text-danger">Enter your password again<br></small>
+                        <label for="confirmPassword">Password bestätigen</label>
+                        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword">
+                        <span *ngIf="confirmPassword?.touched && confirmPassword?.invalid">
+                            <small *ngIf="confirmPassword?.errors?.required" class="text-danger">Wiederholen Sie das Passwort<br></small>
                         </span>
-                        <span *ngIf="repassword?.valid && repassword?.value != password?.value" class="text-danger">
-                            <small>The entered passwords do not match</small>   
+                        <span *ngIf="confirmPassword?.valid && confirmPassword?.value != password?.value" class="text-danger">
+                            <small>Die eingegebenen Passwörter stimmen nicht überein</small>   
                         </span>
                     </div>
                     <button 
-                    [disabled]="registerForm.invalid || repassword?.value != password?.value"
-                    type="submit" class="btn btn-light float-right">Sign Up</button>
+                    [disabled]="registerForm.invalid || confirmPassword?.value != password?.value"
+                    type="submit" class="btn btn-light float-right">Absenden</button>
                 </form>
             </div>
         </div>

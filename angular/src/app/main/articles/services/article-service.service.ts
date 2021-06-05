@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApiResource } from 'src/app/interfaces/IApiResource';
 import { ApiRoutes } from 'src/app/routing-module/api-paths';
-import { ArticleModel } from '../model/article-model.Model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +28,6 @@ export class ArticleService implements IApiResource {
   }
   delete(id: number) {
     return this.http.delete<number>( ApiRoutes.uri.ARTICLE_DELETE + id);
-    throw new Error('Method not implemented.');
   }
   update(model: any) {
     return this.http.put( ApiRoutes.uri.ARTICLE_UPDATE + model.id, model );

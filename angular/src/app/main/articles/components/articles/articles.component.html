@@ -2,14 +2,15 @@
   <div class="pl-5 pr-5 pt-5 w-100">
    
       <div class="d-flex align-items-center justify-content-between mb-4">    
-        <h1 class="pr-4" *ngIf="allArticles">All Articles </h1>
+        <h1 class="pr-4" *ngIf="allArticles">Alle Artikel </h1>
         <div *ngIf="!allArticles"></div>
         <div class="btn btn-primary" routerLink="/article/add">Add Article</div>
 
       </div>
     <div>
-      <div *ngIf="!articleList || articleList?.length === 0" class="alert alert-info">
-        No articles found for this category
+      <div *ngIf="!articleList || articleList?.length === 0" class="card ">
+        <h3 class="card-header">Keine Artikel</h3>
+        <p class="card-body">Es sind keine Artikel vorhanden.</p>
       </div>
 
         <!-- Show Articles: display articles -->

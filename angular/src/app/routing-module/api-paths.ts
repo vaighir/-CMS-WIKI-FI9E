@@ -14,6 +14,9 @@ export abstract class ApiRoutes {
     ARTICLELISTBYCATEGORY_SHOW: ApiRoutes.path() + "article/category/", // +categoryId| Method: GET
     ARTICLE_UPDATE: ApiRoutes.path() + "article/", //+id | Method: PUT
     ARTICLE_DELETE: ApiRoutes.path() + "article/", //+id | Method: DELETE
+    USERLIST_SHOW: ApiRoutes.path() + "user/all", // | Method: GET
+    USER_ADD: ApiRoutes.path() + "user/register",//Method: POST
+
   }
 
   private static path() {
