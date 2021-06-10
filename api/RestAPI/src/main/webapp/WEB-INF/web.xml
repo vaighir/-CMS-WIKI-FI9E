@@ -19,17 +19,39 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<filter>     
-		<filter-name>CorsFilter</filter-name>     
-		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>     
-		<init-param>       
-			<param-name>cors.allowed.origins</param-name>       
-			<param-value>*</param-value>     
-		</init-param>   
+	<filter>
+		<filter-name>CorsFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowed.origins</param-name>
+			<param-value>*</param-value>
+		</init-param>
 	</filter>
 	<!-- Map all the URLs to the Jersey ServletContainer -->
 	<servlet-mapping>
 		<servlet-name>CmsAPI</servlet-name>
 		<url-pattern>/v1/*</url-pattern>
 	</servlet-mapping>
+
+
+	<env-entry>
+		<env-entry-name>auth0.domain</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>dev-nf-qplvr.eu.auth0.com</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<env-entry-name>auth0.clientId</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>5yxXlWu4U3zoNQ35ZwyjUOlXVNkpIFWv</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<env-entry-name>auth0.clientSecret</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>FbN_D7tvjkTS2f2p8tvSyydE9ZbXJhoFUw_J9ZF3tQEF7gO8qs9hHOpavONoOkQR</env-entry-value>
+	</env-entry>
+	<env-entry>
+		<env-entry-name>auth0.scope</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>chinyeins@gmail.com</env-entry-value>
+	</env-entry>
 </web-app>
