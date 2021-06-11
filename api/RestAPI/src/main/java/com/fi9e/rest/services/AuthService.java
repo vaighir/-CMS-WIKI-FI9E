@@ -4,6 +4,11 @@ import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.models.UserCredentials;
 
+/**
+ * 
+ * @author Christopher
+ *
+ */
 public class AuthService  {
 
 	private UserService userService;
