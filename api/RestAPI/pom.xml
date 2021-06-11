@@ -86,6 +86,12 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.security.enterprise</groupId>
+			<artifactId>javax.security.enterprise-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.opendaylight.controller.thirdparty/org.apache.catalina.filters.CorsFilter -->
 		<dependency>
 			<groupId>org.opendaylight.controller.thirdparty</groupId>

@@ -1,5 +1,8 @@
 package com.fi9e.rest.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -85,9 +88,6 @@ public class UserDao {
 
 	// delete user
 	public void deleteUserById(int id) {
-		
-		
-
 		User user = getUserById(id);
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -106,5 +106,28 @@ public class UserDao {
 			}
 		}
 	}
-
+	
+	public List<?> get(String email) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		
+		List<?> usersRaw = new ArrayList<>();
+		
+		try {
+			session.beginTransaction();
+			
+			usersRaw = session.createSQLQuery("SELECT * FROM user WHERE email = " + email).addEntity(User.class).list();
+			
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+				factory.close();
+			}
+		}
+		
+		return usersRaw;
+	}
 }

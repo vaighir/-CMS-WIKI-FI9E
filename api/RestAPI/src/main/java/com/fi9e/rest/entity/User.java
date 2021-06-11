@@ -86,15 +86,6 @@ public class User {
 		this.role = role;
 	}
 	
-	public boolean checkPassword(String plainPassword, String hashedPassword) {
-		boolean result = false;
-		
-		if (BCrypt.checkpw(plainPassword, hashedPassword)) {
-			result = true;
-		}
-		
-		return result;
-	}
 
 	@Override
 	public String toString() {
