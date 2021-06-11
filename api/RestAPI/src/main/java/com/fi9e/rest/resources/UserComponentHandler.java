@@ -6,15 +6,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dto.UserDTO;
+import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.services.UserService;
 
-@Path("/user")
 /**
  * 
  * @author Christopher
  *
  */
+@Path("/user")
+@Authorized
 public class UserComponentHandler {
 
 	private UserService userService;

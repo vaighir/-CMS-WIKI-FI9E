@@ -49,11 +49,10 @@ public class ApiResponse {
 	private JsonObject makeJSON(Object obj, String...messages) throws JsonProcessingException {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String data = ow.writeValueAsString(obj);
-		String messageData = ow.writeValueAsString(messages);
 		
 		JsonObject res = new JsonObject();
 		res.addProperty("data", data);
-		res.addProperty("message", messageData);
+		res.addProperty("message", String.join(",", messages));
 		
 		return res;
 	}

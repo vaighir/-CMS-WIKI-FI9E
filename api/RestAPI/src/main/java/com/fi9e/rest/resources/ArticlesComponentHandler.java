@@ -17,11 +17,13 @@ import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.exceptions.ApiException;
+import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.managers.ArticleManager;
 
 
 @Path("/article")
+@Authorized
 public class ArticlesComponentHandler {
 	private ArticleManager mngr;
 	private ApiResponse api;
