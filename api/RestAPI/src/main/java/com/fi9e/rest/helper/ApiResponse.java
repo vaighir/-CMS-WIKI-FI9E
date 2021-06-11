@@ -5,7 +5,6 @@ import javax.ws.rs.core.Response;
 
 public class ApiResponse {
 	static final int HTTP_ERROR = 422;
-	static final int HTTP_UNAUTHORIZED = 403;
 	
 	public ApiResponse() {
 		//
@@ -36,7 +35,7 @@ public class ApiResponse {
 	 * @return Response
 	 */
 	public Response unauthorized() {
-		return Response.status(HTTP_UNAUTHORIZED).entity( this.makeResponse(null, "Unauthorized!")).build();
+		return Response.status(Response.Status.UNAUTHORIZED).entity( this.makeResponse(null, "Unauthorized!")).build();
 	}
 	
 	

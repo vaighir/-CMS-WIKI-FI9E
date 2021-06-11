@@ -34,8 +34,12 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		//get user
 		try {
 			this.getAuthService().auhtorize(credentials);
+			return;
 		} catch (ApiException e) {
-			this.getApi().unauthorized();
+			
+			//error during auth | abort
+			requestContext.abortWith( this.getApi().unauthorized() );
+			
 		}
 	}
 	
