@@ -3,12 +3,16 @@ package com.fi9e.rest.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.NativeQuery;
 
 import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
+import com.mysql.cj.Query;
 
 public class UserDao {
 
@@ -107,17 +111,20 @@ public class UserDao {
 		}
 	}
 	
-	public List<?> get(String email) {
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 		
-		List<?> usersRaw = new ArrayList<>();
+		List<User> users = new ArrayList<User>();
 		
 		try {
 			session.beginTransaction();
 			
-			usersRaw = session.createSQLQuery("SELECT * FROM user WHERE email = " + email).addEntity(User.class).list();
-			
+			Criteria crit = session.createCriteria(User.class);
+			crit.add(Restrictions.eqOrIsNull("email", email.toLowerCase()));
+			users = crit.list();
+	
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,6 +135,6 @@ public class UserDao {
 			}
 		}
 		
-		return usersRaw;
+		return users;
 	}
 }

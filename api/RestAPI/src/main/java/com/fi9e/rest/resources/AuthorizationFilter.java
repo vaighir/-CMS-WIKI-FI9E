@@ -1,12 +1,14 @@
 package com.fi9e.rest.resources;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
@@ -21,7 +23,7 @@ import com.fi9e.rest.services.AuthService;
 @Provider
 public class AuthorizationFilter implements ContainerRequestFilter {
 	
-	private static final String AUTH_HEADER_KEY = "Auhtorization";
+	private static final String AUTH_HEADER_KEY = "authorization";
 	private static final String AUTH_HEADER_PREFIX = "Basic ";
 	
 	private AuthService auth;
@@ -68,19 +70,20 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	}
 	
 	
-	private UserCredentials getCredentialsFromHeader(ContainerRequestContext requestContext) {
-		List<String> authHeader = requestContext.getHeaders().get(AUTH_HEADER_KEY);
+	private UserCredentials getCredentialsFromHeader(ContainerRequestContext requestContext) throws UnsupportedEncodingException {
+		MultivaluedMap<String, String> authHeader = requestContext.getHeaders();//.get(AUTH_HEADER_KEY);
 		
 		if(authHeader == null) {
 			return null;
 		}
 		
 		//get headers
-		String authToken = authHeader.get(0);
+		String authToken = authHeader.get(AUTH_HEADER_KEY).get(0);
 		//remove auth header prefix
 		authToken = authToken.replaceFirst(AUTH_HEADER_PREFIX, "");
 		//decode credentials
-		String decodedCredentials = Base64.getDecoder().decode(authToken).toString();
+		byte[] decoded = Base64.getDecoder().decode(authToken.getBytes("UTF-8")); 
+		String decodedCredentials = new String(decoded, "UTF-8");
 		
 		//get decoded credentials
 		StringTokenizer tokenizer = new StringTokenizer(decodedCredentials, ":");
