@@ -1,13 +1,11 @@
 package com.fi9e.rest.models;
 
-import javax.security.enterprise.credential.Credential;
-
 /**
  * 
  * @author Christopher
  *
  */
-public class UserCredentials implements Credential {
+public class UserCredentials {
 	private String userName;
 	private String password;
 	

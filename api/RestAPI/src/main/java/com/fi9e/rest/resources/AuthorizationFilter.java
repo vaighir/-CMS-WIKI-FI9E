@@ -7,6 +7,8 @@ import java.util.StringTokenizer;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.Provider;
 
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.helper.ApiResponse;
@@ -16,6 +18,7 @@ import com.fi9e.rest.services.AuthService;
 /**
  * Header Rquest Filter
  */
+@Provider
 public class AuthorizationFilter implements ContainerRequestFilter {
 	
 	private static final String AUTH_HEADER_KEY = "Auhtorization";
@@ -31,15 +34,20 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		//retrieve user credentials from auth header
 		UserCredentials credentials = this.getCredentialsFromHeader(requestContext);
 		
+		if(credentials == null) {
+			//error during auth | abort
+			requestContext.abortWith( this.getApi().unauthorized() );
+			return;
+		}
+		
 		//get user
 		try {
 			this.getAuthService().auhtorize(credentials);
 			return;
 		} catch (ApiException e) {
-			
 			//error during auth | abort
 			requestContext.abortWith( this.getApi().unauthorized() );
-			
+			return;
 		}
 	}
 	
@@ -62,6 +70,10 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	
 	private UserCredentials getCredentialsFromHeader(ContainerRequestContext requestContext) {
 		List<String> authHeader = requestContext.getHeaders().get(AUTH_HEADER_KEY);
+		
+		if(authHeader == null) {
+			return null;
+		}
 		
 		//get headers
 		String authToken = authHeader.get(0);

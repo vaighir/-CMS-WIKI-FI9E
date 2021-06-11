@@ -3,8 +3,15 @@ package com.fi9e.rest.helper;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.google.gson.JsonObject;
+
+
 public class ApiResponse {
 	static final int HTTP_ERROR = 422;
+	static final int HTTP_FORBIDDEN = 403;
 	
 	public ApiResponse() {
 		//
@@ -33,11 +40,23 @@ public class ApiResponse {
 	 * Send user unauthorized message
 	 * 
 	 * @return Response
+	 * @throws JsonProcessingException 
 	 */
-	public Response unauthorized() {
-		return Response.status(Response.Status.UNAUTHORIZED).entity( this.makeResponse(null, "Unauthorized!")).build();
+	public Response unauthorized() throws JsonProcessingException {
+		return Response.status(HTTP_FORBIDDEN).entity( this.makeJSON(null, "Unauthorized!").toString() ).build();
 	}
 	
+	private JsonObject makeJSON(Object obj, String...messages) throws JsonProcessingException {
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		String data = ow.writeValueAsString(obj);
+		String messageData = ow.writeValueAsString(messages);
+		
+		JsonObject res = new JsonObject();
+		res.addProperty("data", data);
+		res.addProperty("message", messageData);
+		
+		return res;
+	}
 	
 	private ApiResponseObject makeResponse(Object obj, String... messages) {
 		ApiResponseObject response = new ApiResponseObject();
