@@ -2,17 +2,17 @@
   <div class="cms-nav">
       <ul class="list-unstyled">
         <li
-        routerLinkActive="nav_active"  
+        routerLinkActive="nav_active"
         routerLink="/article/all"
-        class="pt-3 pb-3 border-bottom pointer" 
+        class="pt-3 pb-3 border-bottom pointer"
         (click)="resetCategoryId()">
-            <a> 
-               Show all articles
+            <a>
+               Alle Artikel anzeigen
             </a>
         </li>
-      <app-category 
+      <app-category
       *ngFor = "let categoryEl of categoryList"
-      [category] = categoryEl  
+      [category] = categoryEl
       >
     </app-category>
 
