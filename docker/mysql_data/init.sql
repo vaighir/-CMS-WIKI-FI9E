@@ -26,6 +26,7 @@ CREATE TABLE user (
     name VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
+    token TEXT,
     PRIMARY KEY (id),
     FOREIGN KEY (role_id)
       REFERENCES role(id)

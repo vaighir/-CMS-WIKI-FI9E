@@ -3,18 +3,20 @@ package com.fi9e.rest.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MultivaluedMap;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.fi9e.rest.dao.UserDao;
 import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
+import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.mappers.UserMapper;
 import com.fi9e.rest.models.UserCredentials;
 
 public class UserService {
 
 	private UserDao userDao;
-	
 	
 	public UserService() {
 		this.userDao = new UserDao();
@@ -26,7 +28,7 @@ public class UserService {
 	 * @param hashedPassword
 	 * @return
 	 */
-	protected boolean checkPassword(String plainPassword, String hashedPassword) {
+	public boolean checkPassword(String plainPassword, String hashedPassword) {
 		boolean result = false;
 		
 		if (BCrypt.checkpw(plainPassword, hashedPassword)) {
@@ -69,5 +71,32 @@ public class UserService {
 		}
 		
 		return null;
+	}
+	
+	
+	public String login(MultivaluedMap<String, String> form) throws ApiException {
+		String token = "";
+		
+		if(form != null) {
+			String email = !form.getFirst("email").isEmpty() ? form.getFirst("email") : "";
+			String password = !form.getFirst("password").isEmpty() ? form.getFirst("password"): "";
+			
+			UserCredentials credentials = new UserCredentials(email, password);
+			
+			UserDTO user = this.getUserByEmail(credentials);
+			
+			if(user == null) {
+				throw new ApiException("User with email not found");
+			}
+			
+			if(!this.checkPassword(password, user.getPassword())) {
+				throw new ApiException("Passwords do not match our records");
+			}
+			
+			//TODO: create token and save to user
+			
+		}
+		
+		return token;
 	}
 }

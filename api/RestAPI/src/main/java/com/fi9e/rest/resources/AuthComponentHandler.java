@@ -10,8 +10,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.filters.Authorized;
-import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.helper.ApiResponseInterface;
+import com.fi9e.rest.services.UserServiceInterface;
 
  
 /**
@@ -23,10 +23,12 @@ import com.fi9e.rest.helper.ApiResponseInterface;
 public class AuthComponentHandler {
 	
 	private final ApiResponseInterface api;
+	private final UserServiceInterface userService;
 	
 	@Inject
-	public AuthComponentHandler(ApiResponseInterface api) {
+	public AuthComponentHandler(ApiResponseInterface api, UserServiceInterface userService) {
 		this.api = api;
+		this.userService = userService;
 	}
 	
 	@POST
@@ -34,9 +36,6 @@ public class AuthComponentHandler {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(MultivaluedMap<String, String> form) {
-		
-		//get credentials from request
-		
 		
 		//check if user can authorize with user service
 		

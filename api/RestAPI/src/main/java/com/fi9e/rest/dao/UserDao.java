@@ -75,6 +75,7 @@ public class UserDao {
 		oldUser.setName(user.getName());
 		oldUser.setPassword(user.getPassword());
 		oldUser.setRole(user.getRole());
+		oldUser.setToken(user.getToken());
 
 		try {
 			session.beginTransaction();
@@ -111,7 +112,7 @@ public class UserDao {
 		}
 	}
 	
-	@SuppressWarnings({ "deprecation", "unchecked" })
+	@SuppressWarnings({"unchecked", "deprecation"})
 	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();

@@ -34,8 +34,12 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "token")
+	private String token;
 
 	public User() {
+		
 	}
 
 	public User(String name, String email, String password, Role role) {

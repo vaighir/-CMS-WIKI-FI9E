@@ -7,6 +7,8 @@ import org.glassfish.jersey.server.ResourceConfig;
 import com.fi9e.rest.filters.AuthorizationFilter;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.helper.ApiResponseInterface;
+import com.fi9e.rest.services.UserService;
+import com.fi9e.rest.services.UserServiceInterface;
 
 
 /**
@@ -28,6 +30,7 @@ public class RestApplication extends ResourceConfig {
             @Override
             protected void configure() {
             	bind(ApiResponse.class).to(ApiResponseInterface.class);
+            	bind(UserService.class).to(UserServiceInterface.class);
             }
         });
 	}
