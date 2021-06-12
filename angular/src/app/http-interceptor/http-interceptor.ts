@@ -4,17 +4,20 @@ import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
 
+const TOKEN_KEY = "fi9e_access_token";
 
 /**
  * Good source for other interceptor fun: https://indepth.dev/posts/1051/top-10-ways-to-use-interceptors-in-angular
  */
 export class AddHeaderInterceptor implements HttpInterceptor {
-
+  
   constructor() { }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const CONTENT_TYPE = "Content-Type";
     const ACCEPT = "Accept";
+    const AUTHORIZATION = "Authorization";
 
     let headers =  new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -28,6 +31,10 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     //only set default headers, if none are present
     headers.set(CONTENT_TYPE, req.headers.get(CONTENT_TYPE) || headerContentTypeDefault);
     headers.set(ACCEPT, req.headers.get(ACCEPT) || headerAcceptDefaul);
+    
+    if(localStorage.getItem(TOKEN_KEY)) {
+      headers.set(AUTHORIZATION, "Bearer " + localStorage.getItem(TOKEN_KEY));
+    }
 
     let newRequest = req.clone({ headers: headers });
 
@@ -50,7 +57,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if(error.status == 422) {
             console.log("custom error thrown ", error);
 
-            this.toastr.error(error.error.message.toString())
+            this.toastr.error(error.error.message.toString());
 
             return throwError(error.message);
           }

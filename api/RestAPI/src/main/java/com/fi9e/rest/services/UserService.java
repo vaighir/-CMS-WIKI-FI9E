@@ -111,4 +111,13 @@ public class UserService implements UserServiceInterface {
 		
 		return token;
 	}
+	
+	public void logout(String authHeader) {
+		//parse token
+		
+		//get user_id from payload
+		
+		//remove token from user with id user_id
+		
+	}
 }

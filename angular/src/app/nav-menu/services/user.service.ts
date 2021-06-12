@@ -12,7 +12,6 @@ export class UserService {
 
   constructor(private authService: AuthService) {
     let data = this.authService.getTokenPayload();
-    console.log(data);
     this.userSource.next(data);
    }
 

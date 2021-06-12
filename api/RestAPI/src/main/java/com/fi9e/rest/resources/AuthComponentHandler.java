@@ -2,6 +2,7 @@ package com.fi9e.rest.resources;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -37,9 +38,7 @@ public class AuthComponentHandler {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(MultivaluedMap<String, String> form) throws ApiException {
-		String token = this.userService.login(form);
-		
-		return this.api.success(token, "login successfull");
+		return this.api.success(this.userService.login(form), "login successfull");
 	}
 	
 	
@@ -63,10 +62,9 @@ public class AuthComponentHandler {
 	@POST
 	@Path("logout")
 	@Authorized
-	public Response logout() {
+	public Response logout(@HeaderParam("authorization") String authHeader ) {
+		this.userService.logout(authHeader);
 		
-		//do logout
-		
-		return this.api.success(null, "");
+		return this.api.success(null, "successfully logged out");
 	}
 }

@@ -7,13 +7,12 @@ import { ApiRoutes, HeadersForms } from '../routing-module/api-paths';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { User } from './user.model';
 
-const TOKEN_KEY = "fi9e_access_token";
+export const TOKEN_KEY = "fi9e_access_token";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService implements IApiResource {
-
   constructor(private http: HttpClient) { }
 
   /**
@@ -63,8 +62,18 @@ export class AuthService implements IApiResource {
 
   getTokenPayload() {
     const token = this.getToken() || "";
+
+    if(token === "") {
+      return new User();
+    }
+
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
+
+    if(!decodedToken) {
+      return new User();
+    }
+
     //const expirationDate = helper.getTokenExpirationDate(token);
     const isExpired = helper.isTokenExpired(token);
 

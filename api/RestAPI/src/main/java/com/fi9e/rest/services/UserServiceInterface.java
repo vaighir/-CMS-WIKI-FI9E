@@ -13,4 +13,5 @@ public interface UserServiceInterface {
 	public UserDTO getUserDTOByEmail(UserCredentials credentials);
 	public boolean checkPassword(String plainPassword, String hashedPassword);
 	public String login(MultivaluedMap<String, String> form) throws ApiException;
+	public void logout(String token);
 }

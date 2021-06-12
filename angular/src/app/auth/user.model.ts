@@ -2,6 +2,9 @@ export class User {
     id: Number = 0;
     email: string = "";
     username: string = "";
-    isLoggedIn: boolean = false;
-    isExpiredToken: boolean = false;
+    isExpiredToken: boolean = true;
+    
+    isLoggedIn() {
+        return this.id > 0 && !this.isExpiredToken;
+    }
 }
