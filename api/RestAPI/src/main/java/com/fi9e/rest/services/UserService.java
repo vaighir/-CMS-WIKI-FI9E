@@ -95,7 +95,12 @@ public class UserService {
 				throw new ApiException("Passwords do not match our records");
 			}
 			
+			//make token for user
 			token = this.tokenService.createToken(user);
+			
+			//update user and save token
+			user.setToken(token);
+			this.userDao.updateUser(user);
 		}
 		
 		return token;
