@@ -8,6 +8,9 @@ docker-compose down
 # Build the Java app
 mvn clean install -f ./api/RestAPI/pom.xml
 
+# Change environment variables for online deployment
+cp /home/cms-wiki-fi9e/deployment/environment.prod.ts /home/cms-wiki-fi9e/angular/src/environments/environment.prod.ts
+
 # Build the Angular app
 cd angular
 npm install
