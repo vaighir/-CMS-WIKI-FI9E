@@ -29,7 +29,6 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     const headerContentTypeDefault = 'application/json';
 
     //only set default headers, if none are present
-    
     headers = headers.append(ACCEPT, req.headers.get(CONTENT_TYPE) || headerAcceptDefaul);
     headers = headers.append(CONTENT_TYPE, req.headers.get(ACCEPT) || headerContentTypeDefault);
     

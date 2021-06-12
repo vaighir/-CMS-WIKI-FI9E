@@ -10,9 +10,15 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fi9e.rest.dao.UserDao;
+import com.fi9e.rest.entity.User;
 import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.models.UserCredentials;
-import com.fi9e.rest.services.AuthServiceInterface;
+import com.fi9e.rest.services.TokenServiceInterface;
+import com.fi9e.rest.services.UserServiceInterface;
+
+import io.jsonwebtoken.Claims;
 
 /**
  * Header Request Filter | checks for credentials
@@ -25,13 +31,18 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private static final String AUTH_HEADER_PREFIX_BASIC = "Basic ";
 	private static final String AUTH_HEADER_PREFIX_BEARER = "Bearer ";
 	
-	private AuthServiceInterface auth;
+	private UserServiceInterface userService;
 	private ApiResponseInterface api;
+	private TokenServiceInterface tokenService;
+	private UserDao userDao;
+	
 	
 	@Inject
-	public AuthorizationFilter(ApiResponseInterface api) {
-		//this.auth = auth;
+	public AuthorizationFilter(ApiResponseInterface api, UserServiceInterface users, TokenServiceInterface tokens) {
 		this.api = api;
+		this.userService = users;
+		this.tokenService = tokens;
+		this.userDao = new UserDao();
 	}
 	
 	@Override
@@ -44,6 +55,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	 * @param requestContext
 	 * @return
 	 */
+	@Deprecated
 	private UserCredentials getCredentialsFromHeader(ContainerRequestContext requestContext) {
 		MultivaluedMap<String, String> authHeader = requestContext.getHeaders();//.get(AUTH_HEADER_KEY);
 		
@@ -81,15 +93,36 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	 * Check Auth Header for Bearer Token and either grant acces or deny
 	 * 
 	 * @param requestContext
+	 * @throws JsonProcessingException 
 	 */
-	private void doBearerTokenVerify(ContainerRequestContext requestContext) {
-		//@TODO: get token from bearer header
+	private void doBearerTokenVerify(ContainerRequestContext requestContext) throws JsonProcessingException {
+		MultivaluedMap<String, String> authHeaders = requestContext.getHeaders();
 		
-		//@CHECK IF Token is Valid
+		if(authHeaders == null) {
+			requestContext.abortWith( this.api.unauthorized() );
+			return;
+		}
 		
-		//@CHECK IF USER has same TOKEN (is isCurrentUserToken)
+		//get headers
+		String authHeader = (authHeaders.get(AUTH_HEADER_KEY) != null) ? authHeaders.get(AUTH_HEADER_KEY).get(0) : "";
 		
-		//return errors if login failed
+		if(authHeader.isEmpty()) {
+			requestContext.abortWith( this.api.unauthorized() );
+			return;
+		}
+		
+		String token = this.userService.stripToken(authHeader);
+		
+		Claims payload = this.tokenService.verifyToken(token);
+		
+		int user_id =  payload.get("user_id", Integer.class);		
+		
+		User user = this.userDao.getUserById(user_id);
+		
+		if(!user.getToken().equals(token)) {
+			requestContext.abortWith( this.api.unauthorized() );
+			return;
+		}
 	}
 	
 }

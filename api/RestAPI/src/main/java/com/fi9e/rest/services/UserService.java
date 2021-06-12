@@ -117,22 +117,18 @@ public class UserService implements UserServiceInterface {
 	}
 	
 	public void logout(String authHeader) {
-		
 		String token = this.stripToken(authHeader);
-		
 		Claims payload = this.tokenService.verifyToken(token);
 		
 		int user_id =  payload.get("user_id", Integer.class) ;		
-
 		User user = this.userDao.getUserById(user_id);
-		
 		user.setToken(null);
 		
 		this.userDao.updateUser(user);
 	}
 	
 	
-	private String stripToken(String authHeader) {
+	public String stripToken(String authHeader) {
 		final String regex = "\\s(.*)";
         
         final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
