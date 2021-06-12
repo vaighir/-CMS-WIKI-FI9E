@@ -1,6 +1,8 @@
 package com.fi9e.rest.services;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.MultivaluedMap;
@@ -13,6 +15,8 @@ import com.fi9e.rest.entity.User;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.mappers.UserMapper;
 import com.fi9e.rest.models.UserCredentials;
+
+import io.jsonwebtoken.Claims;
 
 public class UserService implements UserServiceInterface {
 
@@ -113,11 +117,32 @@ public class UserService implements UserServiceInterface {
 	}
 	
 	public void logout(String authHeader) {
-		//parse token
 		
-		//get user_id from payload
+		String token = this.stripToken(authHeader);
 		
-		//remove token from user with id user_id
+		Claims payload = this.tokenService.verifyToken(token);
 		
+		int user_id =  payload.get("user_id", Integer.class) ;		
+
+		User user = this.userDao.getUserById(user_id);
+		
+		user.setToken(null);
+		
+		this.userDao.updateUser(user);
+	}
+	
+	
+	private String stripToken(String authHeader) {
+		final String regex = "\\s(.*)";
+        
+        final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+        final Matcher matcher = pattern.matcher(authHeader);
+        String token = "";
+        
+        if(matcher.find()) {
+        	token = matcher.group(1);
+        }
+        
+        return token;
 	}
 }
