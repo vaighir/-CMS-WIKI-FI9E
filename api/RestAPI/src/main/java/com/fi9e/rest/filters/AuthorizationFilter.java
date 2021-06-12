@@ -9,6 +9,9 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.models.UserCredentials;
@@ -22,7 +25,8 @@ import com.fi9e.rest.services.AuthService;
 public class AuthorizationFilter implements ContainerRequestFilter {
 	
 	private static final String AUTH_HEADER_KEY = "authorization";
-	private static final String AUTH_HEADER_PREFIX = "Basic ";
+	private static final String AUTH_HEADER_PREFIX_BASIC = "Basic ";
+	private static final String AUTH_HEADER_PREFIX_BEARER = "Bearer ";
 	
 	private AuthService auth;
 	private ApiResponse api;
@@ -30,25 +34,11 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
+		//Basic Auth Login
+		this.doBasicAuthVariantVerify(requestContext);
 		
-		//retrieve user credentials from auth header
-		UserCredentials credentials = null;
-		
-		credentials = this.getCredentialsFromHeader(requestContext);
-		
-		if(credentials == null) {
-			requestContext.abortWith( this.getApi().unauthorized() );
-			return;
-		}
-		
-		//get user
-		try {
-			this.getAuthService().auhtorize(credentials);
-			return;
-		} catch (ApiException e) {
-			requestContext.abortWith( this.getApi().unauthorized() );
-			return;
-		}
+		//Token Based Login
+		//@TODO: add token based login
 	}
 	
 	private AuthService getAuthService() {
@@ -67,7 +57,11 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		return this.api;
 	}
 	
-	
+	/***
+	 * Basic Auth login variant
+	 * @param requestContext
+	 * @return
+	 */
 	private UserCredentials getCredentialsFromHeader(ContainerRequestContext requestContext) {
 		MultivaluedMap<String, String> authHeader = requestContext.getHeaders();//.get(AUTH_HEADER_KEY);
 		
@@ -83,7 +77,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		}
 		
 		//remove auth header prefix
-		authToken = authToken.replaceFirst(AUTH_HEADER_PREFIX, "");
+		authToken = authToken.replaceFirst(AUTH_HEADER_PREFIX_BASIC, "");
 		//decode credentials
 		String decodedCredentials = "";
 		try {
@@ -99,6 +93,49 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		String password = tokenizer.nextToken();
 		
 		return new UserCredentials(username, password);
+	}
+	
+	/**
+	 * Check Auth Header for Bearer Token and either grant acces or deny
+	 * 
+	 * @param requestContext
+	 */
+	private void doBearerTokenVerify(ContainerRequestContext requestContext) {
+		//@TODO: get token from bearer header
+		
+		//@CHECK IF Token is Valid
+		
+		//@CHECK IF USER has same TOKEN (is isCurrentUserToken)
+		
+		//return errors if login failed
+	}
+	
+	
+	/**
+	 * Check Auth header for Basic user Credentials.
+	 * When Credentials found, grant acces. If not return unauth error.
+	 * @param requestContext
+	 * @throws JsonProcessingException
+	 */
+	private void doBasicAuthVariantVerify(ContainerRequestContext requestContext) throws JsonProcessingException {
+		//retrieve user credentials from auth header
+		UserCredentials credentials = null;
+		
+		credentials = this.getCredentialsFromHeader(requestContext);
+		
+		if(credentials == null) {
+			requestContext.abortWith( this.getApi().unauthorized() );
+			return;
+		}
+		
+		//get user
+		try {
+			this.getAuthService().auhtorize(credentials);
+			return;
+		} catch (ApiException e) {
+			requestContext.abortWith( this.getApi().unauthorized() );
+			return;
+		}
 	}
 
 }

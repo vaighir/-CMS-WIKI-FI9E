@@ -7,8 +7,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import com.fi9e.rest.filters.Authorized;
-
 /** Example resource class hosted at the URI path "/hi"
  */
 @Path("/hi")
