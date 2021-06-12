@@ -26,6 +26,7 @@ CREATE TABLE user (
     name VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
+    token TEXT,
     PRIMARY KEY (id),
     FOREIGN KEY (role_id)
       REFERENCES role(id)
@@ -76,3 +77,5 @@ INSERT INTO article (name, category_id, content) values ("testarticle3", 2, "Tes
 
 INSERT INTO user (name, email, password) values ("John Smith", "john.smith@mail.com", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");
 INSERT INTO user (name, email, password) values ("Jane Shepard", "jane.shepard@normandy.gov", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");
+INSERT INTO user (name, email, password) values ("Chris", "chiny1@web.de", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");
+INSERT INTO user (name, email, password) values ("Admin", "admin@web.de", "$2a$10$o2ItyR7XkJSQb9J5R2JVXery52e7P0EcRCU4D2q.pol77qdW/ghQ6");

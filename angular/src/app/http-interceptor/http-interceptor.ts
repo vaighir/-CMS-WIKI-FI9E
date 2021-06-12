@@ -3,25 +3,43 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
+const TOKEN_KEY = "fi9e_access_token";
 
 /**
  * Good source for other interceptor fun: https://indepth.dev/posts/1051/top-10-ways-to-use-interceptors-in-angular
  */
 export class AddHeaderInterceptor implements HttpInterceptor {
-
+  
   constructor() { }
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const CONTENT_TYPE = "Content-Type";
+    const ACCEPT = "Accept";
+    const AUTHORIZATION = "Authorization";
+
+    let headers =  new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-    };
+    });
 
-    const newRequest = req.clone({ setHeaders: headers });
+    const headerAcceptDefaul = 'application/json';
+    const headerContentTypeDefault = 'application/json';
+
+    //only set default headers, if none are present
+    headers = headers.append(ACCEPT, req.headers.get(CONTENT_TYPE) || headerAcceptDefaul);
+    headers = headers.append(CONTENT_TYPE, req.headers.get(ACCEPT) || headerContentTypeDefault);
+    
+    if(localStorage.getItem(TOKEN_KEY)) {
+      headers = headers.append(AUTHORIZATION, "Bearer " + localStorage.getItem(TOKEN_KEY));
+    }
+
+    let newRequest = req.clone({ headers: headers });
+
+    console.log(headers, newRequest);
 
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(newRequest);
@@ -30,7 +48,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private router: Router) {
     //
   }
 
@@ -42,7 +60,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if(error.status == 422) {
             console.log("custom error thrown ", error);
 
+            this.toastr.error(error.error.message.toString());
+
             return throwError(error.message);
+          }
+
+          if(error.status == 403) {
+            this.router.navigate(['login']);
           }
           
           let errorMsg = '';

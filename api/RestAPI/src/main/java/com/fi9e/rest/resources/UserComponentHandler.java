@@ -1,33 +1,41 @@
 package com.fi9e.rest.resources;
 
-import javax.ws.rs.DELETE;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
+import com.fi9e.rest.dto.UserDTO;
+import com.fi9e.rest.filters.Authorized;
+import com.fi9e.rest.helper.ApiResponse;
+import com.fi9e.rest.services.UserService;
+import com.fi9e.rest.services.UserServiceInterface;
 
-import com.fi9e.rest.entity.User;
-import com.fi9e.rest.dao.UserDao;
-
+/**
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/user")
 public class UserComponentHandler {
-	UserDao userDao = new UserDao();
 
+	private UserServiceInterface userService;
+	private ApiResponse api;
+	
+	@Inject
+	public UserComponentHandler(UserServiceInterface users) {
+		this.userService = users;
+		this.api = new ApiResponse();
+	}
+	
 	@GET
 	@Path("/{id}")
+	@Authorized
 	public Response getUserById(@PathParam("id") int id) {
-		User user = userDao.getUserById(id);
+		UserDTO user = this.userService.getUserById(id);
 
-		Gson gson = new Gson();
-		String jsonString = gson.toJson(user);
-
-		 System.out.println(jsonString);
-		return Response.status(200).entity(jsonString).build();
-		/*
-		String user = "Peter Knerz";
-		return Response.status(200).entity(user).build();*/
+		return this.api.success(user, "");
 	}
 
 }

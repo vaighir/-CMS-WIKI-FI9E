@@ -1,8 +1,9 @@
 package com.fi9e.rest.exceptions;
 
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.ext.ExceptionMapper;
+
+import com.fi9e.rest.helper.ApiResponse;
 
 /**
  * 
@@ -10,10 +11,18 @@ import javax.ws.rs.ext.ExceptionMapper;
  *
  */
 public class ApiExceptionHandler implements ExceptionMapper<ApiException> {
-
+	
+	private final ApiResponse api;
+	
+	public ApiExceptionHandler() {
+		this.api = new ApiResponse();
+	}
+	
 	@Override
 	public Response toResponse(ApiException exception) {
-		return Response.status(Status.BAD_REQUEST).entity(exception.getMessage()).build();
+		
+		return this.api.error(null, exception.getMessage());
+		//Response.status(ApiResponse.HTTP_ERROR).entity()
 	}
 
 }

@@ -25,11 +25,9 @@ export class UserComponent implements OnInit {
     console.log("making request...");
     this.http.get(this.host + this.route + this.username).toPromise()
     .then((data) => {
-      alert("Yay" + data + " responded");
       console.log(data);
     })
     .catch((error) => {
-      alert("Error" + error + " responded");
       console.error(error);
     });
   }

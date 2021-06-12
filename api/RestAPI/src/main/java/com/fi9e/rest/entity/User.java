@@ -34,8 +34,12 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "token")
+	private String token;
 
 	public User() {
+		
 	}
 
 	public User(String name, String email, String password, Role role) {
@@ -86,14 +90,12 @@ public class User {
 		this.role = role;
 	}
 	
-	public boolean checkPassword(String plainPassword, String hashedPassword) {
-		boolean result = false;
-		
-		if (BCrypt.checkpw(plainPassword, hashedPassword)) {
-			result = true;
-		}
-		
-		return result;
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	@Override

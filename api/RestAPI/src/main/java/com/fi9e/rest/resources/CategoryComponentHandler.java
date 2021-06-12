@@ -15,9 +15,11 @@ import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.exceptions.ApiException;
+import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.managers.CategoryManager;
 
 @Path("/category")
+@Authorized
 public class CategoryComponentHandler {
 	private CategoryManager mngr;
 	

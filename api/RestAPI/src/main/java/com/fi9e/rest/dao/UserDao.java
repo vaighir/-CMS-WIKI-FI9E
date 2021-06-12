@@ -1,11 +1,18 @@
 package com.fi9e.rest.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.NativeQuery;
 
 import com.fi9e.rest.entity.Role;
 import com.fi9e.rest.entity.User;
+import com.mysql.cj.Query;
 
 public class UserDao {
 
@@ -68,6 +75,7 @@ public class UserDao {
 		oldUser.setName(user.getName());
 		oldUser.setPassword(user.getPassword());
 		oldUser.setRole(user.getRole());
+		oldUser.setToken(user.getToken());
 
 		try {
 			session.beginTransaction();
@@ -85,9 +93,6 @@ public class UserDao {
 
 	// delete user
 	public void deleteUserById(int id) {
-		
-		
-
 		User user = getUserById(id);
 		
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -106,5 +111,31 @@ public class UserDao {
 			}
 		}
 	}
-
+	
+	@SuppressWarnings({"unchecked", "deprecation"})
+	public List<User> get(String email) {
+		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		
+		List<User> users = new ArrayList<User>();
+		
+		try {
+			session.beginTransaction();
+			
+			Criteria crit = session.createCriteria(User.class);
+			crit.add(Restrictions.eqOrIsNull("email", email.toLowerCase()));
+			users = crit.list();
+	
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+				factory.close();
+			}
+		}
+		
+		return users;
+	}
 }
