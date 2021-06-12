@@ -1,34 +1,34 @@
 
 <section class="w-100 p-5">
-  <h2 class="mb-4">New Article</h2>
+  <h2 class="mb-4">Neuer Artikel</h2>
 
   <app-loader-component [isLoading]="isLoading"></app-loader-component>
 
   <form class="form-group">
     <div class="form-group">
-      <label>Category</label>
+      <label>Lernfeld</label>
       <select [(ngModel)]="selectedCategory" class="form-control" [ngModelOptions]="{standalone: true}">
         <option *ngFor = "let category of categoryList" value="{{category.id}}">{{category.name}}</option>
       </select>
     </div>
 
     <div class="input-group mb-3">
-      <label>Subject</label>
+      <label>Thema</label>
       <input class="form-controll input w-100 pt-2 pb-2 pl-3 pr-3" placeholder="Betreff" [(ngModel)]="article.name" [ngModelOptions]="{standalone: true}" type="text" name="name" value="{{article.name}}" required/>
       <span *ngIf="article.name.length <= 0">
-          <small class="text-danger">Subject is required<br></small>
+          <small class="text-danger">Thema ist erforderlich<br></small>
       </span>
     </div>
 
     <div class="input-group ">
-      <label>Content</label>
+      <label>Inhalt</label>
       <textarea required class="form-controll w-100 pt-2 pb-2 pr-3 pl-3" name="content" rows="20vh" [(ngModel)]="article.content">{{article.content}}</textarea>
       <span *ngIf="article.content.length <= 0">
-        <small class="text-danger">Content is required<br></small>
+        <small class="text-danger">Inhalt ist erforderlich<br></small>
     </span>
     </div>
 
-    <div class="btn btn-light mt-3 pt-2 pb-2 pl-4 pr-4 mr-3" (click)="onBack()">Cancel</div>
-    <div (click)="onSave()" class="btn btn-primary mt-3 pt-2 pb-2 pl-4 pr-4">Save</div>
+    <div class="btn btn-light mt-3 pt-2 pb-2 pl-4 pr-4 mr-3" (click)="onBack()">Abbrechen</div>
+    <div (click)="onSave()" class="btn btn-primary mt-3 pt-2 pb-2 pl-4 pr-4">Speichern</div>
   </form>
 </section>
