@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IApiResource } from '../interfaces/IApiResource';
 import { ApiRoutes, HeadersForms } from '../routing-module/api-paths';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { User } from './user.model';
 
 const TOKEN_KEY = "fi9e_access_token";
 
@@ -11,7 +13,7 @@ const TOKEN_KEY = "fi9e_access_token";
   providedIn: 'root'
 })
 export class AuthService implements IApiResource {
-  
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -23,8 +25,8 @@ export class AuthService implements IApiResource {
     const payload: HttpParams = new HttpParams()
       .set("username", form.value.email)
       .set("password", form.value.password);
-    
-    return this.http.post<any>(ApiRoutes.uri.LOGIN, payload, {headers: new HttpHeaders().set('Accept', 'application/x-www-form-urlencoded')}).toPromise();
+
+    return this.http.post<any>(ApiRoutes.uri.LOGIN, payload, { headers: new HttpHeaders().set('Accept', 'application/x-www-form-urlencoded') }).toPromise();
   }
 
   /**
@@ -32,10 +34,10 @@ export class AuthService implements IApiResource {
    * @returns Logout user from API
    */
   logout() {
-    return this.http.post<any>( ApiRoutes.uri.LOGOUT, this.getToken() ).toPromise();
+    return this.http.post<any>(ApiRoutes.uri.LOGOUT, this.getToken()).toPromise();
   }
 
-  storeToken(token:string) {
+  storeToken(token: string) {
     localStorage.setItem(TOKEN_KEY, token);
   }
 
@@ -58,4 +60,21 @@ export class AuthService implements IApiResource {
   update(model: any) {
     throw new Error('Method not implemented.');
   }
+
+  getTokenPayload() {
+    const token = this.getToken() || "";
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    //const expirationDate = helper.getTokenExpirationDate(token);
+    const isExpired = helper.isTokenExpired(token);
+
+    let user: User = new User();
+    user.id = decodedToken.user_id;
+    user.email = decodedToken.email;
+    user.username = decodedToken.username;
+    user.isExpiredToken = isExpired;
+
+    return user;
+  }
+
 }
