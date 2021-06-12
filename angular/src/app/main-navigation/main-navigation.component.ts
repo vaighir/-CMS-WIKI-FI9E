@@ -9,12 +9,13 @@ import { UserService } from '../nav-menu/services/user.service';
   styleUrls: ['./main-navigation.component.scss']
 })
 export class MainNavigationComponent implements OnInit {
-  currentUser?: User;
+  currentUser: User = new User();
 
   constructor(private userService: UserService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.userService.currentUser$.subscribe(user => this.currentUser = user);
+    this.userService.setUser( this.auth.getTokenPayload() );
   }
 
   resetUser() : void {

@@ -29,14 +29,17 @@ export class AddHeaderInterceptor implements HttpInterceptor {
     const headerContentTypeDefault = 'application/json';
 
     //only set default headers, if none are present
-    headers.set(CONTENT_TYPE, req.headers.get(CONTENT_TYPE) || headerContentTypeDefault);
-    headers.set(ACCEPT, req.headers.get(ACCEPT) || headerAcceptDefaul);
+    
+    headers = headers.append(ACCEPT, req.headers.get(CONTENT_TYPE) || headerAcceptDefaul);
+    headers = headers.append(CONTENT_TYPE, req.headers.get(ACCEPT) || headerContentTypeDefault);
     
     if(localStorage.getItem(TOKEN_KEY)) {
-      headers.set(AUTHORIZATION, "Bearer " + localStorage.getItem(TOKEN_KEY));
+      headers = headers.append(AUTHORIZATION, "Bearer " + localStorage.getItem(TOKEN_KEY));
     }
 
     let newRequest = req.clone({ headers: headers });
+
+    console.log(headers, newRequest);
 
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(newRequest);
