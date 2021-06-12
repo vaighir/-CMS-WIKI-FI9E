@@ -1,20 +1,20 @@
 
   <div class="pl-5 pr-5 pt-5 w-100">
-   
-      <div class="d-flex align-items-center justify-content-between mb-4">    
-        <h1 class="pr-4" *ngIf="allArticles">All Articles </h1>
+
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="pr-4" *ngIf="allArticles">Alle Artikel </h1>
         <div *ngIf="!allArticles"></div>
-        <div class="btn btn-primary" routerLink="/article/add">Add Article</div>
+        <div class="btn btn-primary" routerLink="/article/add">Artikel hinzufügen</div>
 
       </div>
     <div>
       <div *ngIf="!articleList || articleList?.length === 0" class="alert alert-info">
-        No articles found for this category
+        Keine Artikel für dieses Lernfeld gefunden
       </div>
 
         <!-- Show Articles: display articles -->
         <div class="d-flex article-card-container justify-content-between">
-          <app-article-item 
+          <app-article-item
             *ngFor="let articleEl of articleList"
             [article] = articleEl
           >
