@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /home/cms-wiki-fi9e
 # Stop the application if running
 docker-compose down
 #docker volume rm cms-wiki-fi9e_tomcat
