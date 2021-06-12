@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../auth/user.model';
 import { UserService } from '../nav-menu/services/user.service';
@@ -11,7 +12,7 @@ import { UserService } from '../nav-menu/services/user.service';
 export class MainNavigationComponent implements OnInit {
   currentUser: User = new User();
 
-  constructor(private userService: UserService, private auth: AuthService) { }
+  constructor(private userService: UserService, private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.currentUser$.subscribe(user => this.currentUser = user);
@@ -27,6 +28,7 @@ export class MainNavigationComponent implements OnInit {
     this.auth.logout()
     .then(() => {
       this.resetUser();
+      this.router.navigate(['login']);
     });
   }
 }
