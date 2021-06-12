@@ -36,12 +36,9 @@ public class AuthComponentHandler {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(MultivaluedMap<String, String> form) {
+		String token = this.userService.login(form);
 		
-		//check if user can authorize with user service
-		
-		//if authed, return JWT and save JWT to database (TOKEN)
-		
-		return this.api.success(null, "");
+		return this.api.success(token, "login successfull");
 	}
 	
 	

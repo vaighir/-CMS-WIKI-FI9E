@@ -1,5 +1,6 @@
 package com.fi9e.rest.resources;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -9,6 +10,7 @@ import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.services.UserService;
+import com.fi9e.rest.services.UserServiceInterface;
 
 /**
  * 
@@ -18,11 +20,12 @@ import com.fi9e.rest.services.UserService;
 @Path("/user")
 public class UserComponentHandler {
 
-	private UserService userService;
+	private UserServiceInterface userService;
 	private ApiResponse api;
 	
-	public UserComponentHandler() {
-		this.userService = new UserService();
+	@Inject
+	public UserComponentHandler(UserServiceInterface users) {
+		this.userService = users;
 		this.api = new ApiResponse();
 	}
 	

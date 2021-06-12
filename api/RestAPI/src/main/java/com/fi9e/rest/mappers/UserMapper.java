@@ -22,4 +22,15 @@ public class UserMapper {
 		
 		return dto;
 	}
+	
+	
+	public static User mapUserDTOtoUser(UserDTO dto, User user) {
+		user.setEmail(dto.getEmail());
+		user.setName(dto.getUsername());
+		user.setToken(dto.getToken());
+		user.setPassword(dto.getPassword());//hashed password!
+		//user.setRole(dto);
+		
+		return user;
+	}
 }

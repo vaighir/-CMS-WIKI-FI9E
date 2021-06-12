@@ -1,5 +1,7 @@
 package com.fi9e.rest.services;
 
+import javax.inject.Inject;
+
 import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.models.UserCredentials;
@@ -11,10 +13,11 @@ import com.fi9e.rest.models.UserCredentials;
  */
 public class AuthService  {
 
-	private UserService userService;
+	private UserServiceInterface userService;
 	
-	public AuthService() {
-		this.userService = new UserService();
+	@Inject
+	public AuthService(UserServiceInterface users) {
+		this.userService = users;
 	}
 	
 	/**
@@ -25,7 +28,7 @@ public class AuthService  {
 	 * @throws ApiException
 	 */
 	public UserDTO auhtorize(UserCredentials credentials) throws ApiException {
-		UserDTO user = this.userService.getUserByEmail(credentials);
+		UserDTO user = this.userService.getUserDTOByEmail(credentials);
 		
 		if(user == null) {
 			throw new ApiException("User with email not found");

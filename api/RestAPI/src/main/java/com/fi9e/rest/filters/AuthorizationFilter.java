@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.StringTokenizer;
 
+import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
@@ -12,8 +13,10 @@ import javax.ws.rs.ext.Provider;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.helper.ApiResponse;
+import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.models.UserCredentials;
 import com.fi9e.rest.services.AuthService;
+import com.fi9e.rest.services.AuthServiceInterface;
 
 /**
  * Header Request Filter | checks for credentials
@@ -26,9 +29,14 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private static final String AUTH_HEADER_PREFIX_BASIC = "Basic ";
 	private static final String AUTH_HEADER_PREFIX_BEARER = "Bearer ";
 	
-	private AuthService auth;
-	private ApiResponse api;
+	private AuthServiceInterface auth;
+	private ApiResponseInterface api;
 	
+	@Inject
+	public AuthorizationFilter(AuthServiceInterface auth, ApiResponseInterface api) {
+		this.auth = auth;
+		this.api = api;
+	}
 	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -37,22 +45,6 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		
 		//Token Based Login
 		//@TODO: add token based login
-	}
-	
-	private AuthService getAuthService() {
-		if(this.auth == null) {
-			this.auth = new AuthService();
-		}
-		
-		return this.auth;
-	}
-	
-	private ApiResponse getApi() {
-		if(this.api == null) {
-			this.api = new ApiResponse();
-		}
-		
-		return this.api;
 	}
 	
 	/***
@@ -122,16 +114,16 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		credentials = this.getCredentialsFromHeader(requestContext);
 		
 		if(credentials == null) {
-			requestContext.abortWith( this.getApi().unauthorized() );
+			requestContext.abortWith( this.api.unauthorized() );
 			return;
 		}
 		
 		//get user
 		try {
-			this.getAuthService().auhtorize(credentials);
+			this.auth.auhtorize(credentials);
 			return;
 		} catch (ApiException e) {
-			requestContext.abortWith( this.getApi().unauthorized() );
+			requestContext.abortWith( this.api.unauthorized() );
 			return;
 		}
 	}

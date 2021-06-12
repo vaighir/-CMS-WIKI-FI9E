@@ -8,6 +8,7 @@ import com.fi9e.rest.models.UserCredentials;
 public interface UserServiceInterface {
 	public UserDTO getUserById(int id);
 	public UserDTO getUserByEmail(UserCredentials credentials);
+	public UserDTO getUserDTOByEmail(UserCredentials credentials);
 	public boolean checkPassword(String plainPassword, String hashedPassword);
 	public String login(MultivaluedMap<String, String> form);
 }

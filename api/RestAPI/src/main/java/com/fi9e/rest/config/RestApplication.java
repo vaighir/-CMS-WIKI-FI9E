@@ -7,6 +7,10 @@ import org.glassfish.jersey.server.ResourceConfig;
 import com.fi9e.rest.filters.AuthorizationFilter;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.helper.ApiResponseInterface;
+import com.fi9e.rest.services.AuthService;
+import com.fi9e.rest.services.AuthServiceInterface;
+import com.fi9e.rest.services.TokenService;
+import com.fi9e.rest.services.TokenServiceInterface;
 import com.fi9e.rest.services.UserService;
 import com.fi9e.rest.services.UserServiceInterface;
 
@@ -31,6 +35,8 @@ public class RestApplication extends ResourceConfig {
             protected void configure() {
             	bind(ApiResponse.class).to(ApiResponseInterface.class);
             	bind(UserService.class).to(UserServiceInterface.class);
+            	bind(TokenService.class).to(TokenServiceInterface.class);
+            	bind(AuthService.class).to(AuthServiceInterface.class);
             }
         });
 	}

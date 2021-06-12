@@ -1,6 +1,5 @@
 package com.fi9e.rest.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -16,10 +15,12 @@ import com.fi9e.rest.models.UserCredentials;
 
 public class UserService {
 
-	private UserDao userDao;
+	private final UserDao userDao;
+	private final TokenServiceInterface tokenService;
 	
-	public UserService() {
+	public UserService(TokenServiceInterface tokenService) {
 		this.userDao = new UserDao();
+		this.tokenService = tokenService;
 	}
 	
 	/**
@@ -57,17 +58,18 @@ public class UserService {
 	 * @param credentials
 	 * @return
 	 */
-	public UserDTO getUserByEmail(UserCredentials credentials) {
-		//get user by email | (means username)
-		List<?> users = this.userDao.get(credentials.getUserName());
-		List<UserDTO> dtoList = new ArrayList<UserDTO>();
+	public UserDTO getUserDTOByEmail(UserCredentials credentials) {
+		User user = this.getUserByEmail(credentials);
 		
-		for (Object user : users) {
-			dtoList.add(UserMapper.mapUserToUserDTO( (User) user ));
-		}
+		return UserMapper.mapUserToUserDTO(user);
+	}
+	
+	
+	public User getUserByEmail(UserCredentials credentials) {
+		List<User> users = this.userDao.get(credentials.getUserName());
 		
-		if(dtoList.size() > 0) {
-			return dtoList.get(0);
+		if(users.size() > 0) {
+			return users.get(0);
 		}
 		
 		return null;
@@ -83,7 +85,7 @@ public class UserService {
 			
 			UserCredentials credentials = new UserCredentials(email, password);
 			
-			UserDTO user = this.getUserByEmail(credentials);
+			User user = this.getUserByEmail(credentials);
 			
 			if(user == null) {
 				throw new ApiException("User with email not found");
@@ -93,8 +95,7 @@ public class UserService {
 				throw new ApiException("Passwords do not match our records");
 			}
 			
-			//TODO: create token and save to user
-			
+			token = this.tokenService.createToken(user);
 		}
 		
 		return token;
