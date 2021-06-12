@@ -5,12 +5,14 @@ import java.io.IOException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
 
 /**
  * Adds CORS settings and JSON headers to every request
+ * 
  * @author Christopher
- *
  */
+@Provider
 public class CORSFilter implements ContainerResponseFilter {
 
 	@Override

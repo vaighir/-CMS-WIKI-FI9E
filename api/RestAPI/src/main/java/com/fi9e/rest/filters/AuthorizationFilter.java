@@ -9,8 +9,6 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.helper.ApiResponse;

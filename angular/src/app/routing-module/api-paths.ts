@@ -8,12 +8,17 @@ export abstract class ApiRoutes {
   
   public static uri = {
     CATEGORYLIST_SHOW: ApiRoutes.path(),
+    
     ARTICLE_ADD: ApiRoutes.path() + "article/add",//Method: POST
     ARTICLE_SHOW: ApiRoutes.path() + "article/", //+id | Method: GET
     ARTICLELIST_SHOW: ApiRoutes.path() + "article/all", // | Method: GET
     ARTICLELISTBYCATEGORY_SHOW: ApiRoutes.path() + "article/category/", // +categoryId| Method: GET
     ARTICLE_UPDATE: ApiRoutes.path() + "article/", //+id | Method: PUT
     ARTICLE_DELETE: ApiRoutes.path() + "article/", //+id | Method: DELETE
+
+    LOGIN: ApiRoutes.path() + "login", //form with credentials
+    REGISTER: ApiRoutes.path() + "register", //form with credentials
+    LOGOUT: ApiRoutes.path() + "logout",
   }
 
   private static path() {

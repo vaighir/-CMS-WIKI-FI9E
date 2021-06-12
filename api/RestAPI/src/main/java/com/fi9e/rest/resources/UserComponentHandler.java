@@ -1,7 +1,6 @@
 package com.fi9e.rest.resources;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
@@ -34,31 +33,6 @@ public class UserComponentHandler {
 		UserDTO user = this.userService.getUserById(id);
 
 		return this.api.success(user, "");
-	}
-	
-	
-	@POST
-	@Path("/login")
-	public Response login() {
-		
-		//get credentials from request
-		
-		//check if user can authorize with user service
-		
-		//if authed, return JWT and save JWT to database (TOKEN)
-		
-		return this.api.success(null, "");
-	}
-	
-	
-	@POST
-	@Path("/logout")
-	@Authorized
-	public Response logout() {
-		
-		//do logout
-		
-		return this.api.success(null, "");
 	}
 
 }

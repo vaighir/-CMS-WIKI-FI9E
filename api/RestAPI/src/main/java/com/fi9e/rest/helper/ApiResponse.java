@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.JsonObject;
 
 
-public class ApiResponse {
+public class ApiResponse implements ApiResponseInterface {
 	static final int HTTP_ERROR = 422;
 	static final int HTTP_FORBIDDEN = 403;
 	
