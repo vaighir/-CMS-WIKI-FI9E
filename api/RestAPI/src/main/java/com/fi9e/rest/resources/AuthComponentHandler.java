@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.services.UserServiceInterface;
@@ -35,7 +36,7 @@ public class AuthComponentHandler {
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(MultivaluedMap<String, String> form) {
+	public Response login(MultivaluedMap<String, String> form) throws ApiException {
 		String token = this.userService.login(form);
 		
 		return this.api.success(token, "login successfull");

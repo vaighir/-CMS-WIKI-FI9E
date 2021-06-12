@@ -2,6 +2,7 @@ package com.fi9e.rest.services;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -13,11 +14,12 @@ import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.mappers.UserMapper;
 import com.fi9e.rest.models.UserCredentials;
 
-public class UserService {
+public class UserService implements UserServiceInterface {
 
 	private final UserDao userDao;
 	private final TokenServiceInterface tokenService;
 	
+	@Inject
 	public UserService(TokenServiceInterface tokenService) {
 		this.userDao = new UserDao();
 		this.tokenService = tokenService;
@@ -80,8 +82,16 @@ public class UserService {
 		String token = "";
 		
 		if(form != null) {
-			String email = !form.getFirst("email").isEmpty() ? form.getFirst("email") : "";
-			String password = !form.getFirst("password").isEmpty() ? form.getFirst("password"): "";
+			
+			String email;
+			String password;
+			
+			try {
+				email = !form.getFirst("username").isEmpty() ? form.getFirst("username") : "";
+				password = !form.getFirst("password").isEmpty() ? form.getFirst("password"): "";
+			} catch (Exception e) {
+				throw new ApiException("Invalid form data");
+			}
 			
 			UserCredentials credentials = new UserCredentials(email, password);
 			

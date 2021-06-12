@@ -4,11 +4,10 @@ import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import com.fi9e.rest.exceptions.ApiExceptionHandler;
 import com.fi9e.rest.filters.AuthorizationFilter;
 import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.helper.ApiResponseInterface;
-import com.fi9e.rest.services.AuthService;
-import com.fi9e.rest.services.AuthServiceInterface;
 import com.fi9e.rest.services.TokenService;
 import com.fi9e.rest.services.TokenServiceInterface;
 import com.fi9e.rest.services.UserService;
@@ -29,6 +28,7 @@ public class RestApplication extends ResourceConfig {
 		register(JacksonFeature.class);
 		register(CORSFilter.class);
 		register(AuthorizationFilter.class);
+		register(ApiExceptionHandler.class);
 		
 		register(new AbstractBinder() {
             @Override
@@ -36,7 +36,6 @@ public class RestApplication extends ResourceConfig {
             	bind(ApiResponse.class).to(ApiResponseInterface.class);
             	bind(UserService.class).to(UserServiceInterface.class);
             	bind(TokenService.class).to(TokenServiceInterface.class);
-            	bind(AuthService.class).to(AuthServiceInterface.class);
             }
         });
 	}

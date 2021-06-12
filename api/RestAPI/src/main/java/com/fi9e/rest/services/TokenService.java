@@ -21,7 +21,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class TokenService implements TokenServiceInterface {
 	
 	//used to sign keys
-	private static final String SECRET_KEY = "fi9e_super_secret_secret";
+	private static final String SECRET_KEY = "fi9e_super_secret_secret_IsSuperAwesomeThisisAverySecureSecretKeyandJWTisdopeWEEEEEEEEEEEEEEEEEEEEEEEE!2i3j21oj3";
 	private static final String CLAIM_EMAIL = "email";
 	private static final String CLAIM_USERNAME = "username";
 	private static final String CLAIM_USER_ID = "user_id";
@@ -46,20 +46,20 @@ public class TokenService implements TokenServiceInterface {
 		return Jwts.builder()
 				.setSubject("User")
 				.claim(CLAIM_EMAIL, dto.getEmail())
-				.claim(CLAIM_USERNAME, dto.getClass())
+				.claim(CLAIM_USERNAME, dto.getUsername())
 				.claim(CLAIM_USER_ID, dto.getId())
 				.signWith(this.getKey())
 				.compact();
 	}
 	
 	/**
-	 * Creates a secure singning Key from our secret SECRET_KEY
+	 * Creates a secure signing Key from our secret SECRET_KEY
 	 * 
 	 * @return Key
 	 */
 	private Key getKey() {
 		//The JWT signature algorithm we will be using to sign the token
-	    SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+	    SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
 		//We will sign our JWT with our ApiKey secret
 	    byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
 	    Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());

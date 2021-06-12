@@ -10,12 +10,8 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fi9e.rest.exceptions.ApiException;
-import com.fi9e.rest.helper.ApiResponse;
 import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.models.UserCredentials;
-import com.fi9e.rest.services.AuthService;
 import com.fi9e.rest.services.AuthServiceInterface;
 
 /**
@@ -33,18 +29,14 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	private ApiResponseInterface api;
 	
 	@Inject
-	public AuthorizationFilter(AuthServiceInterface auth, ApiResponseInterface api) {
-		this.auth = auth;
+	public AuthorizationFilter(ApiResponseInterface api) {
+		//this.auth = auth;
 		this.api = api;
 	}
 	
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		//Basic Auth Login
-		this.doBasicAuthVariantVerify(requestContext);
-		
-		//Token Based Login
-		//@TODO: add token based login
+		this.doBearerTokenVerify(requestContext);
 	}
 	
 	/***
@@ -100,32 +92,4 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		//return errors if login failed
 	}
 	
-	
-	/**
-	 * Check Auth header for Basic user Credentials.
-	 * When Credentials found, grant acces. If not return unauth error.
-	 * @param requestContext
-	 * @throws JsonProcessingException
-	 */
-	private void doBasicAuthVariantVerify(ContainerRequestContext requestContext) throws JsonProcessingException {
-		//retrieve user credentials from auth header
-		UserCredentials credentials = null;
-		
-		credentials = this.getCredentialsFromHeader(requestContext);
-		
-		if(credentials == null) {
-			requestContext.abortWith( this.api.unauthorized() );
-			return;
-		}
-		
-		//get user
-		try {
-			this.auth.auhtorize(credentials);
-			return;
-		} catch (ApiException e) {
-			requestContext.abortWith( this.api.unauthorized() );
-			return;
-		}
-	}
-
 }
