@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 const TOKEN_KEY = "fi9e_access_token";
 
@@ -47,7 +48,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private router: Router) {
     //
   }
 
@@ -62,6 +63,10 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             this.toastr.error(error.error.message.toString());
 
             return throwError(error.message);
+          }
+
+          if(error.status == 403) {
+            this.router.navigate(['login']);
           }
           
           let errorMsg = '';
