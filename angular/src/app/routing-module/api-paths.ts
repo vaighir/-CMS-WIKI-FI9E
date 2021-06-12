@@ -1,4 +1,15 @@
+import { HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+
+export const HeadersForms = { headers: {
+  'Accept': 'application/json',
+  'Content-Type': 'application/x-www-form-urlencoded',
+}};
+
+export const HeadersJSON = { headers: {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json',
+}};
 
 //defines all API paths we need in app
 export abstract class ApiRoutes {

@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IApiResource } from '../interfaces/IApiResource';
-import { ApiRoutes } from '../routing-module/api-paths';
+import { ApiRoutes, HeadersForms } from '../routing-module/api-paths';
 
 const TOKEN_KEY = "fi9e_access_token";
 
@@ -20,13 +20,11 @@ export class AuthService implements IApiResource {
    * @returns Promise
    */
   login(form: NgForm) {
-    let res = this.http.post<any>( ApiRoutes.uri.LOGIN, form ).toPromise();
-
-    res.then((res) => {
-      this.storeToken(res.data);
-    });
-
-    return res;
+    const payload: HttpParams = new HttpParams()
+      .set("username", form.value.email)
+      .set("password", form.value.password);
+    
+    return this.http.post<any>(ApiRoutes.uri.LOGIN, payload, {headers: new HttpHeaders().set('Accept', 'application/x-www-form-urlencoded')}).toPromise();
   }
 
   /**
@@ -36,7 +34,7 @@ export class AuthService implements IApiResource {
   logout() {
     return this.http.post<any>( ApiRoutes.uri.LOGOUT, this.getToken() ).toPromise();
   }
-  
+
   storeToken(token:string) {
     localStorage.setItem(TOKEN_KEY, token);
   }

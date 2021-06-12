@@ -81,37 +81,33 @@ public class UserService implements UserServiceInterface {
 	public String login(MultivaluedMap<String, String> form) throws ApiException {
 		String token = "";
 		
-		if(form != null) {
-			
-			String email;
-			String password;
-			
-			try {
-				email = !form.getFirst("username").isEmpty() ? form.getFirst("username") : "";
-				password = !form.getFirst("password").isEmpty() ? form.getFirst("password"): "";
-			} catch (Exception e) {
-				throw new ApiException("Invalid form data");
-			}
-			
-			UserCredentials credentials = new UserCredentials(email, password);
-			
-			User user = this.getUserByEmail(credentials);
-			
-			if(user == null) {
-				throw new ApiException("User with email not found");
-			}
-			
-			if(!this.checkPassword(password, user.getPassword())) {
-				throw new ApiException("Passwords do not match our records");
-			}
-			
-			//make token for user
-			token = this.tokenService.createToken(user);
-			
-			//update user and save token
-			user.setToken(token);
-			this.userDao.updateUser(user);
+		if(form == null) {
+			throw new ApiException("Invalid form data");
 		}
+		
+		String email;
+		String password;
+		email = !form.getFirst("username").isEmpty() ? form.getFirst("username") : "";
+		password = !form.getFirst("password").isEmpty() ? form.getFirst("password"): "";
+		
+		UserCredentials credentials = new UserCredentials(email, password);
+		
+		User user = this.getUserByEmail(credentials);
+		
+		if(user == null) {
+			throw new ApiException("User with email not found");
+		}
+		
+		if(!this.checkPassword(password, user.getPassword())) {
+			throw new ApiException("Passwords do not match our records");
+		}
+		
+		//make token for user
+		token = this.tokenService.createToken(user);
+		
+		//update user and save token
+		user.setToken(token);
+		this.userDao.updateUser(user);
 		
 		return token;
 	}

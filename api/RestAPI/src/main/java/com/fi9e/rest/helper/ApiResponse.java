@@ -10,8 +10,8 @@ import com.google.gson.JsonObject;
 
 
 public class ApiResponse implements ApiResponseInterface {
-	static final int HTTP_ERROR = 422;
-	static final int HTTP_FORBIDDEN = 403;
+	public static final int HTTP_ERROR = 422;
+	public static final int HTTP_FORBIDDEN = 403;
 	
 	public ApiResponse() {
 		//

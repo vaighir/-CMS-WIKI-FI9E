@@ -13,15 +13,23 @@ export class AddHeaderInterceptor implements HttpInterceptor {
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    const CONTENT_TYPE = "Content-Type";
+    const ACCEPT = "Accept";
+
+    let headers =  new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-    };
+    });
 
-    const newRequest = req.clone({ setHeaders: headers });
+    const headerAcceptDefaul = 'application/json';
+    const headerContentTypeDefault = 'application/json';
+
+    //only set default headers, if none are present
+    headers.set(CONTENT_TYPE, req.headers.get(CONTENT_TYPE) || headerContentTypeDefault);
+    headers.set(ACCEPT, req.headers.get(ACCEPT) || headerAcceptDefaul);
+
+    let newRequest = req.clone({ headers: headers });
 
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(newRequest);
@@ -41,6 +49,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           
           if(error.status == 422) {
             console.log("custom error thrown ", error);
+
+            this.toastr.error(error.error.message.toString())
 
             return throwError(error.message);
           }

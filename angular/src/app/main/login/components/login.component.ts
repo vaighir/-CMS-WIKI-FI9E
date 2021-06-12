@@ -21,13 +21,17 @@ export class LoginComponent implements OnInit {
   onSubmit(loginForm: NgForm) {
     if(loginForm.valid) {
 
-      this.auth.login(loginForm);
+      this.auth.login(loginForm).then((res:any) => {
+        let data:any = res.data;
 
-      console.log(loginForm.value);
+        this.auth.storeToken(data);
 
-      
+        console.log(data);
+        
+        this.router.navigate(['article/all']);
+      });
 
-      //this.router.navigate(['article/all']);
+
     } else {
       alert("Bitte, füllen Sie alle Felder richtig aus");
     }
