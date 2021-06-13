@@ -10,8 +10,8 @@ public class UserDaoTest {
 		
 		Role tempRole = new Role();
 
-		ud.createUser("Jackaf Sparrow", "john.smith@test.com", "password", tempRole);
-		ud.createUser("Katewr Johnson", "kate.johnson@test.com", "waefsd", tempRole);
+		ud.createUser("Jackaf Sparrow", "john.smith@test.com", "password", tempRole.getId());
+		ud.createUser("Katewr Johnson", "kate.johnson@test.com", "waefsd", tempRole.getId());
 
 		User u1 = ud.getUserById(2);
 

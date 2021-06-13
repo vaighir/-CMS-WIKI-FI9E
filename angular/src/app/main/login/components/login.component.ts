@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(loginForm: NgForm) {
-    if (loginForm.valid) {
+  login() {
+    if (this.loginForm.valid) {
 
-      this.auth.login(loginForm).then((res: any) => {
+      this.auth.login(this.loginForm).then((res: any) => {
         this.auth.storeToken(res.data);
 
         const user: User = this.auth.getTokenPayload();

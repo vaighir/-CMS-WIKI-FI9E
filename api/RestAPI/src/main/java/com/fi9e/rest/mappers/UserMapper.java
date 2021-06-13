@@ -19,7 +19,7 @@ public class UserMapper {
 		UserDTO dto = new UserDTO();
 		
 		if(user != null) {
-			dto.setName(user.getName());
+			dto.setUsername(user.getName());
 			dto.setEmail(user.getEmail());
 			dto.setId(user.getId());
 			dto.setPassword(user.getPassword());
@@ -39,7 +39,7 @@ public class UserMapper {
 		user.setName(dto.getUsername());
 		user.setToken(dto.getToken());
 		user.setPassword(dto.getPassword());//hashed password!
-		user.setRole(dto.getRole());
+		user.setRoleId(dto.getRole().getId());
 		
 		return user;
 	}

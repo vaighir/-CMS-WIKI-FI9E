@@ -8,11 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.NativeQuery;
 
 import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
-import com.mysql.cj.Query;
 
 public class UserDao {
 
@@ -76,7 +74,7 @@ public class UserDao {
 		oldUser.setEmail(user.getEmail());
 		oldUser.setName(user.getName());
 		oldUser.setPassword(user.getPassword());
-		oldUser.setRole(user.getRole());
+		oldUser.setRoleId(user.getRoleId());
 		oldUser.setToken(user.getToken());
 		oldUser.setRoleId(user.getRoleId());
 
@@ -142,7 +140,7 @@ public class UserDao {
 	}
 	
 	public int createUser(UserDTO dto) {
-		return createUser(dto.getName(), dto.getEmail(), dto.getPassword(), dto.getRole().getId());
+		return createUser(dto.getUsername(), dto.getEmail(), dto.getPassword(), dto.getRole().getId());
 	}
 
 }

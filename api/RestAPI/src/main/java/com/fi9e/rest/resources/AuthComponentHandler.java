@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponseInterface;
@@ -44,18 +45,21 @@ public class AuthComponentHandler {
 	
 	@POST
 	@Path("register")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response register(MultivaluedMap<String, String> form) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON) 
+	public Response store(UserDTO user) throws ApiException {
 		
-		//get credentials from request
+		if(user.getUsername().isEmpty()) {
+			this.api.error(user, "Username required");
+		} else if (user.getEmail().isEmpty()) {
+			this.api.error(user, "Email required");
+		} else if (user.getPassword().isEmpty()) {
+			this.api.error(user, "Password cannot be empty");
+		}
 		
+		UserDTO userDto = this.userService.createUser(user);
 		
-		//check if user can authorize with user service
-		
-		//if authed, return JWT and save JWT to database (TOKEN)
-		
-		return this.api.success(null, "");
+		return this.api.success(userDto, "");
 	}
 	
 	

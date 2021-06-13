@@ -26,7 +26,7 @@ public class HibernateTest {
 
 			// create a real message object
 			System.out.println("Creating a new RealMessage object");
-			User tempUser = new User("Jake Fiddle", "jake.fiddle@test.com", "oawrewrod", tempRole);
+			User tempUser = new User("Jake Fiddle", "jake.fiddle@test.com", "oawrewrod", tempRole.getId());
 
 			// start a transaction
 			session.beginTransaction();

@@ -5,7 +5,7 @@
                 <h3 class="mb-0">Anmelden</h3>
             </div>
             <div class="card-body">
-                <form class="form" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" >
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="login()" >
                     <div class="form-group">
                         <label for="email">Benutzername / E-Mail</label>
                         <input type="email" class="form-control" name="email" id="email" formControlName="email">
