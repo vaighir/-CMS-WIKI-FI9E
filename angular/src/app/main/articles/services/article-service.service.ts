@@ -27,10 +27,9 @@ export class ArticleService implements IApiResource {
     return this.http.post( ApiRoutes.uri.ARTICLE_ADD, model);
   }
   delete(id: number) {
-    return this.http.delete( ApiRoutes.uri.ARTICLE_DELETE + id);
+    return this.http.delete<number>( ApiRoutes.uri.ARTICLE_DELETE + id);
   }
   update(model: any) {
     return this.http.put( ApiRoutes.uri.ARTICLE_UPDATE + model.id, model );
   }
-
 }

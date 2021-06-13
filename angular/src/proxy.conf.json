@@ -1,6 +1,7 @@
 {
     "/RestAPI/v1/*": {
-        "target": "http://localhost:11285",
+        "debug_target": "http://localhost:11285",
+        "target": "http://localhost",
         "secure": false,
         "logLevel": "debug"
     }

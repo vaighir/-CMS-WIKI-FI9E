@@ -36,9 +36,8 @@ export class ArticlesAddComponent implements OnInit {
     this.isLoading = true;
     this.article.category.id = this.selectedCategory;
 
-     if(this.article.category.id <= 0) {
-      this.toastr.info("Please select category");
-       this.isLoading = false;
+    if(!this.validate(this.article)) {
+      this.isLoading = false;
       return;
     }
 
@@ -54,5 +53,25 @@ export class ArticlesAddComponent implements OnInit {
 
   onBack() {
     this.router.navigate([".."]);
+  }
+
+  //should be refactored into class
+  validate(article:any) {
+    if(article.category.id <= 0) {
+      this.toastr.info("Der Artikel braucht eine Kategorie!");
+      return false;
+    }
+
+    if(article.name.length <= 0) {
+      this.toastr.info("Der Artikel braucht einen Namen!");
+      return false;
+    }
+
+    if(article.content.length <= 0) {
+      this.toastr.info("Der Artikel hat keinen Inhalt!");
+      return false;
+    }
+
+    return true;
   }
 }

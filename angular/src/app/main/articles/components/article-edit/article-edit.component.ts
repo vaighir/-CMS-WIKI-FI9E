@@ -41,7 +41,6 @@ export class ArticleEditComponent implements OnInit {
         let data = res.data;
         this.article = new ArticleModel().deserialize(data);
         this.selectedCategory = this.article.category?.id ? this.article.category.id : 0;
-        console.log(this.article);
       })
       .finally(() => {
         this.isLoading = false;
@@ -50,8 +49,12 @@ export class ArticleEditComponent implements OnInit {
 
   onSave() {
     this.isLoading = true;
-
     this.article.category.id = this.selectedCategory;
+
+    if(!this.validate(this.article)) {
+      this.isLoading = false;
+      return;
+    }
 
     this.articleService.update(this.article).toPromise().then((res:any) => {
       let data = res.data;
@@ -61,11 +64,30 @@ export class ArticleEditComponent implements OnInit {
       this.toastr.success("Article saved.");
       this.router.navigate(['/article/' + this.article.id]);
     })
-      .finally(() => this.isLoading = false);
+    .finally(() => this.isLoading = false);
   }
 
   onBack() {
     this.router.navigate(["/article/" + this.id]);
   }
 
+  //should be refactored into class
+  validate(article:any) {
+    if(article.category.id <= 0) {
+      this.toastr.info("Der Artikel braucht eine Kategorie!");
+      return false;
+    }
+
+    if(article.name.length <= 0) {
+      this.toastr.info("Der Artikel braucht einen Namen!");
+      return false;
+    }
+
+    if(article.content.length <= 0) {
+      this.toastr.info("Der Artikel hat keinen Inhalt!");
+      return false;
+    }
+
+    return true;
+  }
 }
