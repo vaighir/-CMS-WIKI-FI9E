@@ -27,8 +27,9 @@ export class MainNavigationComponent implements OnInit {
   logout() : void {
     this.auth.logout()
     .then(() => {
-      this.resetUser();
       this.router.navigate(['login']);
+    }).finally(() => {
+      this.resetUser();
     });
   }
 }

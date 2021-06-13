@@ -8,21 +8,17 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.NativeQuery;
 
-import com.fi9e.rest.entity.Role;
+import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
-import com.mysql.cj.Query;
 
 public class UserDao {
 
-
-	// get user by id
 	public User getUserById(int id) {
-	
+
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
-	
+
 		User user = null;
 
 		try {
@@ -41,17 +37,19 @@ public class UserDao {
 		return user;
 	}
 
-	// create user
-	public void createUser(String name, String email, String password, Role role) {
-		
+	public int createUser(String name, String email, String password) {
+
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
-		User user = new User(name, email, password, role);
+		User user = new User(name, email, password);
 
+		int newUserId = -1;
 		try {
 			session.beginTransaction();
 			session.save(user);
+
+			newUserId = (int) session.save(user);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,21 +59,23 @@ public class UserDao {
 				factory.close();
 			}
 		}
+
+		return newUserId;
 	}
 
-	// update user
 	public void updateUser(User user) {
-		
+
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
 		User oldUser = getUserById(user.getId());
-		
+
 		oldUser.setEmail(user.getEmail());
 		oldUser.setName(user.getName());
-		oldUser.setPassword(user.getPassword());
-		oldUser.setRole(user.getRole());
+		// oldUser.setPassword(user.getPassword());
+		oldUser.setRoleId(user.getRoleId());
 		oldUser.setToken(user.getToken());
+		oldUser.setRoleId(user.getRoleId());
 
 		try {
 			session.beginTransaction();
@@ -91,10 +91,9 @@ public class UserDao {
 		}
 	}
 
-	// delete user
 	public void deleteUserById(int id) {
 		User user = getUserById(id);
-		
+
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
 
@@ -111,21 +110,21 @@ public class UserDao {
 			}
 		}
 	}
-	
-	@SuppressWarnings({"unchecked", "deprecation"})
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
-		
+
 		List<User> users = new ArrayList<User>();
-		
+
 		try {
 			session.beginTransaction();
-			
+
 			Criteria crit = session.createCriteria(User.class);
 			crit.add(Restrictions.eqOrIsNull("email", email.toLowerCase()));
 			users = crit.list();
-	
+
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -135,7 +134,35 @@ public class UserDao {
 				factory.close();
 			}
 		}
-		
+
 		return users;
 	}
+
+	public int createUser(UserDTO dto) {
+		return createUser(dto.getUsername(), dto.getEmail(), dto.getPassword());
+	}
+	
+	/**
+	 * Does user with email exist already?
+	 * @param email
+	 * @return
+	 */
+	public boolean hasEmail(String email) {
+		List<?> users = this.get(email);
+
+		boolean hasEmail = true;
+
+		if (users == null) {
+			hasEmail = false;
+		}
+
+		if (users.size() > 0) {
+			hasEmail = true;
+		} else {
+			hasEmail = false;
+		}
+		
+		return hasEmail;
+	}
+
 }

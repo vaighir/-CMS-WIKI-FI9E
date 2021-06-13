@@ -30,8 +30,8 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article = this.articleService.show(this.id).subscribe((res) => {
-      this.article = new ArticleModel().deserialize(res);
+    this.article = this.articleService.show(this.id).subscribe((res:any) => {
+      this.article = new ArticleModel().deserialize(res.data);
       this.createAtDate = new Date(this.article.created_at).toLocaleDateString('de-DE'); 
     });
   }
@@ -50,15 +50,13 @@ export class ArticleDetailComponent implements OnInit {
     )
 
     dialogModal.then((decision) => {
-      if((decision) === true) {
+      if(decision) {
         this.articleService.delete(this.id).toPromise().then((res) => {
           this.router.navigate([".."]);
           this.toastr.success('Der Artikel - ' + this.id + ' wurde erfolgreich gelöscht');
         });
       }
-    })
-    
-
+    });
 
   }
 }

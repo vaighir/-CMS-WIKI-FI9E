@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { IApiResource } from '../interfaces/IApiResource';
 import { ApiRoutes, HeadersForms } from '../routing-module/api-paths';
@@ -20,7 +20,7 @@ export class AuthService implements IApiResource {
    * @param form 
    * @returns Promise
    */
-  login(form: NgForm) {
+  login(form: FormGroup) {
     const payload: HttpParams = new HttpParams()
       .set("username", form.value.email)
       .set("password", form.value.password);

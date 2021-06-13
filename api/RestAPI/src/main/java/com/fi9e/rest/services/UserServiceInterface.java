@@ -15,4 +15,6 @@ public interface UserServiceInterface {
 	public String login(MultivaluedMap<String, String> form) throws ApiException;
 	public void logout(String token);
 	public String stripToken(String authHeader);
+	public UserDTO createUser(UserDTO user) throws ApiException;
+	public boolean isEmailTaken(String email);
 }

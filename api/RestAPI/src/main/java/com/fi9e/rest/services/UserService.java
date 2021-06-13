@@ -81,6 +81,38 @@ public class UserService implements UserServiceInterface {
 		return null;
 	}
 	
+	/**
+	 * Create a user in DB and return created object as DTO
+	 * 
+	 * @param user
+	 * @return
+	 * @throws ApiException 
+	 */
+	public UserDTO createUser(UserDTO user) throws ApiException {
+
+		int newUserId = this.userDao.createUser(user);
+		
+		if(newUserId <= 0) {
+			throw new ApiException("Error creating new user.");
+		}
+		
+		User newUser = this.userDao.getUserById(newUserId);
+		
+		UserDTO userDTO = UserMapper.mapUserToUserDTO(newUser);
+
+		return userDTO;
+	}
+
+	/**
+	 * Get specific user by id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public UserDTO getUserById(final String id) {
+		return this.getUserById(Integer.parseInt(id));
+	}
+	
 	
 	public String login(MultivaluedMap<String, String> form) throws ApiException {
 		String token = "";
@@ -140,5 +172,12 @@ public class UserService implements UserServiceInterface {
         }
         
         return token;
+	}
+	
+	/**
+	 * Check if email is already taken
+	 */
+	public boolean isEmailTaken(String email) {
+		return this.userDao.hasEmail(email.toLowerCase());
 	}
 }

@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponse;
-import com.fi9e.rest.services.UserService;
+import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.services.UserServiceInterface;
 
 /**
@@ -19,12 +19,11 @@ import com.fi9e.rest.services.UserServiceInterface;
  */
 @Path("/user")
 public class UserComponentHandler {
-
 	private UserServiceInterface userService;
-	private ApiResponse api;
+	private ApiResponseInterface api;
 	
 	@Inject
-	public UserComponentHandler(UserServiceInterface users) {
+	public UserComponentHandler(UserServiceInterface users, ApiResponseInterface api) {
 		this.userService = users;
 		this.api = new ApiResponse();
 	}
@@ -37,5 +36,5 @@ public class UserComponentHandler {
 
 		return this.api.success(user, "");
 	}
-
+	
 }

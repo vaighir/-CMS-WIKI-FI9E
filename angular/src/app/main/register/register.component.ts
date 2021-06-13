@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { User } from '../user/model/user.model';
+import { UserService } from '../user/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +16,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService,
+    private userService: UserService
 
   ) { 
     let formControls = {
@@ -35,7 +40,7 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(6)
       ]),
-      repassword: new FormControl('',[
+      confirmPassword: new FormControl('',[
         Validators.required,
       ])
     }
@@ -46,28 +51,26 @@ export class RegisterComponent implements OnInit {
   get lastname() { return this.registerForm.get('lastname') }
   get email() { return this.registerForm.get('email') }
   get password() { return this.registerForm.get('password') }
-  get repassword() { return this.registerForm.get('repassword') }
+  get confirmPassword() { return this.registerForm.get('confirmPassword') }
 
   ngOnInit(): void {
   }
 
-  register() {
+  register(user: User) {
 
-    let data = this.registerForm.value;
-    console.log(data);
-    this.router.navigate(['article/all']);
+    if(this.password?.value === this.confirmPassword?.value){
+    user = new User;
+    user.email = this.email?.value;
+    user.password = this.password?.value;
 
-    // let user = new User(data.firstname,data.lastname,data.email,data.phone,data.password);
+    user.username = this.firstname?.value + ' ' + this.lastname?.value;
 
-    // this.userService.registerAdmin(user).subscribe(
-    //   res=>{
-    //     this.toastr.success(res.message);
-    //     this.router.navigate(['/login']);
-    //   },
-    //   err=>{
-    //     console.log(err);
-    //   }
-    // )
-    
+    this.userService.add(user).toPromise().then((res) => {
+      this.router.navigate(['article/all']);
+      this.toastr.success('Hallo, ' + user.username + '! Sie wurden erfolgreich registriert')
+    }).catch(() => {
+      this.toastr.error('Die Registrierung wurde nicht erfolgreich abgeschlossen!')
+    })
+  }   
   }
 }

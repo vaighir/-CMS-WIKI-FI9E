@@ -1,19 +1,29 @@
 package com.fi9e.rest.dto;
 
-public class UserDTO {
-	private int id;
-	private String username;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * 
+ * @author Wiktor, Chris
+ *
+ */
+@XmlRootElement
+public class UserDTO  {
+	private int id = 0;
 	private String email;
+	private String username;
 	private String password;
 	private String token;
+	private RoleDTO role;
 	
 	public UserDTO() {
-		//
+		// TODO Auto-generated constructor stub
 	}
 	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -46,6 +56,12 @@ public class UserDTO {
 		this.token = token;
 	}
 	
+	public RoleDTO getRole() {
+		return role;
+	}
 	
+	public void setRole(RoleDTO role) {
+		this.role = role;
+	}
 	
 }
