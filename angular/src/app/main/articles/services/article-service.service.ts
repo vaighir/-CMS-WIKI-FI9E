@@ -32,5 +32,4 @@ export class ArticleService implements IApiResource {
   update(model: any) {
     return this.http.put( ApiRoutes.uri.ARTICLE_UPDATE + model.id, model );
   }
-
 }

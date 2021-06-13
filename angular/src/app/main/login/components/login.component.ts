@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/auth/user.model';
 import { UserService } from 'src/app/nav-menu/services/user.service';
 import { AuthService } from './../../../auth/auth.service';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     let loginControls = {
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -44,11 +46,8 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['article/all']);
       });
-
-
     } else {
-      alert("Bitte, füllen Sie alle Felder richtig aus");
+      this.toastr.info("Bitte füllen Sie alle Felder aus");
     }
-
   }
 }

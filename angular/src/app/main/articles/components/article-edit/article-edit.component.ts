@@ -41,7 +41,6 @@ export class ArticleEditComponent implements OnInit {
         let data = res.data;
         this.article = new ArticleModel().deserialize(data);
         this.selectedCategory = this.article.category?.id ? this.article.category.id : 0;
-        console.log(this.article);
       })
       .finally(() => {
         this.isLoading = false;
