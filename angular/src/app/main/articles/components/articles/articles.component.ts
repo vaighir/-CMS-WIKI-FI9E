@@ -43,14 +43,13 @@ export class ArticlesComponent implements OnInit {
   getArticlesByCategoryId(id: number): void {
     if (id !== -1 && id !== undefined) {
       this.articleService.articleListByCategory(id)
-        .subscribe(items => {
-          this.articleList = items;
+        .subscribe(res => {
+          this.articleList = res.data;
           this.allArticles = false;
         });
-  
     } else {
       this.articleService.articleList()
-      .subscribe(items => this.articleList = items);
+      .subscribe(res => this.articleList = res.data);
     } 
 
   }

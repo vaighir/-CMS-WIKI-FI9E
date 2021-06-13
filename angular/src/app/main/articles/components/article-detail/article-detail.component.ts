@@ -30,8 +30,8 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article = this.articleService.show(this.id).subscribe((res) => {
-      this.article = new ArticleModel().deserialize(res);
+    this.article = this.articleService.show(this.id).subscribe((res:any) => {
+      this.article = new ArticleModel().deserialize(res.data);
       this.createAtDate = new Date(this.article.created_at).toLocaleDateString('de-DE'); 
     });
   }

@@ -21,26 +21,17 @@ import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.managers.ArticleManager;
 
 
-
-/**
- * 
- * @author Christopher
- *
- */
 @Path("/article")
 @Authorized
 public class ArticlesComponentHandler {
-	
 	private ArticleManager mngr;
 	private ApiResponseInterface api;
-	
 	
 	@Inject
 	public ArticlesComponentHandler(ApiResponseInterface api) {
 		this.api = api;
 		this.mngr = new ArticleManager();
 	}
-	
 	
 	@POST
 	@Path("/add")
@@ -54,9 +45,10 @@ public class ArticlesComponentHandler {
 		
 		ArticleDTO dto = this.mngr.createArticle(article);
 		
-		return this.api.success(dto, "Article created");
+		return this.api.success(dto, "Article Created");
 	}
 
+	// show single article
 	@GET
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -86,6 +78,7 @@ public class ArticlesComponentHandler {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(ArticleDTO articleDTO) throws ApiException {
+
 		ArticleDTO dto = this.mngr.updateArticle(articleDTO);
 
 		return this.api.success(dto, "Article updated");
@@ -111,6 +104,6 @@ public class ArticlesComponentHandler {
 		
 		List<ArticleDTO> dtoList = this.mngr.getAllArticlesByCategoryId( id );
 
-		return this.api.success(dtoList, "");
+		return this.api.success(dtoList,"");
 	}
 }

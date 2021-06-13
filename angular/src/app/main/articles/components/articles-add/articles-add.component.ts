@@ -42,20 +42,8 @@ export class ArticlesAddComponent implements OnInit {
       return;
     }
 
-    // if(this.article.name.length <= 0) {
-    //   this.toastr.info("Subject required");
-    //   this.isLoading = false;
-    //   return;
-    // }
-
-    // if(this.article.content.length <= 0) {
-    //   this.toastr.info("Content required");
-    //   this.isLoading = false;
-    //   return;
-    // }
-
-    this.articleService.store(this.article).toPromise().then((res) => {
-      this.article = new ArticleModel().deserialize(res);
+    this.articleService.store(this.article).toPromise().then((res:any) => {
+      this.article = new ArticleModel().deserialize(res.data);
 
       this.toastr.success("Article created");
       this.router.navigate(['/article/category/' + this.article.category.id]);
