@@ -6,6 +6,7 @@ import java.util.List;
 import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
 import com.fi9e.rest.entity.Article;
+import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.mappers.ArticleMapper;
 
 /**
@@ -120,6 +121,21 @@ public class ArticleManager {
 	
 	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
 		return this.getAllArticlesByCategoryId( Integer.parseInt(categoryId) );
+	}
+	
+	
+	public void validate(ArticleDTO articleDTO) throws ApiException {
+		if(articleDTO.getName().isEmpty()) {
+			throw new ApiException("Title can not be empty!");
+		}
+		
+		if(articleDTO.getContent().isEmpty()) {
+			throw new ApiException("Content can not be empty!");
+		}
+		
+		if(articleDTO.getCategory().getId() <= 0) {
+			throw new ApiException("Article needs category!");
+		}
 	}
 
 }

@@ -37,13 +37,11 @@ public class ArticlesComponentHandler {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response store(ArticleDTO article) throws ApiException {
+	public Response store(ArticleDTO articleDTO) throws ApiException {
 		
-		if(article.getName().isEmpty()) {
-			this.api.error(article, "Subject required");
-		}
+		this.mngr.validate(articleDTO);
 		
-		ArticleDTO dto = this.mngr.createArticle(article);
+		ArticleDTO dto = this.mngr.createArticle(articleDTO);
 		
 		return this.api.success(dto, "Article Created");
 	}
@@ -78,7 +76,9 @@ public class ArticlesComponentHandler {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(ArticleDTO articleDTO) throws ApiException {
-
+		
+		this.mngr.validate(articleDTO);
+		
 		ArticleDTO dto = this.mngr.updateArticle(articleDTO);
 
 		return this.api.success(dto, "Article updated");
