@@ -58,7 +58,7 @@ export class ArticlesAddComponent implements OnInit {
       this.article = new ArticleModel().deserialize(res);
 
       this.toastr.success("Article created");
-      this.router.navigate(['/article/edit/' + this.article.id]);
+      this.router.navigate(['/article/category/' + this.article.category.id]);
     }).finally(() => {
       this.isLoading = false;
     });

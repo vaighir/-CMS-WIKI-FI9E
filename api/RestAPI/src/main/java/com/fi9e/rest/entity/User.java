@@ -3,11 +3,7 @@ package com.fi9e.rest.entity;
 import org.mindrot.jbcrypt.*;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -28,9 +24,8 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = true)
-	private Role role;
+	@Column(name = "role_id")
+	private int roleId;
 
 	@Column(name = "password")
 	private String password;
@@ -42,12 +37,12 @@ public class User {
 		
 	}
 
-	public User(String name, String email, String password, Role role) {
+	public User(String name, String email, String password, int roleId) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-		this.role = role;
+		this.roleId = roleId;
 	}
 
 	public int getId() {
@@ -79,15 +74,15 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 	}
 
-	public Role getRole() {
-		return role;
+	public int getRoleId() {
+		return roleId;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 	
 	public String getToken() {
@@ -100,9 +95,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User { id: " + id + ","
-					+ "name: " + name + ","
-					+ "email: " + email + "}";
+		return "User { id: " + id + "," + "name: " + name + "," + "email: " + email + "}";
 	}
 
 }

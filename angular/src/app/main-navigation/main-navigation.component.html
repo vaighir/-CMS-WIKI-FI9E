@@ -20,8 +20,8 @@
     </button>
     <div class="d-flex flex-row align-items-center" *ngIf="currentUser.isLoggedIn()">
       <div class="d-flex flex-column mr-2">
-        <b> {{currentUser.username}}</b>
-        <span></span>
+        <b>Rolle!</b>
+        <span> {{currentUser.username}}</span>
       </div>
       <button class="btn btn-warning mr-3" routerLink="/article/all" (click)="logout()">
         Abmelden
