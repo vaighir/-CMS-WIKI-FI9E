@@ -8,12 +8,25 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.fi9e.rest.dto.CategoryDTO;
-import com.fi9e.rest.entity.Article;
 import com.fi9e.rest.entity.Category;
 
 
+/**
+ * Data Access Object for Categories
+ * 
+ * @author Christopher, Wiktor, SU
+ *
+ */
 public class CategoryDao {
 	
+	/**
+	 * Create single Category
+	 * 
+	 * @param name
+	 * @param slug
+	 * @param content
+	 * @return int | category ID
+	 */
 	public int createCategory(String name, String slug, String content) {
 		
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -28,7 +41,6 @@ public class CategoryDao {
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			//@TODO: add throw exception on failure.
 		} finally {
 			if ( session.isOpen()) {
 				session.close();
@@ -39,6 +51,12 @@ public class CategoryDao {
 		return newCategoryId;
 	}
 	
+	/**
+	 * Retrieve single category by ID
+	 * 
+	 * @param id
+	 * @return Category
+	 */
 	public Category getCategoryById(int id) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -62,10 +80,20 @@ public class CategoryDao {
 		return category;
 	}
 	
+	/**
+	 * Overload create category by DTO
+	 * @param dto
+	 * @return int | ID
+	 */
 	public int createCategory(CategoryDTO dto) {
 		return createCategory(dto.getName(), null, null);
 	}
 	
+	/**
+	 * Update single category item
+	 * 
+	 * @param category
+	 */
 	public void updateCategory(Category category) {
 
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -89,6 +117,11 @@ public class CategoryDao {
 		}
 	}
 
+	/**
+	 * Remove single category item
+	 * 
+	 * @param id
+	 */
 	public void deleteCategoryById(int id) {
 
 		Category category = getCategoryById(id);
@@ -110,8 +143,11 @@ public class CategoryDao {
 		}
 	}
 	
-	//TODO get all categories
-
+	/**
+	 * Retrieve all categories from DB
+	 * 
+	 * @return List<?> categories
+	 */
 	public List<?> getAllCategories() {
 		List<?> categoriesRaw = new ArrayList<>();
 		
@@ -120,6 +156,7 @@ public class CategoryDao {
 
 		try {
 			session.beginTransaction();
+			//@TODO: refactor this to use Hibernate query builder | this is not practical here...
 			categoriesRaw = session.createSQLQuery("SELECT * FROM category").addEntity(Category.class).list();
 			session.getTransaction().commit();
 		} catch (Exception e) {

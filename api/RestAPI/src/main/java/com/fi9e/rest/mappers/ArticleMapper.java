@@ -5,6 +5,8 @@ import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Article;
 
 /**
+ * Simple mapper class, to map between types
+ * 
  * @author Christopher
  */
 public class ArticleMapper {
@@ -27,7 +29,6 @@ public class ArticleMapper {
 			
 			CategoryDTO catDTO = new CategoryDTO();
 			catDTO.setId( article.getCategory() );
-			//catDTO.setName(""); @TODO: put category name here...
 			
 			dto.setCategory( catDTO );
 		}

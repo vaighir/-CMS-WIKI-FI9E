@@ -18,8 +18,13 @@ import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.managers.CategoryManager;
 
+/**
+ * ENDPOINT: API: CATEGORIES
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/category")
-@Authorized
 public class CategoryComponentHandler {
 	private CategoryManager mngr;
 	
@@ -36,6 +41,7 @@ public class CategoryComponentHandler {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response store(CategoryDTO category) throws ApiException {
 		
 		CategoryDTO categoryDTO = this.getManager().createCategory(category);
@@ -43,7 +49,6 @@ public class CategoryComponentHandler {
 		return Response.ok(categoryDTO, MediaType.APPLICATION_JSON).build();
 	}
 
-	// get single catecory
 	@GET
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -55,11 +60,11 @@ public class CategoryComponentHandler {
 		return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 	}
 
-	// delete endpoint
 	@DELETE
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response delete(CategoryDTO category) throws ApiException {
 
 		// delete logic here | use dao object for data manipulation
@@ -71,6 +76,7 @@ public class CategoryComponentHandler {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response update(CategoryDTO categoryDTO) throws ApiException {
 
 		CategoryDTO dto = this.getManager().updateCategory(categoryDTO);

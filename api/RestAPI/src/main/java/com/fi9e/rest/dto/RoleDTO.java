@@ -13,7 +13,7 @@ public class RoleDTO  {
 	private String name;
 
 	public RoleDTO() {
-		// TODO Auto-generated constructor stub
+		//
 	}
 	
 	public int getId() {

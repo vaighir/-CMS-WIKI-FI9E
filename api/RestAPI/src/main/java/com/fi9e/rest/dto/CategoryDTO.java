@@ -3,13 +3,18 @@ package com.fi9e.rest.dto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+/**
+ * 
+ * @author Su, Wiktor
+ *
+ */
 public class CategoryDTO  {
 	private int id = 0;
 	private String name;
 	private String description;
 
 	public CategoryDTO() {
-		// TODO Auto-generated constructor stub
+		//
 	}
 	
 	public int getId() {

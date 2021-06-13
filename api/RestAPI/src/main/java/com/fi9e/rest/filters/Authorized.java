@@ -7,7 +7,9 @@ import java.lang.annotation.Target;
 
 import javax.ws.rs.NameBinding;
 /**
- * Authorization Annotation | is used in AuthorizationFilter Class
+ * Authorization Annotation | is used in AuthorizationFilter Class.
+ * 
+ * Can be used to bind Filters and interceptors to it.
  * 
  * @author Christopher
  *

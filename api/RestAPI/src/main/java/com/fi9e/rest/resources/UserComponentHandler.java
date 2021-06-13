@@ -13,11 +13,13 @@ import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.services.UserServiceInterface;
 
 /**
+ * ENDPOINT: API: USER
  * 
- * @author Christopher
+ * @author Christopher, Wiktor
  *
  */
 @Path("/user")
+@Authorized
 public class UserComponentHandler {
 	private UserServiceInterface userService;
 	private ApiResponseInterface api;
@@ -30,7 +32,6 @@ public class UserComponentHandler {
 	
 	@GET
 	@Path("/{id}")
-	@Authorized
 	public Response getUserById(@PathParam("id") int id) {
 		UserDTO user = this.userService.getUserById(id);
 
