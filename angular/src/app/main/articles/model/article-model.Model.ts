@@ -7,9 +7,8 @@ export class ArticleModel implements Deserializable {
     slug: String = "";
     category: Category = new Category();
     content: String = "";
-    created_at: String = ""; //@TODO: mayber TypeScript Timestamp pendant?
+    created_at: String = "";
     updated_at: String = "";
-    //@TODO: add methods to convert datetime strings into //RFC 3339 format Dates
 
     deserialize(input: any) : ArticleModel {
         Object.assign(this, input);

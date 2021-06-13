@@ -27,7 +27,6 @@ import com.fi9e.rest.managers.ArticleManager;
  *
  */
 @Path("/article")
-@Authorized
 public class ArticlesComponentHandler {
 	private ArticleManager mngr;
 	private ApiResponseInterface api;
@@ -42,6 +41,7 @@ public class ArticlesComponentHandler {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response store(ArticleDTO articleDTO) throws ApiException {
 		
 		this.mngr.validate(articleDTO);
@@ -66,6 +66,7 @@ public class ArticlesComponentHandler {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
 		if(this.mngr.deleteArticleById(id)) {
@@ -79,6 +80,7 @@ public class ArticlesComponentHandler {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response update(ArticleDTO articleDTO) throws ApiException {
 		
 		this.mngr.validate(articleDTO);

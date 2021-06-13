@@ -7,6 +7,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import com.fi9e.rest.filters.Authorized;
+
 /**
  *	ENDPOINT: API: EXAMPLE
  * 
@@ -15,7 +17,7 @@ import javax.ws.rs.core.Response;
  * @author Christopher
  *
  */
-@Path("/hi")
+@Path("/test")
 public class MyResource {
     
     /** Method processing HTTP GET requests, producing "text/plain" MIME media
@@ -23,15 +25,17 @@ public class MyResource {
      * @return String that will be send back as a response of type "text/plain".
      */
     @GET 
+    @Path("/hi")
     @Produces("text/plain")
     public String getIt() {
         return "Hi there!";
     }
     
-    @GET
-    @Path("/{name}")
-    public Response getItHello(@PathParam("name") String name) {
-    	String result = "Hello "+ name;
-    	return Response.status(200).entity(result).build();
+    @GET 
+    @Produces("text/plain")
+    @Path("/auth")
+    @Authorized
+    public String authTest() {
+        return "If you can see this, you are logged in!";
     }
 }
