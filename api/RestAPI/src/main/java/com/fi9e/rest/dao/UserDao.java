@@ -73,7 +73,7 @@ public class UserDao {
 		
 		oldUser.setEmail(user.getEmail());
 		oldUser.setName(user.getName());
-		oldUser.setPassword(user.getPassword());
+		//oldUser.setPassword(user.getPassword());
 		oldUser.setRoleId(user.getRoleId());
 		oldUser.setToken(user.getToken());
 		oldUser.setRoleId(user.getRoleId());
@@ -116,7 +116,7 @@ public class UserDao {
 	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
-		
+		 
 		List<User> users = new ArrayList<User>();
 		
 		try {
