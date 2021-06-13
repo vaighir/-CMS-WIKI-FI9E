@@ -7,6 +7,11 @@ import com.fi9e.rest.entity.User;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.models.UserCredentials;
 
+/**
+ * 
+ * @author Christopher
+ *
+ */
 public interface UserServiceInterface {
 	public UserDTO getUserById(int id);
 	public User getUserByEmail(UserCredentials credentials);

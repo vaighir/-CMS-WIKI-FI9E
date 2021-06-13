@@ -9,6 +9,13 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.JsonObject;
 
 
+/**
+ * Proper API response interface. This class is used to provide a consistent 
+ * response to clients.
+ * 
+ * @author Christopher
+ *
+ */
 public class ApiResponse implements ApiResponseInterface {
 	public static final int HTTP_ERROR = 422;
 	public static final int HTTP_FORBIDDEN = 403;
@@ -18,26 +25,29 @@ public class ApiResponse implements ApiResponseInterface {
 	}
 	
 	/**
+	 * Simple Success Response
+	 * 
 	 * @param obj | data to send
 	 * @param messages | messages for user
-	 * @return 
+	 * @return Response
 	 */
 	public Response success(Object obj, String... messages) {
 		return Response.ok(this.makeResponse(obj, messages), MediaType.APPLICATION_JSON).build();
 	}
 	
 	/**
+	 * Simple Error Response
 	 * 
 	 * @param obj | data to send
 	 * @param messages | messages for user
-	 * @return
+	 * @return Response
 	 */
 	public Response error(Object obj, String... messages) {
 		return Response.status(HTTP_ERROR).entity( this.makeResponse(obj, messages)).build();
 	}
 	
 	/**
-	 * Send user unauthorized message
+	 * Simple Unauthorized Response
 	 * 
 	 * @return Response
 	 * @throws JsonProcessingException 
@@ -46,6 +56,14 @@ public class ApiResponse implements ApiResponseInterface {
 		return Response.status(HTTP_FORBIDDEN).entity( this.makeJSON(null, "Unauthorized!").toString() ).build();
 	}
 	
+	/**
+	 * Make JSON Response Object. Uses default Response Structure like in {@link ApiResponseObject}
+	 * 
+	 * @param obj
+	 * @param messages
+	 * @return
+	 * @throws JsonProcessingException
+	 */
 	private JsonObject makeJSON(Object obj, String...messages) throws JsonProcessingException {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String data = ow.writeValueAsString(obj);
@@ -57,6 +75,13 @@ public class ApiResponse implements ApiResponseInterface {
 		return res;
 	}
 	
+	/**
+	 * Make Response Object {@link ApiResponseObject}
+	 * 
+	 * @param obj
+	 * @param messages
+	 * @return {@link ApiResponseObject}
+	 */
 	private ApiResponseObject makeResponse(Object obj, String... messages) {
 		ApiResponseObject response = new ApiResponseObject();
 		response.data = obj;

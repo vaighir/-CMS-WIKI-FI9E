@@ -3,17 +3,30 @@ package com.fi9e.rest.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
 
 import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
 
+/**
+ * Data Acces Class for users
+ * @author Christopher
+ *
+ */
 public class UserDao {
-
+	
+	/**
+	 * Retrieve user by ID
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public User getUserById(int id) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -36,7 +49,15 @@ public class UserDao {
 
 		return user;
 	}
-
+	
+	/**
+	 * Create single user
+	 * 
+	 * @param name
+	 * @param email
+	 * @param password
+	 * @return int | ID
+	 */
 	public int createUser(String name, String email, String password) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -62,7 +83,12 @@ public class UserDao {
 
 		return newUserId;
 	}
-
+	
+	/**
+	 * Update single user
+	 * 
+	 * @param user
+	 */
 	public void updateUser(User user) {
 
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -72,10 +98,10 @@ public class UserDao {
 
 		oldUser.setEmail(user.getEmail());
 		oldUser.setName(user.getName());
-		// oldUser.setPassword(user.getPassword());
 		oldUser.setRoleId(user.getRoleId());
 		oldUser.setToken(user.getToken());
 		oldUser.setRoleId(user.getRoleId());
+		//we don´t update the password, since this should be done in an password reset flow
 
 		try {
 			session.beginTransaction();
@@ -91,6 +117,11 @@ public class UserDao {
 		}
 	}
 
+	/**
+	 * Remove user by ID
+	 * 
+	 * @param id
+	 */
 	public void deleteUserById(int id) {
 		User user = getUserById(id);
 
@@ -110,8 +141,14 @@ public class UserDao {
 			}
 		}
 	}
-
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	
+	/**
+	 * Retrieve users by email | can only be one user...
+	 * 
+	 * @param email
+	 * 
+	 * @return
+	 */
 	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 		Session session = factory.getCurrentSession();
@@ -121,9 +158,14 @@ public class UserDao {
 		try {
 			session.beginTransaction();
 
-			Criteria crit = session.createCriteria(User.class);
-			crit.add(Restrictions.eqOrIsNull("email", email.toLowerCase()));
-			users = crit.list();
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<User> crit = builder.createQuery(User.class);
+			
+			Root<User> root = crit.from(User.class);
+			crit.select(root);
+			crit.where( builder.equal( root.get("email"), email.toLowerCase() ) );
+			
+			users = session.createQuery( crit ).getResultList();
 
 			session.getTransaction().commit();
 		} catch (Exception e) {
@@ -138,14 +180,22 @@ public class UserDao {
 		return users;
 	}
 
+	/**
+	 * Overload method for create single user
+	 * 
+	 * @param dto
+	 * @return int | ID
+	 */
 	public int createUser(UserDTO dto) {
 		return createUser(dto.getUsername(), dto.getEmail(), dto.getPassword());
 	}
 	
 	/**
-	 * Does user with email exist already?
+	 * Checks if user with email exist already
+	 * 
 	 * @param email
-	 * @return
+	 * 
+	 * @return boolean
 	 */
 	public boolean hasEmail(String email) {
 		List<?> users = this.get(email);

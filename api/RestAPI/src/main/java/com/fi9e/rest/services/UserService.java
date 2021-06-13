@@ -18,6 +18,11 @@ import com.fi9e.rest.models.UserCredentials;
 
 import io.jsonwebtoken.Claims;
 
+/**
+ * 
+ * @author Christopher
+ *
+ */
 public class UserService implements UserServiceInterface {
 
 	private final UserDao userDao;
@@ -71,6 +76,9 @@ public class UserService implements UserServiceInterface {
 	}
 	
 	
+	/**
+	 * Get User by Credentials (email)
+	 */
 	public User getUserByEmail(UserCredentials credentials) {
 		List<User> users = this.userDao.get(credentials.getUserName());
 		
@@ -148,6 +156,11 @@ public class UserService implements UserServiceInterface {
 		return token;
 	}
 	
+	/**
+	 * Logout user
+	 * 
+	 * @param authorization Header String
+	 */
 	public void logout(String authHeader) {
 		String token = this.stripToken(authHeader);
 		Claims payload = this.tokenService.verifyToken(token);
@@ -160,6 +173,10 @@ public class UserService implements UserServiceInterface {
 	}
 	
 	
+	/**
+	 * Strip "Bearer " from authorization header value and
+	 * only return token.
+	 */
 	public String stripToken(String authHeader) {
 		final String regex = "\\s(.*)";
         
@@ -175,7 +192,7 @@ public class UserService implements UserServiceInterface {
 	}
 	
 	/**
-	 * Check if email is already taken
+	 * Check if email is already taken by a user
 	 */
 	public boolean isEmailTaken(String email) {
 		return this.userDao.hasEmail(email.toLowerCase());

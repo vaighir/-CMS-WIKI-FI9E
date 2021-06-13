@@ -1,6 +1,7 @@
 package com.fi9e.rest.models;
 
 /**
+ * Holds User Credentials
  * 
  * @author Christopher
  *

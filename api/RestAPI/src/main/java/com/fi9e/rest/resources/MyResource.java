@@ -7,7 +7,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-/** Example resource class hosted at the URI path "/hi"
+/**
+ *	ENDPOINT: API: EXAMPLE
+ * 
+ *  Base Endpoint to test API
+ * 
+ * @author Christopher
+ *
  */
 @Path("/hi")
 public class MyResource {

@@ -18,6 +18,12 @@ import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.managers.CategoryManager;
 
+/**
+ * ENDPOINT: API: CATEGORIES
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/category")
 @Authorized
 public class CategoryComponentHandler {
@@ -55,7 +61,6 @@ public class CategoryComponentHandler {
 		return Response.ok(dto, MediaType.APPLICATION_JSON).build();
 	}
 
-	// delete endpoint
 	@DELETE
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)

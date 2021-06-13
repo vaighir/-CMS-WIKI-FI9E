@@ -13,8 +13,9 @@ import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.services.UserServiceInterface;
 
 /**
+ * ENDPOINT: API: USER
  * 
- * @author Christopher
+ * @author Christopher, Wiktor
  *
  */
 @Path("/user")

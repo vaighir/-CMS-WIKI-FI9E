@@ -20,7 +20,12 @@ import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.managers.ArticleManager;
 
-
+/**
+ * ENDPOINT: API: ARTICLES
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/article")
 @Authorized
 public class ArticlesComponentHandler {
@@ -46,7 +51,6 @@ public class ArticlesComponentHandler {
 		return this.api.success(dto, "Article Created");
 	}
 
-	// show single article
 	@GET
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)

@@ -8,6 +8,11 @@ import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.mappers.CategoryMapper;
 
+/**
+ * 
+ * @author Wiktor, Su, Christopher
+ *
+ */
 public class CategoryManager {
 
 	private CategoryDao dao;
@@ -77,6 +82,11 @@ public class CategoryManager {
 		return CategoryMapper.mapCategoryToCategoryDTO(this.getDao().getCategoryById(categoryDTO.getId()));
 	}
 
+	/**
+	 * Retrieve all categories
+	 * 
+	 * @return List<CategoryDTO>
+	 */
 	public List<CategoryDTO> getAllCategories() {
 		
 		List<?> categories = getDao().getAllCategories();

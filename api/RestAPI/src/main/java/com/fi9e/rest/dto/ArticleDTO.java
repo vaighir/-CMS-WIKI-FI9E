@@ -6,8 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
- * @author Christopher
- *
+ * @author Wiktor, Christopher
  */
 @XmlRootElement
 public class ArticleDTO  {
@@ -21,7 +20,7 @@ public class ArticleDTO  {
 	private Date updated_at;
 	
 	public ArticleDTO() {
-		// TODO Auto-generated constructor stub
+		//
 	}
 	
 	public int getId() {

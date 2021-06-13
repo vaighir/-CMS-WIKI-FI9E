@@ -1,7 +1,7 @@
 package com.fi9e.rest.helper;
 
 /**
- * Response struct
+ * Response Structure for this API 
  * @author Christopher
  */
 public class ApiResponseObject {

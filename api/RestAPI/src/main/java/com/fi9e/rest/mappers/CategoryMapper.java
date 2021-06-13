@@ -3,6 +3,12 @@ package com.fi9e.rest.mappers;
 import com.fi9e.rest.dto.CategoryDTO;
 import com.fi9e.rest.entity.Category;
 
+/**
+ * Simple mapper class, to map between types
+ * 
+ * @author Wiktor, Su, Christopher
+ *
+ */
 public class CategoryMapper {
 	
 	/**

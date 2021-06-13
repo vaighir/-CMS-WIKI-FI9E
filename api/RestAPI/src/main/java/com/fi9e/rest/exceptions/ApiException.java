@@ -3,10 +3,9 @@ package com.fi9e.rest.exceptions;
 import java.io.Serializable;
 
 /**
- * Custom Exception mapper.
+ * Custom exception handler.
  * 
- * Has to be implemented by Every Resource, so exceptions get mapped
- * to JSON and responsen to API calls are always JSONP responses
+ * Has to be implemented by every resource, so exceptions get handled correctly
  * 
  * @author Christopher
  *
