@@ -24,7 +24,7 @@ CREATE TABLE user (
     id INT AUTO_INCREMENT,
     role_id INT NOT NULL DEFAULT 2,
     name VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     token TEXT,
     PRIMARY KEY (id),

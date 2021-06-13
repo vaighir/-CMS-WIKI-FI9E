@@ -37,12 +37,12 @@ public class User {
 		
 	}
 
-	public User(String name, String email, String password, int roleId) {
+	public User(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-		this.roleId = roleId;
+		this.setRoleId(2);//set default role id to 2 | which is creator
 	}
 
 	public int getId() {

@@ -57,6 +57,11 @@ public class AuthComponentHandler {
 			this.api.error(user, "Password cannot be empty");
 		}
 		
+		//check email taken
+		if(this.userService.isEmailTaken( user.getEmail() )) {
+			throw new ApiException("Email is already taken");
+		}
+		
 		UserDTO userDto = this.userService.createUser(user);
 		
 		return this.api.success(userDto, "");

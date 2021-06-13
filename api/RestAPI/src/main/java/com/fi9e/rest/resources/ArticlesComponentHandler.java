@@ -2,6 +2,7 @@ package com.fi9e.rest.resources;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,42 +15,32 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fi9e.rest.dto.ArticleDTO;
-import com.fi9e.rest.dto.CategoryDTO;
-import com.fi9e.rest.entity.Category;
 import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.filters.Authorized;
-import com.fi9e.rest.helper.ApiResponse;
+import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.managers.ArticleManager;
 
 
+
+/**
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/article")
 @Authorized
 public class ArticlesComponentHandler {
+	
 	private ArticleManager mngr;
-	private ApiResponse api;
+	private ApiResponseInterface api;
 	
 	
-	public ArticlesComponentHandler() {
-		this.getApiResponse();
+	@Inject
+	public ArticlesComponentHandler(ApiResponseInterface api) {
+		this.api = api;
+		this.mngr = new ArticleManager();
 	}
 	
-	ArticleManager getManager() {
-		if(this.mngr == null) {
-			this.mngr = new ArticleManager();
-		}
-		
-		return mngr;
-	}
-	
-	ApiResponse getApiResponse() {
-		if(this.api == null) {
-			this.api = new ApiResponse();
-		}
-		
-		return this.api;
-	}
-	
-	ArticleDTO articleDTO;
 	
 	@POST
 	@Path("/add")
@@ -61,21 +52,20 @@ public class ArticlesComponentHandler {
 			this.api.error(article, "Subject required");
 		}
 		
-		articleDTO = this.getManager().createArticle(article);
+		ArticleDTO dto = this.mngr.createArticle(article);
 		
-		return Response.ok(articleDTO, MediaType.APPLICATION_JSON).build();
+		return this.api.success(dto, "Article created");
 	}
 
-	// show single article
 	@GET
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response show(@PathParam("id") String id) throws ApiException {
 		
-		articleDTO = this.getManager().getArticleById(id);
+		ArticleDTO dto = this.mngr.getArticleById(id);
 		
-		return Response.ok(articleDTO, MediaType.APPLICATION_JSON).build();
+		return this.api.success(dto, "");
 	}
 
 	@DELETE
@@ -84,7 +74,7 @@ public class ArticlesComponentHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
-		if(this.getManager().deleteArticleById(id)) {
+		if(this.mngr.deleteArticleById(id)) {
 			return this.api.success(null, "Article removed");
 		} else {
 			return this.api.error(null, "Can not remove article");
@@ -96,10 +86,9 @@ public class ArticlesComponentHandler {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response update(ArticleDTO articleDTO) throws ApiException {
+		ArticleDTO dto = this.mngr.updateArticle(articleDTO);
 
-		articleDTO = this.getManager().updateArticle(articleDTO);
-
-		return Response.ok(articleDTO, MediaType.APPLICATION_JSON).build();
+		return this.api.success(dto, "Article updated");
 	}
 
 	
@@ -109,9 +98,9 @@ public class ArticlesComponentHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response all() throws ApiException {
 		
-		List<ArticleDTO> dtoList = this.getManager().getAllArticles();
+		List<ArticleDTO> dtoList = this.mngr.getAllArticles();
 
-		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
+		return this.api.success(dtoList, "");
 	}
 
 	@GET
@@ -120,8 +109,8 @@ public class ArticlesComponentHandler {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response allCategory(@PathParam("id") int id) throws ApiException {
 		
-		List<ArticleDTO> dtoList = this.getManager().getAllArticlesByCategoryId( id );
+		List<ArticleDTO> dtoList = this.mngr.getAllArticlesByCategoryId( id );
 
-		return Response.ok(dtoList, MediaType.APPLICATION_JSON).build();
+		return this.api.success(dtoList, "");
 	}
 }

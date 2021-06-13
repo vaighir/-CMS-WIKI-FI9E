@@ -39,8 +39,6 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
     let newRequest = req.clone({ headers: headers });
 
-    console.log(headers, newRequest);
-
     // Pass the cloned request instead of the original request to the next handle
     return next.handle(newRequest);
   }
@@ -58,15 +56,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           
           if(error.status == 422) {
-            console.log("custom error thrown ", error);
-
             this.toastr.error(error.error.message.toString());
-
             return throwError(error.message);
           }
 
           if(error.status == 403) {
             this.router.navigate(['login']);
+            return throwError(error.message);
           }
           
           let errorMsg = '';

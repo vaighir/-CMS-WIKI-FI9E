@@ -32,8 +32,6 @@ export abstract class ApiRoutes {
     LOGOUT: ApiRoutes.path() + "logout",
     
     USERLIST_SHOW: ApiRoutes.path() + "user/all", // | Method: GET
-    USER_ADD: ApiRoutes.path() + "user/register",//Method: POST
-
   }
 
   private static path() {

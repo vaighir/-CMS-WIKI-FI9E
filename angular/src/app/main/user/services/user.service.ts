@@ -17,6 +17,6 @@ export class UserService {
    }
    
    add(user: User): Observable<User> {
-     return this.http.post<User>( ApiRoutes.uri.USER_ADD, user);
+     return this.http.post<User>( ApiRoutes.uri.REGISTER, user);
    }
 }
