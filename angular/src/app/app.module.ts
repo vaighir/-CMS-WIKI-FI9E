@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoPageComponent } from './main/no-page/no-page.component';
 import { RegisterComponent } from './main/register/register.component';
 import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { WarningComponent } from './main/warning/warning.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +43,13 @@ import { ConfirmModalComponent } from './modals/confirm-modal/confirm-modal.comp
     NoPageComponent,
     RegisterComponent,
     ConfirmModalComponent,
+    WarningComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgbTooltipModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
