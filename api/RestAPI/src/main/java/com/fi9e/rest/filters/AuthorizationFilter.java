@@ -18,7 +18,13 @@ import com.fi9e.rest.services.UserServiceInterface;
 import io.jsonwebtoken.Claims;
 
 /**
- * Header Request Filter | checks for credentials
+ * 
+ * Filter that checks for Auhtorization Headers and verifies JWT Acces Token if one is found.
+ * 
+ * Used for access control of users (Logged in status)
+ * 
+ * @author Christopher
+ *
  */
 @Provider
 @Authorized
@@ -46,9 +52,10 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 	}
 	
 	/**
-	 * Check Auth Header for Bearer Token and either grant acces or deny
+	 * Check Auth Header for Bearer Token and either grant access or deny it
 	 * 
 	 * @param requestContext
+	 * 
 	 * @throws JsonProcessingException 
 	 */
 	private void doBearerTokenVerify(ContainerRequestContext requestContext) throws JsonProcessingException {
@@ -69,8 +76,10 @@ public class AuthorizationFilter implements ContainerRequestFilter {
 		
 		String token = this.userService.stripToken(authHeader);
 		
+		//read payload of token
 		Claims payload = this.tokenService.verifyToken(token);
 		
+		//check for user_id in token
 		int user_id =  payload.get("user_id", Integer.class);		
 		
 		User user = this.userDao.getUserById(user_id);

@@ -14,6 +14,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 /**
+ * Service Class for handling token creation and verification.
  * 
  * @author Christopher
  *
@@ -27,6 +28,9 @@ public class TokenService implements TokenServiceInterface {
 	private static final String CLAIM_USER_ID = "user_id";
 	
 	@SuppressWarnings("deprecation")
+	/**
+	 * Verify a token and return it´s claims (payload)
+	 */
 	public Claims verifyToken(String token) {
 		//This line will throw an exception if it is not a signed JWS (as expected)
 		Claims claims = Jwts.parser()
@@ -36,7 +40,7 @@ public class TokenService implements TokenServiceInterface {
 	}
 	
 	/**
-	 * Create a JWT Token with custom claims (Custom Payload) | JWT with user data
+	 * Create a JWT Token with custom claims (Custom Payload) | JWT with user data.
 	 * 
 	 * @return String
 	 */
@@ -53,7 +57,11 @@ public class TokenService implements TokenServiceInterface {
 	}
 	
 	/**
-	 * Creates a secure signing Key from our secret SECRET_KEY
+	 * Creates a secure signing Key from our secret SECRET_KEY.
+	 * 
+	 * Every Key produced with our secret is valid on this API. 
+	 * Other signed keys that don´t use our secret, will get rejected by 
+	 * the verify process.
 	 * 
 	 * @return Key
 	 */

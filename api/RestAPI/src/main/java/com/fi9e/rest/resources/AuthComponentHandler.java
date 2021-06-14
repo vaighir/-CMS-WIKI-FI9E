@@ -18,6 +18,7 @@ import com.fi9e.rest.services.UserServiceInterface;
 
  
 /**
+ * ENDPOINT: API: AUTHORIZATION FLOW
  * 
  * @author Christopher
  *

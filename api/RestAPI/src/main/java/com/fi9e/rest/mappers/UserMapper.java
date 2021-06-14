@@ -5,7 +5,9 @@ import com.fi9e.rest.dto.UserDTO;
 import com.fi9e.rest.entity.User;
 
 /**
- * @author Wiktor, Chris
+ * Simple mapper class, to map between types
+ * 
+ * @author Wiktor, Christopher
  */
 public class UserMapper {
 	
@@ -34,6 +36,12 @@ public class UserMapper {
 		return dto;
 	}
 	
+	/***
+	 * 
+	 * @param dto
+	 * @param user
+	 * @return
+	 */
 	public static User mapUserDTOtoUser(UserDTO dto, User user) {
 		user.setEmail(dto.getEmail());
 		user.setName(dto.getUsername());

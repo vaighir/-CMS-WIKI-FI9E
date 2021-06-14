@@ -20,9 +20,13 @@ import com.fi9e.rest.filters.Authorized;
 import com.fi9e.rest.helper.ApiResponseInterface;
 import com.fi9e.rest.managers.ArticleManager;
 
-
+/**
+ * ENDPOINT: API: ARTICLES
+ * 
+ * @author Christopher
+ *
+ */
 @Path("/article")
-@Authorized
 public class ArticlesComponentHandler {
 	private ArticleManager mngr;
 	private ApiResponseInterface api;
@@ -37,6 +41,7 @@ public class ArticlesComponentHandler {
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response store(ArticleDTO articleDTO) throws ApiException {
 		
 		this.mngr.validate(articleDTO);
@@ -46,7 +51,6 @@ public class ArticlesComponentHandler {
 		return this.api.success(dto, "Article Created");
 	}
 
-	// show single article
 	@GET
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -62,6 +66,7 @@ public class ArticlesComponentHandler {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response delete(@PathParam("id") String id) throws ApiException {
 
 		if(this.mngr.deleteArticleById(id)) {
@@ -75,6 +80,7 @@ public class ArticlesComponentHandler {
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@Authorized
 	public Response update(ArticleDTO articleDTO) throws ApiException {
 		
 		this.mngr.validate(articleDTO);

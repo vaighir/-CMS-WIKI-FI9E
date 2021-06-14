@@ -10,6 +10,7 @@ import com.fi9e.rest.exceptions.ApiException;
 import com.fi9e.rest.mappers.ArticleMapper;
 
 /**
+ * Service Class for managing article data | should be renamed to service....
  * 
  * @author Christopher
  *
@@ -89,6 +90,12 @@ public class ArticleManager {
 		return ArticleMapper.mapArticleToArticleDTO(this.getDao().getArticleById(articleDTO.getId()));
 	}
 	
+	/**
+	 * Remove article by ID
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Boolean deleteArticleById(final String id) {
 		return this.getDao().deleteArticleById(Integer.parseInt(id));
 	}
@@ -106,6 +113,12 @@ public class ArticleManager {
 		return dtoList;
 	}
 	
+	/**
+	 * Retrieve all articles by category ID
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
 	public List<ArticleDTO> getAllArticlesByCategoryId(final int categoryId) {
 		
 		List<?> articles = getDao().getAllArticlesByCategoryId(categoryId);
@@ -119,11 +132,23 @@ public class ArticleManager {
 		return dtoList;
 	}
 	
+	/**
+	 * Overload method for Retrieving all articles by category ID
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
 	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
 		return this.getAllArticlesByCategoryId( Integer.parseInt(categoryId) );
 	}
 	
 	
+	/**
+	 * Validate user input data
+	 * 
+	 * @param articleDTO
+	 * @throws ApiException
+	 */
 	public void validate(ArticleDTO articleDTO) throws ApiException {
 		if(articleDTO.getName().isEmpty()) {
 			throw new ApiException("Title can not be empty!");

@@ -1,9 +1,10 @@
-package com.fi9e.rest.dao;
+package com.fi9e.rest.daotests;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import com.fi9e.rest.dao.ArticleDao;
 import com.fi9e.rest.dto.ArticleDTO;
 
 public class TestJdbc {
