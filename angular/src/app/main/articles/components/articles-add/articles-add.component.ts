@@ -1,4 +1,5 @@
 import { Router, ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 import { Component, Injector, OnInit } from '@angular/core';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from '../../services/article-service.service';
@@ -25,10 +26,15 @@ export class ArticlesAddComponent implements OnInit {
                 private router: Router, 
                 private route: ActivatedRoute,
                 private toastr: ToastrService,
+                private navMenuService: NavMenuService,
+                private _location: Location
                 ) {
                 }
   
   ngOnInit(): void {
+    if(this.navMenuService.currentCategoryId){
+      this.selectedCategory = Number(this.navMenuService.currentCategoryId);
+    }
     this.categoryService.categoryList().subscribe(items => this.categoryList = items);
   }
 
@@ -52,7 +58,8 @@ export class ArticlesAddComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate([".."]);
+    // this.router.navigate([".."]);
+    this._location.back();
   }
 
   //should be refactored into class
