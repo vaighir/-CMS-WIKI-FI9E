@@ -2,10 +2,12 @@ import { Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from './../../services/article-service.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmModalComponent } from 'src/app/modals/confirm-modal/confirm-modal.component';
 import { ModalService } from 'src/app/modals/services/modal.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavMenuService } from 'src/app/nav-menu/services/nav-menu.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-article-detail',
@@ -17,12 +19,16 @@ export class ArticleDetailComponent implements OnInit {
   private articleService = this.injector.get(ArticleService);
   article: any = {};
   createAtDate: string = "";
+  isLogin = false;
 
   constructor(  private injector: Injector, 
                 private route: ActivatedRoute,
                 private router: Router,
                 private modalService: ModalService,
-                private toastr: ToastrService
+                private toastr: ToastrService,
+                private navMenuService: NavMenuService,
+                private authService: AuthService,
+                private _location: Location
                 ) {
     this.route.params.subscribe((params) => {
       this.id = params.id;
@@ -30,6 +36,10 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.authService.getToken()) {
+      this.isLogin = true;
+    }
+
     this.article = this.articleService.show(this.id).subscribe((res:any) => {
       this.article = new ArticleModel().deserialize(res.data);
       this.createAtDate = new Date(this.article.created_at).toLocaleDateString('de-DE'); 
@@ -41,7 +51,8 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   onBack() {
-    this.router.navigate([".."]);
+    // this.router.navigate(["/article/category/" + this.article.category.id]);
+    this._location.back();
   }
 
   openConfirmDeleteDialog(): void {
@@ -52,7 +63,8 @@ export class ArticleDetailComponent implements OnInit {
     dialogModal.then((decision) => {
       if(decision) {
         this.articleService.delete(this.id).toPromise().then((res) => {
-          this.router.navigate([".."]);
+          // this.router.navigate(["/article/category/" + this.article.category.id]);
+          this._location.back();
           this.toastr.success('Der Artikel - ' + this.id + ' wurde erfolgreich gelöscht');
         });
       }

@@ -13,3 +13,7 @@
     max-width: 950px;
     margin: 0 auto;
 }
+
+button:disabled{
+    opacity: 0.4;
+}

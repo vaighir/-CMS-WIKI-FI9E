@@ -3,6 +3,7 @@ import { NavMenuService } from 'src/app/nav-menu/services/nav-menu.service';
 import { ArticleModel } from '../../model/article-model.Model';
 import { ArticleService } from '../../services/article-service.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-articles',
@@ -14,18 +15,23 @@ export class ArticlesComponent implements OnInit {
   articleList?: ArticleModel[];
   categoryId?: number;
   allArticles: boolean;  
+  isLogin = false;
 
   // checkIfAllArticles: string[];
 
   constructor(
     private articleService: ArticleService,
     private navMenuService: NavMenuService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
     ) {
     this.allArticles = true;
   }
 
   ngOnInit(): void {
+    if(this.authService.getToken()) {
+      this.isLogin = true;
+    }
    
     this.navMenuService.currentCategoryId.subscribe(
       id => {

@@ -4,7 +4,8 @@
       <div class="d-flex align-items-center justify-content-between mb-4">    
         <h1 class="pr-4" *ngIf="allArticles">Alle Artikel </h1>
         <div *ngIf="!allArticles"></div>
-        <div class="btn btn-primary" routerLink="/article/add">Artikel hinzufügen</div>
+        <button class="btn btn-primary style-none" routerLink="/article/add" [disabled]="!isLogin">Artikel hinzufügen</button>
+    
 
       </div>
     <div>
