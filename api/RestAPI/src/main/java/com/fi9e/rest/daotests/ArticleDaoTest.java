@@ -9,7 +9,9 @@ public class ArticleDaoTest {
 	public static void main(String[] args) {
 		ArticleDao ad = new ArticleDao();
 
-		// Category testCategory = new Category();
+		// 0. getArticleById functional tests are part of functional tests nr. 1-3
+		
+		// 1. createArticle functional test
 
 		Integer id = ad.createArticle("titleż", "sluggyö",
 				"this is a very nice and interesting article on another important subject. Probably has a lot of maths in it",
@@ -20,6 +22,9 @@ public class ArticleDaoTest {
 		Article a1 = ad.getArticleById(id);
 
 		System.out.println(a1);
+		
+		
+		// 2. updateArticle functional test
 
 		a1.setContent("new content");
 
@@ -28,6 +33,9 @@ public class ArticleDaoTest {
 		a1 = ad.getArticleById(id);
 
 		System.out.println("Updated the article, it now has the content: " + a1.getContent());
+		
+		
+		// 3. deleteArticle functional test
 
 		ad.deleteArticleById(id);
 
@@ -36,12 +44,17 @@ public class ArticleDaoTest {
 		System.out.println("after deleted, a1 should not return anything: " + a1);
 
 		
+		// 4. getAllArticles functional test
+		
 		List<Article> allArticles = (List<Article>)ad.getAllArticles();
 		 
 		for (Article article : allArticles) {
 				System.out.println("article id nr. " +
 					article.getId() + " attributes: " + article); 
 			}
+		
+		
+		// 5. getAllArticlesByCategoryId functional test
 		
 		List<Article> allArticlesById = (List<Article>)ad.getAllArticlesByCategoryId(2);
 		
