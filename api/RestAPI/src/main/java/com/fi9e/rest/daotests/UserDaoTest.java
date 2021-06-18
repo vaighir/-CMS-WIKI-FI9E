@@ -8,7 +8,9 @@ public class UserDaoTest {
 	public static void main(String[] args) {
 		UserDao ud = new UserDao();
 		
-		Role tempRole = new Role();
+		// 0. getUserById functional tests are part of functional tests nr. 1-3
+		
+		// 1. createUser functional test
 
 		ud.createUser("Jackaf Sparrow", "john.smith@test.com", "password");
 		ud.createUser("Katewr Johnson", "kate.johnson@test.com", "waefsd");
@@ -16,6 +18,8 @@ public class UserDaoTest {
 		User u1 = ud.getUserById(2);
 
 		System.out.println("got user by id: " + u1);
+		
+		// 2. updateUser functional test
 
 		u1.setEmail("new_email@tet.com");
 
@@ -25,6 +29,8 @@ public class UserDaoTest {
 		
 		System.out.println("updated user = " + u2);
 		
+		// 3. deleteUserById functional test
+		
 		ud.deleteUserById(2);
 		
 		u2 = ud.getUserById(2);
@@ -33,3 +39,4 @@ public class UserDaoTest {
 	}
 
 }
+
