@@ -24,8 +24,8 @@ public class UserDao {
 	/**
 	 * Retrieve user by ID
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the user id
+	 * @return user the required user
 	 */
 	public User getUserById(int id) {
 
@@ -53,9 +53,9 @@ public class UserDao {
 	/**
 	 * Create single user
 	 * 
-	 * @param name
-	 * @param email
-	 * @param password
+	 * @param name the user name
+	 * @param email the email
+	 * @param password the password
 	 * @return int | ID
 	 */
 	public int createUser(String name, String email, String password) {
@@ -87,7 +87,7 @@ public class UserDao {
 	/**
 	 * Update single user
 	 * 
-	 * @param user
+	 * @param user the user to update
 	 */
 	public void updateUser(User user) {
 
@@ -120,7 +120,7 @@ public class UserDao {
 	/**
 	 * Remove user by ID
 	 * 
-	 * @param id
+	 * @param id the user id
 	 */
 	public void deleteUserById(int id) {
 		User user = getUserById(id);
@@ -145,9 +145,9 @@ public class UserDao {
 	/**
 	 * Retrieve users by email | can only be one user...
 	 * 
-	 * @param email
+	 * @param email the email to search
 	 * 
-	 * @return
+	 * @return ArrayList
 	 */
 	public List<User> get(String email) {
 		SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -183,7 +183,7 @@ public class UserDao {
 	/**
 	 * Overload method for create single user
 	 * 
-	 * @param dto
+	 * @param dto the user needed to create DB entry. 
 	 * @return int | ID
 	 */
 	public int createUser(UserDTO dto) {
@@ -193,7 +193,7 @@ public class UserDao {
 	/**
 	 * Checks if user with email exist already
 	 * 
-	 * @param email
+	 * @param email the email to check
 	 * 
 	 * @return boolean
 	 */

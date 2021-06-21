@@ -14,8 +14,8 @@ public class UserMapper {
 	/**
 	 * Map User Entity to UserDTO
 	 * 
-	 * @param user
-	 * @return
+	 * @param user the user to map
+	 * @return UserDTO
 	 */
 	public static UserDTO mapUserToUserDTO(User user) {
 		UserDTO dto = new UserDTO();
@@ -38,9 +38,9 @@ public class UserMapper {
 	
 	/***
 	 * 
-	 * @param dto
-	 * @param user
-	 * @return
+	 * @param dto the userDTO
+	 * @param user the user
+	 * @return User
 	 */
 	public static User mapUserDTOtoUser(UserDTO dto, User user) {
 		user.setEmail(dto.getEmail());

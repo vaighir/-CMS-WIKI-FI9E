@@ -30,8 +30,8 @@ public class ArticleManager {
 	/**
 	 * Create an article in DB and return created object as DTO
 	 * 
-	 * @param article
-	 * @return
+	 * @param article the article to create
+	 * @return ArticleDTO
 	 */
 	public ArticleDTO createArticle(ArticleDTO article) {
 
@@ -47,8 +47,8 @@ public class ArticleManager {
 	/**
 	 * Get specific article by id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the id of the article
+	 * @return ArticleDTO
 	 */
 	public ArticleDTO getArticleById(final int id) {
 
@@ -62,8 +62,8 @@ public class ArticleManager {
 	/**
 	 * Get specific article by id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the id of the article
+	 * @return ArticleDTO
 	 */
 	public ArticleDTO getArticleById(final String id) {
 		return this.getArticleById(Integer.parseInt(id));
@@ -72,8 +72,8 @@ public class ArticleManager {
 	/**
 	 * Update Single Article
 	 * 
-	 * @param articleDTO
-	 * @return
+	 * @param articleDTO the article to update
+	 * @return ArticleDTO
 	 */
 	public ArticleDTO updateArticle(final ArticleDTO articleDTO) {
 
@@ -93,13 +93,18 @@ public class ArticleManager {
 	/**
 	 * Remove article by ID
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the id of the article
+	 * @return Boolean
 	 */
 	public Boolean deleteArticleById(final String id) {
 		return this.getDao().deleteArticleById(Integer.parseInt(id));
 	}
-
+	
+	/**
+	 * Returns all articles
+	 * 
+	 * @return ArrayList
+	 */
 	public List<ArticleDTO> getAllArticles() {
 		
 		List<?> articles = getDao().getAllArticles();
@@ -116,8 +121,8 @@ public class ArticleManager {
 	/**
 	 * Retrieve all articles by category ID
 	 * 
-	 * @param categoryId
-	 * @return
+	 * @param categoryId the category id
+	 * @return ArrayList
 	 */
 	public List<ArticleDTO> getAllArticlesByCategoryId(final int categoryId) {
 		
@@ -135,8 +140,8 @@ public class ArticleManager {
 	/**
 	 * Overload method for Retrieving all articles by category ID
 	 * 
-	 * @param categoryId
-	 * @return
+	 * @param categoryId the category id
+	 * @return ArrayList
 	 */
 	public List<ArticleDTO> getAllArticlesByCategoryId(final String categoryId) {
 		return this.getAllArticlesByCategoryId( Integer.parseInt(categoryId) );
@@ -146,8 +151,8 @@ public class ArticleManager {
 	/**
 	 * Validate user input data
 	 * 
-	 * @param articleDTO
-	 * @throws ApiException
+	 * @param articleDTO the article to validate
+	 * @throws ApiException if validation error occurs
 	 */
 	public void validate(ArticleDTO articleDTO) throws ApiException {
 		if(articleDTO.getName().isEmpty()) {

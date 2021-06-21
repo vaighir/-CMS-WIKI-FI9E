@@ -14,8 +14,8 @@ public class ArticleMapper {
 	/**
 	 * Map Article Entity to ArticleDTO
 	 * 
-	 * @param article
-	 * @return
+	 * @param article the article to map
+	 * @return ArticleDTO
 	 */
 	public static ArticleDTO mapArticleToArticleDTO(Article article) {
 		ArticleDTO dto = new ArticleDTO();

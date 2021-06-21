@@ -22,9 +22,9 @@ public class CategoryDao {
 	/**
 	 * Create single Category
 	 * 
-	 * @param name
-	 * @param slug
-	 * @param content
+	 * @param name the category name
+	 * @param slug currently not implemented!
+	 * @param content currently of no use!
 	 * @return int | category ID
 	 */
 	public int createCategory(String name, String slug, String content) {
@@ -54,7 +54,7 @@ public class CategoryDao {
 	/**
 	 * Retrieve single category by ID
 	 * 
-	 * @param id
+	 * @param id the category id
 	 * @return Category
 	 */
 	public Category getCategoryById(int id) {
@@ -82,7 +82,7 @@ public class CategoryDao {
 	
 	/**
 	 * Overload create category by DTO
-	 * @param dto
+	 * @param dto the category DTO
 	 * @return int | ID
 	 */
 	public int createCategory(CategoryDTO dto) {
@@ -92,7 +92,7 @@ public class CategoryDao {
 	/**
 	 * Update single category item
 	 * 
-	 * @param category
+	 * @param category the updated category
 	 */
 	public void updateCategory(Category category) {
 
@@ -120,7 +120,7 @@ public class CategoryDao {
 	/**
 	 * Remove single category item
 	 * 
-	 * @param id
+	 * @param id the category id
 	 */
 	public void deleteCategoryById(int id) {
 
@@ -146,7 +146,7 @@ public class CategoryDao {
 	/**
 	 * Retrieve all categories from DB
 	 * 
-	 * @return List<?> categories
+	 * @return ArrayList categories
 	 */
 	public List<?> getAllCategories() {
 		List<?> categoriesRaw = new ArrayList<>();

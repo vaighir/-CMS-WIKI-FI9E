@@ -86,4 +86,8 @@ export class AuthService implements IApiResource {
     return user;
   }
 
+  isUserLoggedIn() : Boolean {
+    return this.getTokenPayload().isLoggedIn();
+  }
+
 }
