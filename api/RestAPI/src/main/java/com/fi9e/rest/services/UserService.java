@@ -36,9 +36,9 @@ public class UserService implements UserServiceInterface {
 	
 	/**
 	 * 
-	 * @param plainPassword
-	 * @param hashedPassword
-	 * @return
+	 * @param plainPassword the unencrypted password
+	 * @param hashedPassword the hashed password
+	 * @return boolean
 	 */
 	public boolean checkPassword(String plainPassword, String hashedPassword) {
 		boolean result = false;
@@ -52,8 +52,8 @@ public class UserService implements UserServiceInterface {
 	
 	/**
 	 * Get user but strip password!
-	 * @param id
-	 * @return
+	 * @param id the user id
+	 * @return UserDTO
 	 */
 	public UserDTO getUserById(int id) {
 		User user = this.userDao.getUserById(id);
@@ -66,8 +66,8 @@ public class UserService implements UserServiceInterface {
 	
 	/**
 	 * Get full user information
-	 * @param credentials
-	 * @return
+	 * @param credentials the user credentials
+	 * @return UserDTO
 	 */
 	public UserDTO getUserDTOByEmail(UserCredentials credentials) {
 		User user = this.getUserByEmail(credentials);
@@ -78,6 +78,9 @@ public class UserService implements UserServiceInterface {
 	
 	/**
 	 * Get User by Credentials (email)
+	 * 
+	 * @param credentials the user credentials
+	 * @return User the user
 	 */
 	public User getUserByEmail(UserCredentials credentials) {
 		List<User> users = this.userDao.get(credentials.getUserName());
@@ -92,9 +95,9 @@ public class UserService implements UserServiceInterface {
 	/**
 	 * Create a user in DB and return created object as DTO
 	 * 
-	 * @param user
-	 * @return
-	 * @throws ApiException 
+	 * @param user the user to create
+	 * @return UserDTO
+	 * @throws ApiException if user id is invalid
 	 */
 	public UserDTO createUser(UserDTO user) throws ApiException {
 
@@ -114,14 +117,19 @@ public class UserService implements UserServiceInterface {
 	/**
 	 * Get specific user by id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the user id
+	 * @return UserDTO
 	 */
 	public UserDTO getUserById(final String id) {
 		return this.getUserById(Integer.parseInt(id));
 	}
 	
-	
+	/**
+	 * Login user by creating token that gets saved in user model
+	 * 
+	 * @param form form data from client (credentials)
+	 * @throws ApiException if credentials are invalid
+	 */
 	public String login(MultivaluedMap<String, String> form) throws ApiException {
 		String token = "";
 		
@@ -159,7 +167,7 @@ public class UserService implements UserServiceInterface {
 	/**
 	 * Logout user
 	 * 
-	 * @param authorization Header String
+	 * @param authHeader auth header String
 	 */
 	public void logout(String authHeader) {
 		String token = this.stripToken(authHeader);

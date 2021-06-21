@@ -14,8 +14,8 @@ public class CategoryMapper {
 	/**
 	 * Map Article Entity to CategoryDTO
 	 * 
-	 * @param category
-	 * @return
+	 * @param category the category to map
+	 * @return CategoryDTO
 	 */
 	public static CategoryDTO mapCategoryToCategoryDTO(Category category) {
 		CategoryDTO dto = new CategoryDTO();

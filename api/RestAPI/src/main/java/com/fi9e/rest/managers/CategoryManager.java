@@ -28,8 +28,8 @@ public class CategoryManager {
 	/**
 	 * Create an category in DB and return created object as DTO
 	 * 
-	 * @param category
-	 * @return
+	 * @param category the category to create
+	 * @return CategoryDTO
 	 */
 	public CategoryDTO createCategory(CategoryDTO category) {
 
@@ -45,8 +45,8 @@ public class CategoryManager {
 	/**
 	 * Get specific category by id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the category id
+	 * @return CategoryDTO
 	 */
 	public CategoryDTO getCategoryById(final int id) {
 
@@ -60,8 +60,8 @@ public class CategoryManager {
 	/**
 	 * Get specific category by id
 	 * 
-	 * @param id
-	 * @return
+	 * @param id the category id
+	 * @return CategoryDTO
 	 */
 	public CategoryDTO getCategoryById(final String id) {
 		return this.getCategoryById(Integer.parseInt(id));
@@ -70,8 +70,8 @@ public class CategoryManager {
 	/**
 	 * Update Single category
 	 * 
-	 * @param categoryDTO
-	 * @return
+	 * @param categoryDTO category to update
+	 * @return CategoryDTO
 	 */
 	public CategoryDTO updateCategory(final CategoryDTO categoryDTO) {
 
@@ -85,7 +85,7 @@ public class CategoryManager {
 	/**
 	 * Retrieve all categories
 	 * 
-	 * @return List<CategoryDTO>
+	 * @return ArrayList
 	 */
 	public List<CategoryDTO> getAllCategories() {
 		

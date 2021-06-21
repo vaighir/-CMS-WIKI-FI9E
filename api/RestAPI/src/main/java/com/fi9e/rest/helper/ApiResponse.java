@@ -50,7 +50,7 @@ public class ApiResponse implements ApiResponseInterface {
 	 * Simple Unauthorized Response
 	 * 
 	 * @return Response
-	 * @throws JsonProcessingException 
+	 * @throws JsonProcessingException Throws exception if JSON object can´t be created.
 	 */
 	public Response unauthorized() throws JsonProcessingException {
 		return Response.status(HTTP_FORBIDDEN).entity( this.makeJSON(null, "Unauthorized!").toString() ).build();
@@ -59,10 +59,10 @@ public class ApiResponse implements ApiResponseInterface {
 	/**
 	 * Make JSON Response Object. Uses default Response Structure like in {@link ApiResponseObject}
 	 * 
-	 * @param obj
-	 * @param messages
-	 * @return
-	 * @throws JsonProcessingException
+	 * @param obj the entity to send to the client
+	 * @param messages the response message to the client
+	 * @return JsonObject 
+	 * @throws JsonProcessingException if the object can´t be created
 	 */
 	private JsonObject makeJSON(Object obj, String...messages) throws JsonProcessingException {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -78,8 +78,8 @@ public class ApiResponse implements ApiResponseInterface {
 	/**
 	 * Make Response Object {@link ApiResponseObject}
 	 * 
-	 * @param obj
-	 * @param messages
+	 * @param obj the entity to send to the client
+	 * @param messages the messages to send to the client
 	 * @return {@link ApiResponseObject}
 	 */
 	private ApiResponseObject makeResponse(Object obj, String... messages) {

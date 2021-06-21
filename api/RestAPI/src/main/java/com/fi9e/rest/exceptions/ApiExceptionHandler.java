@@ -17,7 +17,7 @@ public class ApiExceptionHandler implements ExceptionMapper<ApiException> {
 	
 	/**
 	 * Make us of Dep. Inj.
-	 * @param api
+	 * @param api the api response interface {@link ApiResponseInterface}
 	 */
 	@Inject
 	public ApiExceptionHandler(ApiResponseInterface api) {

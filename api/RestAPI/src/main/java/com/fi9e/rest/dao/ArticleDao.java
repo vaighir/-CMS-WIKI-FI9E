@@ -21,8 +21,8 @@ public class ArticleDao {
 	
 	/**
 	 * Retrieve single article by ID
-	 * @param id
-	 * @return
+	 * @param id article ID
+	 * @return Article the wanted article
 	 */
 	public Article getArticleById(int id) {
 		
@@ -50,10 +50,10 @@ public class ArticleDao {
 	/**
 	 * Create single article
 	 * 
-	 * @param name
-	 * @param slug
-	 * @param content
-	 * @param categoryId
+	 * @param name the user name
+	 * @param slug currently not used at all
+	 * @param content the articles content
+	 * @param categoryId the id of the category the article should get linked to
 	 * @return int | ID of created article
 	 */
 	public int createArticle(String name, String slug, String content, int categoryId) {
@@ -91,7 +91,7 @@ public class ArticleDao {
 	/**
 	 * Overload for create article method
 	 * 
-	 * @param dto
+	 * @param dto the article
 	 * @return int | ID of created article
 	 */
 	public int createArticle(ArticleDTO dto) {
@@ -128,7 +128,7 @@ public class ArticleDao {
 	/**
 	 * Remove article by ID
 	 * 
-	 * @param id
+	 * @param id the article id
 	 * @return Boolean
 	 */
 	public Boolean deleteArticleById(int id) {
@@ -162,7 +162,7 @@ public class ArticleDao {
 	/**
 	 * Retrieve all articles that exist in DB
 	 * 
-	 * @return List<?> articles
+	 * @return ArrayList articles
 	 */
 	public List<?> getAllArticles() {
 		List<?> articlesRaw = new ArrayList<>();
@@ -190,8 +190,8 @@ public class ArticleDao {
 	/**
 	 * Retrieve all articles by category ID
 	 * 
-	 * @param categoryId
-	 * @return List<?> articles
+	 * @param categoryId the category id
+	 * @return ArrayList
 	 */
 	public List<?> getAllArticlesByCategoryId(final int categoryId) {
 		List<?> articlesRaw = new ArrayList<>();
