@@ -1,0 +1,13 @@
+com.fi9e.rest.config
+com.fi9e.rest.dao
+com.fi9e.rest.daotests
+com.fi9e.rest.dto
+com.fi9e.rest.entity
+com.fi9e.rest.exceptions
+com.fi9e.rest.filters
+com.fi9e.rest.helper
+com.fi9e.rest.managers
+com.fi9e.rest.mappers
+com.fi9e.rest.models
+com.fi9e.rest.resources
+com.fi9e.rest.services
