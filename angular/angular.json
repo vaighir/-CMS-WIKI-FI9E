@@ -96,6 +96,11 @@
                   "glob": "**/*",
                   "input": "./../webapps/ROOT/WEB-INF",
                   "output": "./WEB-INF/"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./../api/RestAPI/doc",
+                  "output": "./websites/"
                 }
               ]
             }
